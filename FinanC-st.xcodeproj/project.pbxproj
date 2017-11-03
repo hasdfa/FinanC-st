@@ -15,6 +15,10 @@
 		376419C71FACEE0D004363A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376419C51FACEE0D004363A6 /* LaunchScreen.storyboard */; };
 		376419D21FACEE0D004363A6 /* FinanC_stTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419D11FACEE0D004363A6 /* FinanC_stTests.swift */; };
 		376419DD1FACEE0D004363A6 /* FinanC_stUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419DC1FACEE0D004363A6 /* FinanC_stUITests.swift */; };
+		376419F61FACEF9A004363A6 /* HistogramColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F51FACEF9A004363A6 /* HistogramColumn.swift */; };
+		376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F71FACEFB8004363A6 /* HistogramChartView.swift */; };
+		376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */; };
+		376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		376419D81FACEE0D004363A6 /* FinanC-stUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinanC-stUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		376419DC1FACEE0D004363A6 /* FinanC_stUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanC_stUITests.swift; sourceTree = "<group>"; };
 		376419DE1FACEE0D004363A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		376419F51FACEF9A004363A6 /* HistogramColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramColumn.swift; sourceTree = "<group>"; };
+		376419F71FACEFB8004363A6 /* HistogramChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartView.swift; sourceTree = "<group>"; };
+		376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Positions.swift"; sourceTree = "<group>"; };
+		376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHistogramChartViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +110,12 @@
 				376419B91FACEE0D004363A6 /* AppDelegate.swift */,
 				376419BB1FACEE0D004363A6 /* ViewController.swift */,
 				376419BD1FACEE0D004363A6 /* Main.storyboard */,
-				376419C31FACEE0D004363A6 /* Assets.xcassets */,
 				376419C51FACEE0D004363A6 /* LaunchScreen.storyboard */,
+				376419C31FACEE0D004363A6 /* Assets.xcassets */,
 				376419C81FACEE0D004363A6 /* Info.plist */,
 				376419C01FACEE0D004363A6 /* FinanC_st.xcdatamodeld */,
+				376419F11FACEF6E004363A6 /* View */,
+				376419F21FACEF77004363A6 /* Model */,
 			);
 			path = "FinanC-st";
 			sourceTree = "<group>";
@@ -126,6 +136,40 @@
 				376419DE1FACEE0D004363A6 /* Info.plist */,
 			);
 			path = "FinanC-stUITests";
+			sourceTree = "<group>";
+		};
+		376419F11FACEF6E004363A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				376419F41FACEF81004363A6 /* Histogram */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		376419F21FACEF77004363A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				376419F31FACEF7B004363A6 /* Histogram */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		376419F31FACEF7B004363A6 /* Histogram */ = {
+			isa = PBXGroup;
+			children = (
+				376419F51FACEF9A004363A6 /* HistogramColumn.swift */,
+			);
+			path = Histogram;
+			sourceTree = "<group>";
+		};
+		376419F41FACEF81004363A6 /* Histogram */ = {
+			isa = PBXGroup;
+			children = (
+				376419F71FACEFB8004363A6 /* HistogramChartView.swift */,
+				376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */,
+				376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */,
+			);
+			path = Histogram;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376419F61FACEF9A004363A6 /* HistogramColumn.swift in Sources */,
 				376419BC1FACEE0D004363A6 /* ViewController.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
+				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
+				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
+				376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
