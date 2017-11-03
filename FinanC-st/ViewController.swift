@@ -15,13 +15,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         chartView.columns = [
-            HistogramColumn.init(point: 200_000, lable: "JUN"),
-            HistogramColumn.init(point: 275_000, lable: "JUL"),
-            HistogramColumn.init(point: 150_000, lable: "AUG"),
-            HistogramColumn.init(point: 500_000, lable: "SEP"),
-            HistogramColumn.init(point: 160_000, lable: "OKT"),
-            HistogramColumn.init(point: 380_000, lable: "NOV"),
-            HistogramColumn.init(point: 450_000, lable: "DEC")
+            HistogramColumn(point: 200_000, lable: "JUN"),
+            HistogramColumn(point: 275_000, lable: "JUL"),
+            HistogramColumn(point: 150_000, lable: "AUG"),
+            HistogramColumn(point: 500_000, lable: "SEP"),
+            HistogramColumn(point: 160_000, lable: "OKT"),
+            HistogramColumn(point: 380_000, lable: "NOV"),
+            HistogramColumn(point: 450_000, lable: "DEC")
         ]
         chartView.delegate = self
         chartView.setNeedsDisplay()
