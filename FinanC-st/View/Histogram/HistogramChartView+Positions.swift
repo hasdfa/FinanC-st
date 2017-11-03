@@ -117,4 +117,3 @@ extension HistogramChartView {
         return number * CGFloat(percent) / 100
     }
 }
-
