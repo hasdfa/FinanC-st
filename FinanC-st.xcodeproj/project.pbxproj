@@ -95,12 +95,12 @@
 		376419AD1FACEE0D004363A6 = {
 			isa = PBXGroup;
 			children = (
-				37A312661FAD14D600A91599 /* README.md */,
 				376419B81FACEE0D004363A6 /* FinanC-st */,
 				376419D01FACEE0D004363A6 /* FinanC-stTests */,
 				376419DB1FACEE0D004363A6 /* FinanC-stUITests */,
 				376419B71FACEE0D004363A6 /* Products */,
 				37A312631FAD14B000A91599 /* Images */,
+				37A312661FAD14D600A91599 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
