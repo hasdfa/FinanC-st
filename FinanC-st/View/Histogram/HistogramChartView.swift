@@ -19,9 +19,9 @@ class HistogramChartView: UIView {
                 val >= 0 || val < columns.count{
                 if selectedIndex != val {
                     selectedIndex = val
-                    self.setNeedsDisplay()
                 }
             } else { selectedIndex = nil }
+            self.setNeedsDisplay()
         }
         get { return selectedIndex }
     }
@@ -86,7 +86,8 @@ class HistogramChartView: UIView {
                     if index != i {
                         selectedColumn = i
                         delegate?.columnDidSelect(at: i, with: column)
-                    } else {
+                    } else if index == i {
+                        selectedColumn = nil
                         delegate?.columnDidDeselect()
                     }
                     return
