@@ -20,7 +20,12 @@ class HistogramChartView: UIView {
                 if selectedIndex != val {
                     selectedIndex = val
                 }
-            } else { selectedIndex = nil }
+            } else {
+                if index != -1 {
+                    delegate?.columnDidDeselect()
+                }
+                selectedIndex = nil
+            }
             self.setNeedsDisplay()
         }
         get { return selectedIndex }
@@ -86,13 +91,12 @@ class HistogramChartView: UIView {
                     if index != i {
                         selectedColumn = i
                         delegate?.columnDidSelect(at: i, with: column)
-                    } else if index == i {
-                        selectedColumn = nil
-                        delegate?.columnDidDeselect()
+                        return
                     }
-                    return
                 }
             }
+            // Unfocus by tap outside
+            selectedColumn = nil
         }
     }
 }

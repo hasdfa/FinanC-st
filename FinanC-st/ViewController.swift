@@ -40,11 +40,11 @@ class ViewController: UIViewController {
 extension ViewController: UIHistogramChartViewDelegate {
     
     func columnDidSelect(at position: Int, with column: HistogramColumn) {
-        
+        print("columnDidSelect(at:\(position), with: \(column))")
     }
     
     func columnDidDeselect() {
-        
+        print("columnDidDeselect()")
     }
 }
 
