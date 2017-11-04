@@ -50,9 +50,9 @@
 		37598C9A1FADDF2A004681BC /* HistogramPointsChartView+Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramPointsChartView+Positions.swift"; sourceTree = "<group>"; };
 		37598C9D1FADF33D004681BC /* HistogramPointsChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramPointsChartView+Draw.swift"; sourceTree = "<group>"; };
 		37598CA01FADF42F004681BC /* PointsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsChartView.swift; sourceTree = "<group>"; };
-		37598CA21FAE388F004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
-		37598CA31FAE388F004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
-		37598CA41FAE3890004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
+		37598CA81FAE3C4B004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
+		37598CA91FAE3C4B004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
+		37598CAA1FAE3C4B004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
 		376419B61FACEE0D004363A6 /* FinanC-st.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinanC-st.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		376419B91FACEE0D004363A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		376419BB1FACEE0D004363A6 /* HistogramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramViewController.swift; sourceTree = "<group>"; };
@@ -224,9 +224,9 @@
 		37A312631FAD14B000A91599 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				37598CA31FAE388F004681BC /* s1.png */,
-				37598CA41FAE3890004681BC /* s2.png */,
-				37598CA21FAE388F004681BC /* s3.png */,
+				37598CA91FAE3C4B004681BC /* s1.png */,
+				37598CAA1FAE3C4B004681BC /* s2.png */,
+				37598CA81FAE3C4B004681BC /* s3.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
