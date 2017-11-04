@@ -11,14 +11,23 @@ import UIKit
 extension HistogramChartView {
     
     func drawColumn(on context: CGContext, with column: HistogramColumn, at position: Int) {
-        let columnPath = UIBezierPath(roundedRect: columnRect(at: position, of: column.point), cornerRadius: 2)
+        let columnBaseRect = columnRect(at: position, of: column.point)
+        _ = CGRect(
+            x: columnBaseRect.minX,
+            y: columnBaseRect.maxY,
+            width: columnBaseRect.width,
+            height: 0
+        )
+        
+        let columnPath = UIBezierPath(roundedRect: columnBaseRect, cornerRadius: 2)
         let fillColor: UIColor
         if index == -1 {
-            fillColor = HCColors.colorPrimary
+            fillColor = defaultColumnsColor
         } else {
             if index == position {
                 drawSelectedBackground(on: context, at: position)
                 // drawPointer(on: context, with: column.lable)
+
                 fillColor = HCColors.colorPrimary
             } else {
                 fillColor = HCColors.colorPrimaryLight
@@ -26,8 +35,6 @@ extension HistogramChartView {
         }
         fillColor.setFill()
         columnPath.fill()
-        
-        drawLable(on: context, with: lableRect(at: position), and: column.lable)
     }
     
      func drawSelectedBackground(on context: CGContext , at position: Int){
@@ -44,9 +51,15 @@ extension HistogramChartView {
         context.restoreGState()
     }
     
+    func drawLabel(on context: CGContext, at position: Int, and text: String) {
+        let frame = lableRect(at: position)
+        drawLable(on: context, with: frame, and: text)
+    }
+    
     func drawLable(on context: CGContext, with frame: CGRect, and text: String,
                    color: UIColor = HCColors.colorGraySecondary, fontSize: CGFloat = 14) {
         //// Lable Drawing
+        
         let lableTextContent = text
         let lableStyle = NSMutableParagraphStyle()
         lableStyle.alignment = .center
@@ -92,7 +105,7 @@ extension HistogramChartView {
         HCColors.colorPrimary.setFill()
         pointerPath.fill()
         
-        let pointerLableRect = CGRect()
-        drawLable(on: context, with: pointerLableRect, and: "")
+//        let pointerLableRect = CGRect()
+//        drawLable(on: context, at: , and: "")
     }
 }

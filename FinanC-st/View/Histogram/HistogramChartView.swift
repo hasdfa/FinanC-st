@@ -10,27 +10,43 @@ import UIKit
 
 class HistogramChartView: UIView {
     
+    public var isSelectable = true {
+        didSet {
+            if oldValue != isSelectable {
+                if isSelectable {
+                    initTapGesture()
+                } else {
+                    if tapGestureRecognizer != nil {
+                        self.removeGestureRecognizer(tapGestureRecognizer!)
+                        tapGestureRecognizer = nil
+                    }
+                }
+            }
+        }
+    }
     public weak var delegate: UIHistogramChartViewDelegate? = nil
     
-    private var selectedIndex: Int? = nil
+    var index: Int = -1
     public var selectedColumn: Int? {
         set {
             if let val = newValue,
                 val >= 0 || val < columns.count{
-                if selectedIndex != val {
-                    selectedIndex = val
+                if index != val {
+                    index = val
                 }
             } else {
                 if index != -1 {
                     delegate?.columnDidDeselect()
                 }
-                selectedIndex = nil
+                index = -1
             }
             self.setNeedsDisplay()
         }
-        get { return selectedIndex }
+        get { return index == -1 ? nil : index }
     }
-    var index: Int { get { return selectedIndex ?? -1 } }
+    public func deselectColumn() {
+        selectedColumn = nil
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -42,28 +58,29 @@ class HistogramChartView: UIView {
         initTapGesture()
     }
     
-    public var columns: [HistogramColumn] = []
+    public var columns: [HistogramColumn] = [] {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     init(with columns: [HistogramColumn]) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.columns = columns
         initTapGesture()
     }
-    init(with columns: [HistogramColumn], and frame: CGRect) {
-        super.init(frame: frame)
-        self.columns = columns
-        initTapGesture()
-    }
     
+    private var tapGestureRecognizer: UITapGestureRecognizer? = nil
     func initTapGesture() {
-        let tapGestureRecognizer = UITapGestureRecognizer(
+        tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(handleEvent(_:))
         )
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        self.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer?.numberOfTapsRequired = 1
+        tapGestureRecognizer?.numberOfTouchesRequired = 1
+        self.addGestureRecognizer(tapGestureRecognizer!)
     }
     
+    var defaultColumnsColor: UIColor = HCColors.colorPrimary
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
         
@@ -71,11 +88,15 @@ class HistogramChartView: UIView {
         columns.forEach { it -> Void in
             defer { i += 1 }
             drawColumn(on: context, with: it, at: i)
+            drawLabel(on: context, at: i, and: it.lable)
         }
     }
     
     @objc
     func handleEvent(_ gesture: UITapGestureRecognizer) {
+        if !isSelectable {
+            print("Imposible")
+        }
         if gesture.state == .recognized {
             let point = gesture.location(in: self)
             let x = point.x
@@ -86,6 +107,7 @@ class HistogramChartView: UIView {
                 defer { i += 1 }
                 let frame = columnBackgroundRect(at: i)
                 
+                // Check if tap is in \(i) column
                 if (x >= frame.minX && x <= frame.maxX)
                     && (y >= frame.minY && y <= frame.maxY) {
                     if index != i {
@@ -97,6 +119,16 @@ class HistogramChartView: UIView {
             }
             // Unfocus by tap outside
             selectedColumn = nil
+        }
+    }
+    
+    
+    deinit {
+        if tapGestureRecognizer != nil {
+            self.removeGestureRecognizer(tapGestureRecognizer!)
+        }
+        if delegate != nil {
+            delegate = nil
         }
     }
 }
