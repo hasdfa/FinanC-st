@@ -13,6 +13,8 @@ class HistogramChartView: UIView {
     public var chartType: HistogramChartType = .withColumns
     
     override func draw(_ rect: CGRect) {
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+
         let context = UIGraphicsGetCurrentContext()!
         
         var i = 0
@@ -30,8 +32,12 @@ class HistogramChartView: UIView {
                 self.drawColumn(on: context, with: it, at: i)
             }
         case .withColumnsAndPoints:
-            drawIn = { it -> Void in
+            columns.forEach { it -> Void in
+                defer { i += 1 }
                 self.drawColumn(on: context, with: it, at: i)
+            }
+            i = 0
+            drawIn = { it -> Void in
                 self.drawLine(startedAt: i, with: it.point)
                 self.drawPoints(at: i, with: it.point)
             }

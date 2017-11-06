@@ -19,25 +19,8 @@ extension HistogramChartView {
             height: 0
         )
         
-        let p = CAShapeLayer()
-        
-        let columnPath = UIBezierPath(roundedRect: start, cornerRadius: 2)
-        
-        p.path = columnPath.cgPath
-        
-        let ca = CABasicAnimation(keyPath: "position")
-        ca.duration = 2.5
-        ca.fromValue = start.origin
-        ca.toValue = columnBaseRect.origin
-        p.add(ca, forKey: "some")
-        
-        let ca2 = CABasicAnimation(keyPath: "height")
-        ca2.duration = 2.5
-        ca2.fromValue = start.height
-        ca2.toValue = columnBaseRect.height
-        p.add(ca2, forKey: "some2")
-        
-        layer.addSublayer(p)
+        let startColumnPath = UIBezierPath(roundedRect: start, cornerRadius: 2).cgPath
+        let endColumnPath = UIBezierPath(roundedRect: columnBaseRect, cornerRadius: 2).cgPath
         
         let fillColor: UIColor
         if index == -1 {
@@ -52,8 +35,24 @@ extension HistogramChartView {
                 fillColor = HCColors.colorPrimaryLight
             }
         }
-        fillColor.setFill()
-        columnPath.fill()
+        
+        let shape = CAShapeLayer()
+        layer.addSublayer(shape)
+        
+        shape.path = startColumnPath
+        shape.fillColor = fillColor.cgColor
+        
+        let animation = CABasicAnimation(keyPath: "path")
+        animation.duration = 0.75
+        animation.fromValue = startColumnPath
+        animation.toValue = endColumnPath
+        
+        // TODO: узнать что это
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.fillMode = kCAFillModeBoth
+        animation.isRemovedOnCompletion = false
+        
+        shape.add(animation, forKey: animation.keyPath)
     }
     
      func drawSelectedBackground(on context: CGContext , at position: Int){
