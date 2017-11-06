@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37598C971FADD8BC004681BC /* HistogramPointsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598C961FADD8BC004681BC /* HistogramPointsChartView.swift */; };
-		37598CA11FADF42F004681BC /* PointsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598CA01FADF42F004681BC /* PointsChartView.swift */; };
 		376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419B91FACEE0D004363A6 /* AppDelegate.swift */; };
 		376419BC1FACEE0D004363A6 /* HistogramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419BB1FACEE0D004363A6 /* HistogramViewController.swift */; };
 		376419BF1FACEE0D004363A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376419BD1FACEE0D004363A6 /* Main.storyboard */; };
@@ -25,6 +23,7 @@
 		37A312601FAD11DA00A91599 /* HSTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A3125F1FAD11DA00A91599 /* HSTools.swift */; };
 		37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */; };
 		37A312671FAD14D600A91599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 37A312661FAD14D600A91599 /* README.md */; };
+		9EBF07151FB0C137009ABFEA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF07141FB0C137009ABFEA /* MasterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		37598C961FADD8BC004681BC /* HistogramPointsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramPointsChartView.swift; sourceTree = "<group>"; };
-		37598CA01FADF42F004681BC /* PointsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsChartView.swift; sourceTree = "<group>"; };
 		37598CA81FAE3C4B004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
 		37598CA91FAE3C4B004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
 		37598CAA1FAE3C4B004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
@@ -72,6 +69,7 @@
 		37A3125F1FAD11DA00A91599 /* HSTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSTools.swift; sourceTree = "<group>"; };
 		37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Draw.swift"; sourceTree = "<group>"; };
 		37A312661FAD14D600A91599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9EBF07141FB0C137009ABFEA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,22 +97,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37598C951FADD896004681BC /* HistogramPoints */ = {
-			isa = PBXGroup;
-			children = (
-				37598C961FADD8BC004681BC /* HistogramPointsChartView.swift */,
-			);
-			path = HistogramPoints;
-			sourceTree = "<group>";
-		};
-		37598C9F1FADF41B004681BC /* Points */ = {
-			isa = PBXGroup;
-			children = (
-				37598CA01FADF42F004681BC /* PointsChartView.swift */,
-			);
-			path = Points;
-			sourceTree = "<group>";
-		};
 		376419AD1FACEE0D004363A6 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				376419B91FACEE0D004363A6 /* AppDelegate.swift */,
+				9EBF07141FB0C137009ABFEA /* MasterViewController.swift */,
 				376419BB1FACEE0D004363A6 /* HistogramViewController.swift */,
 				376419BD1FACEE0D004363A6 /* Main.storyboard */,
 				376419C51FACEE0D004363A6 /* LaunchScreen.storyboard */,
@@ -174,8 +157,6 @@
 		376419F11FACEF6E004363A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				37598C9F1FADF41B004681BC /* Points */,
-				37598C951FADD896004681BC /* HistogramPoints */,
 				376419F41FACEF81004363A6 /* Histogram */,
 			);
 			path = View;
@@ -358,15 +339,14 @@
 				376419F61FACEF9A004363A6 /* HistogramColumn.swift in Sources */,
 				379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */,
 				376419BC1FACEE0D004363A6 /* HistogramViewController.swift in Sources */,
-				37598CA11FADF42F004681BC /* PointsChartView.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
 				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
 				37A312601FAD11DA00A91599 /* HSTools.swift in Sources */,
-				37598C971FADD8BC004681BC /* HistogramPointsChartView.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
 				376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */,
 				37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */,
+				9EBF07151FB0C137009ABFEA /* MasterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

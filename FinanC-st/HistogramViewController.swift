@@ -10,7 +10,13 @@ import UIKit
 
 class HistogramViewController: UIViewController {
 
-    @IBOutlet weak var chartView: HistogramChartView!
+    @IBOutlet weak var chartView: HistogramChartView! {
+        didSet {
+            chartView.chartType = chartType
+        }
+    }
+    
+    public var chartType: HistogramChartType = .withColumns
     
     override func viewDidLoad() {
         super.viewDidLoad()

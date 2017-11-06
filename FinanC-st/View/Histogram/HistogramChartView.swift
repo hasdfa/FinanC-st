@@ -16,13 +16,11 @@ class HistogramChartView: UIView {
         let context = UIGraphicsGetCurrentContext()!
         
         var i = 0
-        
         switch chartType {
-        case .withPoint, .withColumnsAndPoints:
-            isSelectable = false
-            defaultColumnsColor = HCColors.colorPrimaryLight
-        default:
-            break
+            case .withPoint, .withColumnsAndPoints:
+                isSelectable = false
+                defaultColumnsColor = HCColors.colorPrimaryLight
+            default: break
         }
         
         let drawIn: (HistogramColumn) -> Void
@@ -30,16 +28,25 @@ class HistogramChartView: UIView {
         case .withColumns:
             drawIn = { it -> Void in
                 self.drawColumn(on: context, with: it, at: i)
-                self.drawLabel(on: context, at: i, and: it.lable)
             }
         case .withColumnsAndPoints:
             drawIn = { it -> Void in
-                self.drawPoints(at: i, with: it.point)
                 self.drawColumn(on: context, with: it, at: i)
+                self.drawLine(startedAt: i, with: it.point)
+                self.drawPoints(at: i, with: it.point)
             }
         case .withPoint:
             let line = UIBezierPath()
             line.move(to: pointCenter(at: 0, of: columns.first?.point ?? 0.0))
+            columns.forEach { it -> Void in
+                defer { i += 1 }
+                drawLine(on: line, startedAt: i, with: it.point)
+            }
+            i = 0
+            drawLinesUnderPoints(on: line)
+            HCColors.colorPrimaryLight.setFill()
+            line.fill()
+            
             drawIn = { it -> Void in
                 self.drawLine(startedAt: i, with: it.point)
                 self.drawPoints(at: i, with: it.point)
@@ -50,11 +57,6 @@ class HistogramChartView: UIView {
             defer { i += 1 }
             drawIn(it)
             drawLabel(on: context, at: i, and: it.lable)
-        }
-        columns.forEach { it -> Void in
-            defer { i += 1 }
-            drawLine(startedAt: i, with: it.point)
-            drawPoints(at: i, with: it.point)
         }
     }
     
@@ -71,18 +73,16 @@ class HistogramChartView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initTapGesture()
+        onInit()
     }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initTapGesture()
+        onInit()
     }
-    
     init(with columns: [HistogramColumn]) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.columns = columns
-        initTapGesture()
+        onInit()
     }
     
     
@@ -128,7 +128,7 @@ extension HistogramChartView {
     func handleSelectableChange(with oldValue: Bool) {
         if oldValue != isSelectable {
             if isSelectable {
-                initTapGesture()
+                onInit()
             } else {
                 if tapGestureRecognizer != nil {
                     self.removeGestureRecognizer(tapGestureRecognizer!)
@@ -138,7 +138,8 @@ extension HistogramChartView {
         }
     }
     
-    func initTapGesture() {
+    func onInit() {
+        self.contentMode = .redraw
         tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(handleEvent(_:))

@@ -12,14 +12,33 @@ extension HistogramChartView {
     
     func drawColumn(on context: CGContext, with column: HistogramColumn, at position: Int) {
         let columnBaseRect = columnRect(at: position, of: column.point)
-        _ = CGRect(
+        let start = CGRect(
             x: columnBaseRect.minX,
             y: columnBaseRect.maxY,
             width: columnBaseRect.width,
             height: 0
         )
         
-        let columnPath = UIBezierPath(roundedRect: columnBaseRect, cornerRadius: 2)
+        let p = CAShapeLayer()
+        
+        let columnPath = UIBezierPath(roundedRect: start, cornerRadius: 2)
+        
+        p.path = columnPath.cgPath
+        
+        let ca = CABasicAnimation(keyPath: "position")
+        ca.duration = 2.5
+        ca.fromValue = start.origin
+        ca.toValue = columnBaseRect.origin
+        p.add(ca, forKey: "some")
+        
+        let ca2 = CABasicAnimation(keyPath: "height")
+        ca2.duration = 2.5
+        ca2.fromValue = start.height
+        ca2.toValue = columnBaseRect.height
+        p.add(ca2, forKey: "some2")
+        
+        layer.addSublayer(p)
+        
         let fillColor: UIColor
         if index == -1 {
             fillColor = defaultColumnsColor

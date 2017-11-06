@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-3274" y="54"/>
         </scene>
-        <!--View Controller-->
+        <!--Master View Controller-->
         <scene sceneID="DSe-p0-gYy">
             <objects>
-                <viewController id="I3g-Mu-sdO" sceneMemberID="viewController">
+                <viewController id="I3g-Mu-sdO" customClass="MasterViewController" customModule="FinanC_st" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p64-q9-Hzh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,21 +38,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
                                         <state key="normal" title="HistogramChartView"/>
                                         <connections>
-                                            <segue destination="DYd-ad-36O" kind="showDetail" id="LDj-dX-W1f"/>
+                                            <segue destination="DYd-ad-36O" kind="showDetail" identifier="0" id="LDj-dX-W1f"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFa-vz-8uB">
                                         <rect key="frame" x="0.0" y="109" width="311" height="30"/>
                                         <state key="normal" title="HistogramPointsChartView"/>
                                         <connections>
-                                            <segue destination="KQg-O2-oJd" kind="showDetail" id="oBa-9s-o6C"/>
+                                            <segue destination="DYd-ad-36O" kind="showDetail" identifier="1" id="x2X-mR-yLU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfQ-2l-dVF">
                                         <rect key="frame" x="0.0" y="218" width="311" height="30"/>
                                         <state key="normal" title="PointsChartView"/>
                                         <connections>
-                                            <segue destination="1mO-wp-tsL" kind="showDetail" id="BDi-bB-3sD"/>
+                                            <segue destination="DYd-ad-36O" kind="showDetail" identifier="2" id="mF8-a6-xdT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -103,71 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSv-V3-GbC" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2892" y="814"/>
-        </scene>
-        <!--Histogram View Controller-->
-        <scene sceneID="KNO-Ki-JyE">
-            <objects>
-                <viewController id="KQg-O2-oJd" customClass="HistogramViewController" customModule="FinanC_st" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TlI-pa-WHQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="690-KL-6TF" customClass="HistogramPointsChartView" customModule="FinanC_st" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="350"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="Pa3-jw-Jaf"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.68700139452208986" blue="0.94186954353031549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="690-KL-6TF" firstAttribute="leading" secondItem="TlI-pa-WHQ" secondAttribute="leading" id="0f9-lC-J3o"/>
-                            <constraint firstAttribute="trailing" secondItem="690-KL-6TF" secondAttribute="trailing" id="XV1-W0-XcW"/>
-                            <constraint firstItem="690-KL-6TF" firstAttribute="top" secondItem="clm-r9-z6Q" secondAttribute="top" id="lmE-BC-llc"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="clm-r9-z6Q"/>
-                    </view>
-                    <connections>
-                        <outlet property="chartView" destination="690-KL-6TF" id="xDG-xY-lzb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zkg-b5-2nR" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1471" y="814"/>
-        </scene>
-        <!--Histogram View Controller-->
-        <scene sceneID="5a4-pB-gjp">
-            <objects>
-                <viewController id="1mO-wp-tsL" customClass="HistogramViewController" customModule="FinanC_st" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="r1e-Iv-Nv2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="rYP-dQ-JgL" customClass="PointsChartView" customModule="FinanC_st" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="350"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="dMg-Rw-BEk"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.98619300003496668" green="1" blue="0.46276077177413977" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="rYP-dQ-JgL" firstAttribute="leading" secondItem="r1e-Iv-Nv2" secondAttribute="leading" id="ZwQ-yu-pIg"/>
-                            <constraint firstItem="rYP-dQ-JgL" firstAttribute="top" secondItem="1lD-zw-Dh3" secondAttribute="top" id="xIS-FZ-ANn"/>
-                            <constraint firstAttribute="trailing" secondItem="rYP-dQ-JgL" secondAttribute="trailing" id="z5b-yo-uYm"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="1lD-zw-Dh3"/>
-                    </view>
-                    <connections>
-                        <outlet property="chartView" destination="rYP-dQ-JgL" id="d0f-hD-GZh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qyw-yK-6wp" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2191" y="814"/>
+            <point key="canvasLocation" x="-2386" y="584"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SAM-bt-54U">
@@ -189,6 +125,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LDj-dX-W1f"/>
+        <segue reference="x2X-mR-yLU"/>
     </inferredMetricsTieBreakers>
 </document>
