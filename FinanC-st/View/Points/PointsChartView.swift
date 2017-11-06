@@ -17,12 +17,11 @@ class PointsChartView: HistogramPointsChartView {
         let line = UIBezierPath()
         line.move(to: pointCenter(at: 0, of: columns.first?.point ?? 0.0))
         
-        drawStartLineUnderPoints(on: line)
         columns.forEach { it -> Void in
             defer { i += 1 }
             drawLine(on: line, startedAt: i, with: it.point)
         }
-        drawEndLineUnderPoints(on: line)
+        drawLinesUnderPoints(on: line)
         HCColors.colorPrimaryLight.setFill()
         line.fill()
         

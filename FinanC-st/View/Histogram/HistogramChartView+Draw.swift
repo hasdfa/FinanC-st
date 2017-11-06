@@ -109,3 +109,101 @@ extension HistogramChartView {
 //        drawLable(on: context, at: , and: "")
     }
 }
+
+
+// MARK: Points Draw
+extension HistogramChartView {
+    
+    func drawPoints(at position: Int, with value: CGFloat){
+        //// OVAL Drawing
+        let ovalRect = pointRect(at: position, of: value)
+        let ovalPath = UIBezierPath(ovalIn: ovalRect)
+        HCColors.colorPrimaryLight.setFill()
+        ovalPath.fill()
+        
+        HCColors.colorPrimary.setStroke()
+        ovalPath.lineWidth = pointRadius / 3
+        ovalPath.stroke()
+    }
+    
+    func drawLine(on line: UIBezierPath, startedAt position: Int, with value: CGFloat) {
+        if position < columns.count - 1 {
+            let center = pointCenter(at: position, of: value)
+            
+            let i2 = position + 1
+            let secondCenter = pointCenter(at: i2, of: columns[i2].point)
+            
+            drawLine(on: line, from: center, to: secondCenter)
+        }
+    }
+    
+    
+    func drawLine(on line: UIBezierPath, from start: CGPoint, to end: CGPoint,
+                  with color: UIColor = HCColors.colorPrimary) {
+        line.addQuadCurve(to: end, controlPoint: start)
+        
+        color.setStroke()
+        line.lineWidth = pointRadius / 2
+        line.lineCapStyle = .square
+        line.stroke()
+    }
+    
+    
+    func drawLine(startedAt position: Int, with value: CGFloat) {
+        if position < columns.count - 1 {
+            let center = pointCenter(at: position, of: value)
+            
+            let i2 = position + 1
+            let secondCenter = pointCenter(at: i2, of: columns[i2].point)
+            
+            let line = UIBezierPath()
+            line.move(to: center)
+            line.addLine(to: secondCenter)
+            
+            HCColors.colorPrimary.setStroke()
+            line.lineWidth = pointRadius / 2
+            line.lineCapStyle = .square
+            line.stroke()
+        }
+    }
+}
+
+// Points Draw Extension
+extension HistogramChartView {
+    
+    func drawLinesUnderPoints(on line: UIBezierPath) {
+        if columns.count == 0 { return }
+        let firstPointCenter = pointCenter(
+            at: 0,
+            of: columns.first!.point
+        )
+        let lastPointCenter = pointCenter(
+            at: columns.count - 1,
+            of: columns.last!.point
+        )
+        let lastBottomPoint = pointCenter(at: columns.count - 1, of: 0)
+        let firstBottomPoint = pointCenter(at: 0, of: 0)
+        
+        
+        drawLine(
+            on: line,
+            from: lastPointCenter,
+            to: lastBottomPoint,
+            with: HCColors.colorPrimaryLight
+        )
+        drawLine(
+            on: line,
+            from: lastBottomPoint,
+            to: firstBottomPoint,
+            with: HCColors.colorPrimaryLight
+        )
+        drawLine(
+            on: line,
+            from: firstBottomPoint,
+            to: firstPointCenter,
+            with: HCColors.colorPrimaryLight
+        )
+    }
+}
+
+

@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37598C971FADD8BC004681BC /* HistogramPointsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598C961FADD8BC004681BC /* HistogramPointsChartView.swift */; };
-		37598C9B1FADDF2A004681BC /* HistogramPointsChartView+Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598C9A1FADDF2A004681BC /* HistogramPointsChartView+Positions.swift */; };
-		37598C9E1FADF33D004681BC /* HistogramPointsChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598C9D1FADF33D004681BC /* HistogramPointsChartView+Draw.swift */; };
 		37598CA11FADF42F004681BC /* PointsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598CA01FADF42F004681BC /* PointsChartView.swift */; };
-		37598CAC1FAE3DAC004681BC /* PointsChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37598CAB1FAE3DAC004681BC /* PointsChartView+Draw.swift */; };
 		376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419B91FACEE0D004363A6 /* AppDelegate.swift */; };
 		376419BC1FACEE0D004363A6 /* HistogramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419BB1FACEE0D004363A6 /* HistogramViewController.swift */; };
 		376419BF1FACEE0D004363A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376419BD1FACEE0D004363A6 /* Main.storyboard */; };
@@ -24,6 +21,7 @@
 		376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F71FACEFB8004363A6 /* HistogramChartView.swift */; };
 		376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */; };
 		376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */; };
+		379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379744B01FB0B526001B2F40 /* HistogramChartType.swift */; };
 		37A312601FAD11DA00A91599 /* HSTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A3125F1FAD11DA00A91599 /* HSTools.swift */; };
 		37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */; };
 		37A312671FAD14D600A91599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 37A312661FAD14D600A91599 /* README.md */; };
@@ -48,13 +46,10 @@
 
 /* Begin PBXFileReference section */
 		37598C961FADD8BC004681BC /* HistogramPointsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramPointsChartView.swift; sourceTree = "<group>"; };
-		37598C9A1FADDF2A004681BC /* HistogramPointsChartView+Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramPointsChartView+Positions.swift"; sourceTree = "<group>"; };
-		37598C9D1FADF33D004681BC /* HistogramPointsChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramPointsChartView+Draw.swift"; sourceTree = "<group>"; };
 		37598CA01FADF42F004681BC /* PointsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsChartView.swift; sourceTree = "<group>"; };
 		37598CA81FAE3C4B004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
 		37598CA91FAE3C4B004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
 		37598CAA1FAE3C4B004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
-		37598CAB1FAE3DAC004681BC /* PointsChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointsChartView+Draw.swift"; sourceTree = "<group>"; };
 		376419B61FACEE0D004363A6 /* FinanC-st.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinanC-st.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		376419B91FACEE0D004363A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		376419BB1FACEE0D004363A6 /* HistogramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +68,7 @@
 		376419F71FACEFB8004363A6 /* HistogramChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartView.swift; sourceTree = "<group>"; };
 		376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Positions.swift"; sourceTree = "<group>"; };
 		376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHistogramChartViewDelegate.swift; sourceTree = "<group>"; };
+		379744B01FB0B526001B2F40 /* HistogramChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartType.swift; sourceTree = "<group>"; };
 		37A3125F1FAD11DA00A91599 /* HSTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSTools.swift; sourceTree = "<group>"; };
 		37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Draw.swift"; sourceTree = "<group>"; };
 		37A312661FAD14D600A91599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -103,19 +99,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37598C941FADD887004681BC /* HistogramPoints */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HistogramPoints;
-			sourceTree = "<group>";
-		};
 		37598C951FADD896004681BC /* HistogramPoints */ = {
 			isa = PBXGroup;
 			children = (
 				37598C961FADD8BC004681BC /* HistogramPointsChartView.swift */,
-				37598C9A1FADDF2A004681BC /* HistogramPointsChartView+Positions.swift */,
-				37598C9D1FADF33D004681BC /* HistogramPointsChartView+Draw.swift */,
 			);
 			path = HistogramPoints;
 			sourceTree = "<group>";
@@ -124,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				37598CA01FADF42F004681BC /* PointsChartView.swift */,
-				37598CAB1FAE3DAC004681BC /* PointsChartView+Draw.swift */,
 			);
 			path = Points;
 			sourceTree = "<group>";
@@ -198,7 +184,6 @@
 		376419F21FACEF77004363A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				37598C941FADD887004681BC /* HistogramPoints */,
 				376419F31FACEF7B004363A6 /* Histogram */,
 			);
 			path = Model;
@@ -208,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				376419F51FACEF9A004363A6 /* HistogramColumn.swift */,
+				379744B01FB0B526001B2F40 /* HistogramChartType.swift */,
 			);
 			path = Histogram;
 			sourceTree = "<group>";
@@ -370,18 +356,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				376419F61FACEF9A004363A6 /* HistogramColumn.swift in Sources */,
+				379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */,
 				376419BC1FACEE0D004363A6 /* HistogramViewController.swift in Sources */,
 				37598CA11FADF42F004681BC /* PointsChartView.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
 				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
-				37598C9E1FADF33D004681BC /* HistogramPointsChartView+Draw.swift in Sources */,
 				37A312601FAD11DA00A91599 /* HSTools.swift in Sources */,
 				37598C971FADD8BC004681BC /* HistogramPointsChartView.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
 				376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */,
-				37598C9B1FADDF2A004681BC /* HistogramPointsChartView+Positions.swift in Sources */,
-				37598CAC1FAE3DAC004681BC /* PointsChartView+Draw.swift in Sources */,
 				37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +475,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -541,6 +526,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
