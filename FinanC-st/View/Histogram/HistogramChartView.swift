@@ -11,10 +11,21 @@ import UIKit
 class HistogramChartView: UIView {
     
     public var chartType: HistogramChartType = .withColumns
+    public var columns: [HistogramColumn] = [] {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    public var oldColumns: [HistogramColumn?] = []
+    
+    public func updateColumns(with columns: [HistogramColumn]) {
+        if columns.count != self.columns.count { fatalError("updateColumns(with:) Columns count must be the same!") }
+        needsAnimating = true
+        oldColumns = self.columns
+        self.columns = columns
+    }
     
     override func draw(_ rect: CGRect) {
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-
         let context = UIGraphicsGetCurrentContext()!
         
         var i = 0
@@ -25,37 +36,62 @@ class HistogramChartView: UIView {
             default: break
         }
         
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         let drawIn: (HistogramColumn) -> Void
         switch chartType {
         case .withColumns:
             drawIn = { it -> Void in
-                self.drawColumn(on: context, with: it, at: i)
+                let old = self.oldColumns.count == 0 ? nil : self.oldColumns[i]
+                self.drawColumn(on: context, with: it, at: i, from: old)
             }
         case .withColumnsAndPoints:
             columns.forEach { it -> Void in
                 defer { i += 1 }
-                self.drawColumn(on: context, with: it, at: i)
+                let old = oldColumns.count == 0 ? nil : self.oldColumns[i]
+                self.drawColumn(on: context, with: it, at: i, from: old)
             }
             i = 0
             drawIn = { it -> Void in
-                self.drawLine(startedAt: i, with: it.point)
-                self.drawPoints(at: i, with: it.point)
+                let old = self.oldColumns.count == 0 ? nil : self.oldColumns[i]
+                self.drawLine(startedAt: i, with: it.point, from: old?.point)
+                self.drawPoints(at: i, with: it.point, from: old?.point)
             }
         case .withPoint:
-            let line = UIBezierPath()
-            line.move(to: pointCenter(at: 0, of: columns.first?.point ?? 0.0))
-            columns.forEach { it -> Void in
-                defer { i += 1 }
-                drawLine(on: line, startedAt: i, with: it.point)
+            var drawLineWith: ([HistogramColumn?]) -> CGPath = { clmns in
+                return self.drawLinesPlace(columns: clmns)
             }
-            i = 0
-            drawLinesUnderPoints(on: line)
-            HCColors.colorPrimaryLight.setFill()
-            line.fill()
+            let shape = CAShapeLayer()
+            self.layer.addSublayer(shape)
+            
+            shape.fillColor = HCColors.colorPrimaryLight.cgColor
+            
+            let startPath = drawLineWith(self.oldColumns)
+            let endPath = drawLineWith(self.columns)
+            
+            if needsAnimating {
+                shape.path = startPath
+
+                let animation = CABasicAnimation(keyPath: "path")
+                animation.duration = 0.75
+                animation.fromValue = startPath
+                animation.toValue = endPath
+                
+                // TODO: узнать что это
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+                animation.fillMode = kCAFillModeBoth
+                animation.isRemovedOnCompletion = false
+                
+                shape.add(animation, forKey: animation.keyPath)
+            } else {
+                shape.path = endPath
+            }
+            
             
             drawIn = { it -> Void in
-                self.drawLine(startedAt: i, with: it.point)
-                self.drawPoints(at: i, with: it.point)
+                let old = self.oldColumns.count == 0 ? nil : self.oldColumns[i]
+
+                self.drawLine(startedAt: i, with: it.point, from: old?.point)
+                self.drawPoints(at: i, with: it.point, from: old?.point)
             }
         }
         
@@ -64,18 +100,22 @@ class HistogramChartView: UIView {
             drawIn(it)
             drawLabel(on: context, at: i, and: it.lable)
         }
+        
+        needsAnimating = false
+        oldColumns = []
     }
     
     public weak var delegate: UIHistogramChartViewDelegate? = nil
     private var tapGestureRecognizer: UITapGestureRecognizer? = nil
     var defaultColumnsColor: UIColor = HCColors.colorPrimary
     var index: Int = -1
-    public var columns: [HistogramColumn] = [] {
-        didSet { self.setNeedsDisplay() }
-    }
     public var isSelectable = true {
-        didSet { handleSelectableChange(with: oldValue) }
+        didSet {
+            handleSelectableChange(with: oldValue)
+            needsAnimating = true
+        }
     }
+    public var needsAnimating = true
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -93,8 +133,9 @@ class HistogramChartView: UIView {
     
     
     deinit {
-        if tapGestureRecognizer != nil {
-            self.removeGestureRecognizer(tapGestureRecognizer!)
+        NotificationCenter.default.removeObserver(self)
+        if let gesture = tapGestureRecognizer {
+            self.removeGestureRecognizer(gesture)
         }
         if delegate != nil {
             delegate = nil
@@ -127,7 +168,21 @@ extension HistogramChartView {
     }
 }
 
-
+extension HistogramChartView {
+    
+    fileprivate func observeRotationChange() {
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(handleOrientationChange(_:)),
+            name: .UIApplicationWillChangeStatusBarOrientation,
+            object: nil
+        )
+    }
+    
+    @objc func handleOrientationChange(_ notification: Notification) {
+        needsAnimating = true
+    }
+    
+}
 
 extension HistogramChartView {
     
@@ -153,6 +208,7 @@ extension HistogramChartView {
         tapGestureRecognizer?.numberOfTapsRequired = 1
         tapGestureRecognizer?.numberOfTouchesRequired = 1
         self.addGestureRecognizer(tapGestureRecognizer!)
+        observeRotationChange()
     }
     
     @objc

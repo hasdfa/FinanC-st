@@ -36,6 +36,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDF-Qa-v3T">
                                         <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="HistogramChartView"/>
                                         <connections>
                                             <segue destination="DYd-ad-36O" kind="showDetail" identifier="0" id="LDj-dX-W1f"/>

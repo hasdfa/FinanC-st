@@ -31,6 +31,23 @@ class HistogramViewController: UIViewController {
         ]
         chartView.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.global().async {
+            sleep(2)
+            DispatchQueue.main.async {
+                self.chartView.updateColumns(with: [
+                    HistogramColumn(point: 155_000, lable: "JUN"),
+                    HistogramColumn(point: 100_000, lable: "JUL"),
+                    HistogramColumn(point: 400_000, lable: "AUG"),
+                    HistogramColumn(point: 50_000, lable: "SEP"),
+                    HistogramColumn(point: 600_000, lable: "OKT"),
+                    HistogramColumn(point: 340_000, lable: "NOV"),
+                    HistogramColumn(point: 450_000, lable: "DEC")
+              ])
+            }
+        }
+    }
 }
 
 extension HistogramViewController: UIHistogramChartViewDelegate {

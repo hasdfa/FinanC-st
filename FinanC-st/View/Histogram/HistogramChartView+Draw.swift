@@ -10,14 +10,20 @@ import UIKit
 
 extension HistogramChartView {
     
-    func drawColumn(on context: CGContext, with column: HistogramColumn, at position: Int) {
+    func drawColumn(on context: CGContext, with column: HistogramColumn, at position: Int, from startColumnOrNil: HistogramColumn? = nil) {
         let columnBaseRect = columnRect(at: position, of: column.point)
-        let start = CGRect(
-            x: columnBaseRect.minX,
-            y: columnBaseRect.maxY,
-            width: columnBaseRect.width,
-            height: 0
-        )
+        
+        let start: CGRect
+        if let startColumn = startColumnOrNil {
+            start = columnRect(at: position, of: startColumn.point)
+        } else {
+            start = CGRect(
+                x: columnBaseRect.minX,
+                y: columnBaseRect.maxY,
+                width: columnBaseRect.width,
+                height: 0
+            )
+        }
         
         let startColumnPath = UIBezierPath(roundedRect: start, cornerRadius: 2).cgPath
         let endColumnPath = UIBezierPath(roundedRect: columnBaseRect, cornerRadius: 2).cgPath
@@ -39,20 +45,24 @@ extension HistogramChartView {
         let shape = CAShapeLayer()
         layer.addSublayer(shape)
         
-        shape.path = startColumnPath
         shape.fillColor = fillColor.cgColor
-        
-        let animation = CABasicAnimation(keyPath: "path")
-        animation.duration = 0.75
-        animation.fromValue = startColumnPath
-        animation.toValue = endColumnPath
-        
-        // TODO: узнать что это
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        animation.fillMode = kCAFillModeBoth
-        animation.isRemovedOnCompletion = false
-        
-        shape.add(animation, forKey: animation.keyPath)
+        if needsAnimating {
+            shape.path = startColumnPath
+            
+            let animation = CABasicAnimation(keyPath: "path")
+            animation.duration = 0.75
+            animation.fromValue = startColumnPath
+            animation.toValue = endColumnPath
+            
+            // TODO: узнать что это
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            animation.fillMode = kCAFillModeBoth
+            animation.isRemovedOnCompletion = false
+            
+            shape.add(animation, forKey: animation.keyPath)
+        } else {
+            shape.path = endColumnPath
+        }
     }
     
      func drawSelectedBackground(on context: CGContext , at position: Int){
@@ -77,12 +87,11 @@ extension HistogramChartView {
     func drawLable(on context: CGContext, with frame: CGRect, and text: String,
                    color: UIColor = HCColors.colorGraySecondary, fontSize: CGFloat = 14) {
         //// Lable Drawing
-        
         let lableTextContent = text
         let lableStyle = NSMutableParagraphStyle()
         lableStyle.alignment = .center
         let lableFontAttributes = [
-            .font: UIFont.boldSystemFont(ofSize: fontSize),
+            .font: UIFont.withMontesrrat(ofSize: fontSize, ofType: .bold),
             .foregroundColor: color,
             .paragraphStyle: lableStyle,
             ] as [NSAttributedStringKey: Any]
@@ -132,16 +141,43 @@ extension HistogramChartView {
 // MARK: Points Draw
 extension HistogramChartView {
     
-    func drawPoints(at position: Int, with value: CGFloat){
+    func drawPoints(at position: Int, with value: CGFloat, from oldValue: CGFloat? = nil){
         //// OVAL Drawing
-        let ovalRect = pointRect(at: position, of: value)
-        let ovalPath = UIBezierPath(ovalIn: ovalRect)
-        HCColors.colorPrimaryLight.setFill()
-        ovalPath.fill()
+        let startOvalRect: CGRect
+        if let old = oldValue {
+            startOvalRect = pointRect(at: position, of: old)
+        } else {
+            startOvalRect = pointRect(at: position, of: 0)
+        }
+        let endOvalRect = pointRect(at: position, of: value)
         
-        HCColors.colorPrimary.setStroke()
-        ovalPath.lineWidth = pointRadius / 3
-        ovalPath.stroke()
+        let startPointPath = UIBezierPath(ovalIn: startOvalRect).cgPath
+        let endPointPath = UIBezierPath(ovalIn: endOvalRect).cgPath
+        
+        let shape = CAShapeLayer()
+        layer.addSublayer(shape)
+        
+        shape.fillColor = HCColors.colorPrimaryLight.cgColor
+        shape.lineWidth = pointRadius / 3
+        shape.strokeColor = HCColors.colorPrimary.cgColor
+        
+        if needsAnimating {
+            shape.path = startPointPath
+            
+            let animation = CABasicAnimation(keyPath: "path")
+            animation.duration = needsAnimating ? 0.75 : 0
+            animation.fromValue = startPointPath
+            animation.toValue = endPointPath
+            
+            // TODO: узнать что это
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            animation.fillMode = kCAFillModeBoth
+            animation.isRemovedOnCompletion = false
+            
+            shape.add(animation, forKey: animation.keyPath)
+        } else {
+            shape.path = endPointPath
+        }
     }
     
     func drawLine(on line: UIBezierPath, startedAt position: Int, with value: CGFloat) {
@@ -166,22 +202,75 @@ extension HistogramChartView {
         line.stroke()
     }
     
+    func drawLinesPlace(columns: [HistogramColumn?]) -> CGPath {
+        let line = UIBezierPath()
+        line.move(to: pointCenter(at: 0, of: columns.first??.point ?? 0.0))
+        
+        (1..<self.columns.count).forEach { j -> Void in
+            //let center = pointCenter(at: i, of: columns[i].point)
+            let point = columns.count > j ? columns[j]?.point : 0.0
+            let secondCenter = pointCenter(at: j, of: point ?? 0.0)
+            line.addLine(to: secondCenter)
+        }
+        drawLinesUnderPoints(on: line)
+        return line.cgPath
+    }
     
-    func drawLine(startedAt position: Int, with value: CGFloat) {
+    func drawLine(startedAt position: Int, with value: CGFloat, from oldValue: CGFloat? = nil) {
         if position < columns.count - 1 {
-            let center = pointCenter(at: position, of: value)
+            let makeLine: (CGPoint, CGPoint) -> CGPath = {
+                (center: CGPoint, secondCenter: CGPoint) -> CGPath in
+                
+                let line = UIBezierPath()
+                line.move(to: center)
+                line.addLine(to: secondCenter)
+                return line.cgPath
+            }
             
             let i2 = position + 1
-            let secondCenter = pointCenter(at: i2, of: columns[i2].point)
             
-            let line = UIBezierPath()
-            line.move(to: center)
-            line.addLine(to: secondCenter)
+            let startPath: CGPath
+            if let old = oldValue {
+                startPath = makeLine(
+                    pointCenter(at: position, of: old),
+                    pointCenter(at: i2, of: oldColumns[i2]?.point ?? 0.0)
+                )
+            } else {
+                startPath = makeLine(
+                    pointCenter(at: position, of: 0),
+                    pointCenter(at: i2, of: 0)
+                )
+            }
             
-            HCColors.colorPrimary.setStroke()
-            line.lineWidth = pointRadius / 2
-            line.lineCapStyle = .square
-            line.stroke()
+            let endPath = makeLine(
+                pointCenter(at: position, of: value),
+                pointCenter(at: i2, of: columns[i2].point)
+            )
+            
+            let shape = CAShapeLayer()
+            layer.addSublayer(shape)
+            
+            shape.strokeColor = HCColors.colorPrimary.cgColor
+            shape.lineWidth = pointRadius / 2
+            shape.lineCap = kCALineCapSquare
+            
+            if needsAnimating {
+                shape.path = startPath
+                
+                let animation = CABasicAnimation(keyPath: "path")
+                animation.duration = 0.75
+                animation.fromValue = startPath
+                animation.toValue = endPath
+                
+                // TODO: узнать что это
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+                animation.fillMode = kCAFillModeBoth
+                animation.isRemovedOnCompletion = false
+                
+                shape.add(animation, forKey: animation.keyPath)
+            } else {
+                shape.path = endPath
+            }
         }
     }
 }
@@ -203,24 +292,9 @@ extension HistogramChartView {
         let firstBottomPoint = pointCenter(at: 0, of: 0)
         
         
-        drawLine(
-            on: line,
-            from: lastPointCenter,
-            to: lastBottomPoint,
-            with: HCColors.colorPrimaryLight
-        )
-        drawLine(
-            on: line,
-            from: lastBottomPoint,
-            to: firstBottomPoint,
-            with: HCColors.colorPrimaryLight
-        )
-        drawLine(
-            on: line,
-            from: firstBottomPoint,
-            to: firstPointCenter,
-            with: HCColors.colorPrimaryLight
-        )
+        line.addQuadCurve(to: lastBottomPoint, controlPoint: lastPointCenter)
+        line.addQuadCurve(to: firstBottomPoint, controlPoint: lastBottomPoint)
+        line.addQuadCurve(to: firstPointCenter, controlPoint: firstBottomPoint)
     }
 }
 
