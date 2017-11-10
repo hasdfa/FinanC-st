@@ -33,18 +33,17 @@ class HistogramViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.global().async {
-            sleep(2)
+        DispatchQueue.global().async { sleep(2)
             DispatchQueue.main.async {
                 self.chartView.updateColumns(with: [
-                    HistogramColumn(point: 155_000, lable: "JUN"),
-                    HistogramColumn(point: 100_000, lable: "JUL"),
-                    HistogramColumn(point: 400_000, lable: "AUG"),
-                    HistogramColumn(point: 50_000, lable: "SEP"),
-                    HistogramColumn(point: 600_000, lable: "OKT"),
-                    HistogramColumn(point: 340_000, lable: "NOV"),
-                    HistogramColumn(point: 450_000, lable: "DEC")
-              ])
+                    HistogramColumn(point: 500_000, lable: "JUN"),
+                    HistogramColumn(point: 150_000, lable: "JUL"),
+                    HistogramColumn(point: 200_000, lable: "AUG"),
+                    HistogramColumn(point: 250_000, lable: "SEP"),
+                    HistogramColumn(point: 125_000, lable: "OKT"),
+                    HistogramColumn(point: 225_000, lable: "NOV"),
+                    HistogramColumn(point: 500_000, lable: "DEC")
+                    ])
             }
         }
     }

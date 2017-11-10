@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Split View Controller-->
         <scene sceneID="1c3-DS-UJF">
@@ -23,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="-3274" y="54"/>
         </scene>
-        <!--Master View Controller-->
+        <!--Main-->
         <scene sceneID="DSe-p0-gYy">
             <objects>
                 <viewController id="I3g-Mu-sdO" customClass="MasterViewController" customModule="FinanC_st" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,25 +37,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="79" translatesAutoresizingMaskIntoConstraints="NO" id="oBO-zM-m3o">
-                                <rect key="frame" x="32" y="209" width="311" height="248"/>
+                                <rect key="frame" x="32" y="204.5" width="311" height="257"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDF-Qa-v3T">
-                                        <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="311" height="33"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                                         <state key="normal" title="HistogramChartView"/>
                                         <connections>
                                             <segue destination="DYd-ad-36O" kind="showDetail" identifier="0" id="LDj-dX-W1f"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFa-vz-8uB">
-                                        <rect key="frame" x="0.0" y="109" width="311" height="30"/>
+                                        <rect key="frame" x="0.0" y="112" width="311" height="33"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                                         <state key="normal" title="HistogramPointsChartView"/>
                                         <connections>
                                             <segue destination="DYd-ad-36O" kind="showDetail" identifier="1" id="x2X-mR-yLU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfQ-2l-dVF">
-                                        <rect key="frame" x="0.0" y="218" width="311" height="30"/>
+                                        <rect key="frame" x="0.0" y="224" width="311" height="33"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                                         <state key="normal" title="PointsChartView"/>
                                         <connections>
                                             <segue destination="DYd-ad-36O" kind="showDetail" identifier="2" id="mF8-a6-xdT"/>
@@ -68,7 +75,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IVP-hj-Lpl"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qlZ-SU-HYX"/>
+                    <navigationItem key="navigationItem" title="Main" id="qlZ-SU-HYX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ss-AQ-bi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,8 +119,11 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dSo-m2-6EZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lav-nm-RhJ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
