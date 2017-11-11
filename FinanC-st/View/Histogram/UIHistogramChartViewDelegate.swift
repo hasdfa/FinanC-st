@@ -10,5 +10,5 @@ import Foundation
 
 protocol UIHistogramChartViewDelegate: NSObjectProtocol {
     func columnDidSelect(at position: Int, with column: HistogramColumn)
-    func columnDidDeselect()
+    func columnDidDeselect(at position: Int?)
 }

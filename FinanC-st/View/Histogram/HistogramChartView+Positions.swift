@@ -55,7 +55,7 @@ extension HistogramChartView {
         get { return getPercent(HCConst.columnWidthPercent, of: columnSpaceWidth) }
     }
     func columnY(of part: CGFloat) -> CGFloat {
-        return getPercent(10, of: height)
+        return getPercent(5, of: height)
             + marginTopDown
             + columnHeight(of: maxPoint - part)
     }
@@ -78,9 +78,10 @@ extension HistogramChartView {
     func columnBackgroundRect(at position: Int) -> CGRect {
         return CGRect(
             x: lableX(at: position),
-            y: columnY(of: maxPoint) - getPercent(2.5, of: height),
+            y: columnY(of: maxPoint) - getPercent(5, of: height)
+            ,
             width: columnSpaceWidth,
-            height: columnSpaceHeight + getPercent(5, of: height)
+            height: columnSpaceHeight - getPercent(2.5, of: height)
         )
     }
     
@@ -93,7 +94,7 @@ extension HistogramChartView {
         get { return columnSpaceWidth }
     }
     func lableY() -> CGFloat {
-        return getPercent(85, of: height) + marginTopDown
+        return getPercent(82.5, of: height) + marginTopDown
     }
     func lableX(at position: Int) -> CGFloat {
         return getPercent(5, of: width) +

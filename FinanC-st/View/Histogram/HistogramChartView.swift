@@ -115,6 +115,13 @@ class HistogramChartView: UIView {
             needsAnimating = true
         }
     }
+    public var isDeselectable = true {
+        didSet {
+            if !isDeselectable {
+                selectedColumn = 0
+            }
+        }
+    }
     public var needsAnimating = true
     
     required init?(coder aDecoder: NSCoder) {
@@ -154,9 +161,6 @@ extension HistogramChartView {
                     index = val
                 }
             } else {
-                if index != -1 {
-                    delegate?.columnDidDeselect()
-                }
                 index = -1
             }
             self.setNeedsDisplay()
@@ -233,11 +237,19 @@ extension HistogramChartView {
                         selectedColumn = i
                         delegate?.columnDidSelect(at: i, with: column)
                         return
+                    } else {
+                        if isDeselectable {
+                            selectedColumn = nil
+                            self.delegate?.columnDidDeselect(at: i)
+                        }
                     }
                 }
             }
             // Unfocus by tap outside
-            selectedColumn = nil
+            if isDeselectable {
+                selectedColumn = nil
+                self.delegate?.columnDidDeselect(at: nil)
+            }
         }
     }
 }

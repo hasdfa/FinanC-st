@@ -54,7 +54,6 @@ extension HistogramChartView {
             animation.fromValue = startColumnPath
             animation.toValue = endColumnPath
             
-            // TODO: узнать что это
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
             animation.fillMode = kCAFillModeBoth
             animation.isRemovedOnCompletion = false
@@ -71,8 +70,8 @@ extension HistogramChartView {
         context.saveGState()
         context.setShadow(
             offset: CGSize(width: 0, height: 0),
-            blur: 3,
-            color: UIColor.black.withAlphaComponent(0.33).cgColor
+            blur: 14,
+            color: UIColor.black.withAlphaComponent(0.1).cgColor
         )
         HCColors.white.setFill()
         columnPath.fill()
@@ -169,7 +168,6 @@ extension HistogramChartView {
             animation.fromValue = startPointPath
             animation.toValue = endPointPath
             
-            // TODO: узнать что это
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
             animation.fillMode = kCAFillModeBoth
             animation.isRemovedOnCompletion = false
@@ -262,7 +260,6 @@ extension HistogramChartView {
                 animation.fromValue = startPath
                 animation.toValue = endPath
                 
-                // TODO: узнать что это
                 animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
                 animation.fillMode = kCAFillModeBoth
                 animation.isRemovedOnCompletion = false
