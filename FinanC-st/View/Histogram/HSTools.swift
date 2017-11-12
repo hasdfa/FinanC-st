@@ -15,6 +15,8 @@ struct HCColors {
     public static let white = UIColor.white
     public static let colorPrimary = UIColor(red: 0.471, green: 0.682, blue: 0.976, alpha: 1)
     public static let colorPrimaryLight = UIColor(red: 0.851, green: 0.910, blue: 0.992, alpha: 1)
+    public static let colorPrimaryDark = UIColor(red: 0.412, green: 0.596, blue: 0.855, alpha: 1)
+
     public static let colorGraySecondary = UIColor(red: 0.741, green: 0.765, blue: 0.792, alpha: 1)
     public static let colorGrayPrimary = UIColor(red: 0.478, green: 0.494, blue: 0.510, alpha: 1)
 }

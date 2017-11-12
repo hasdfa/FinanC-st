@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		371425F51FB76DDD00EB065A /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371425F41FB76DDD00EB065A /* DrawerViewController.swift */; };
+		3721CFE31FB7A5A20088AC24 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFE21FB7A5A20088AC24 /* HeaderCell.swift */; };
+		3721CFE51FB7A5AF0088AC24 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFE41FB7A5AF0088AC24 /* ItemCell.swift */; };
+		3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFEC1FB7AFD90088AC24 /* UIDrawerController.swift */; };
+		3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */; };
 		376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419B91FACEE0D004363A6 /* AppDelegate.swift */; };
 		376419BF1FACEE0D004363A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376419BD1FACEE0D004363A6 /* Main.storyboard */; };
 		376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 376419C01FACEE0D004363A6 /* FinanC_st.xcdatamodeld */; };
@@ -67,7 +70,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		371425F41FB76DDD00EB065A /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		3721CFE21FB7A5A20088AC24 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		3721CFE41FB7A5AF0088AC24 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		3721CFEC1FB7AFD90088AC24 /* UIDrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDrawerController.swift; sourceTree = "<group>"; };
+		3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
 		37598CA81FAE3C4B004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
 		37598CA91FAE3C4B004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
 		37598CAA1FAE3C4B004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
@@ -169,15 +175,15 @@
 			isa = PBXGroup;
 			children = (
 				376419B91FACEE0D004363A6 /* AppDelegate.swift */,
-				379A47001FB65B70005F15BE /* DashboardViewController.swift */,
+				3721CFEC1FB7AFD90088AC24 /* UIDrawerController.swift */,
 				376419BD1FACEE0D004363A6 /* Main.storyboard */,
 				376419C51FACEE0D004363A6 /* LaunchScreen.storyboard */,
 				376419C31FACEE0D004363A6 /* Assets.xcassets */,
 				376419C81FACEE0D004363A6 /* Info.plist */,
 				376419C01FACEE0D004363A6 /* FinanC_st.xcdatamodeld */,
-				376419F11FACEF6E004363A6 /* View */,
+				379A47001FB65B70005F15BE /* DashboardViewController.swift */,
 				376419F21FACEF77004363A6 /* Model */,
-				371425F41FB76DDD00EB065A /* DrawerViewController.swift */,
+				376419F11FACEF6E004363A6 /* View */,
 			);
 			path = "FinanC-st";
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 			children = (
 				376419F31FACEF7B004363A6 /* Histogram */,
 				379A47061FB66AAB005F15BE /* Wallet.swift */,
+				3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,6 +304,8 @@
 		37D9FA631FB74503006A7923 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3721CFE41FB7A5AF0088AC24 /* ItemCell.swift */,
+				3721CFE21FB7A5A20088AC24 /* HeaderCell.swift */,
 				37D9FA621FB744F2006A7923 /* WalletCell */,
 			);
 			path = Cells;
@@ -370,6 +379,7 @@
 				TargetAttributes = {
 					376419B51FACEE0D004363A6 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					376419CC1FACEE0D004363A6 = {
@@ -458,14 +468,17 @@
 			files = (
 				376419F61FACEF9A004363A6 /* HistogramColumn.swift in Sources */,
 				379A47011FB65B70005F15BE /* DashboardViewController.swift in Sources */,
-				371425F51FB76DDD00EB065A /* DrawerViewController.swift in Sources */,
+				3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */,
 				379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */,
+				3721CFE31FB7A5A20088AC24 /* HeaderCell.swift in Sources */,
+				3721CFE51FB7A5AF0088AC24 /* ItemCell.swift in Sources */,
 				379A47051FB6693D005F15BE /* WalletViewCell.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
 				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
 				37D4BE211FB3935100C4ED6F /* UIFont+Custom.swift in Sources */,
 				37A312601FAD11DA00A91599 /* HSTools.swift in Sources */,
 				379A47071FB66AAB005F15BE /* Wallet.swift in Sources */,
+				3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */,
 				37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
@@ -553,6 +566,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -581,6 +595,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -613,6 +628,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -632,6 +648,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -641,6 +658,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C92LB6539;
 				INFOPLIST_FILE = "FinanC-st/Info.plist";
@@ -648,6 +666,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vadim.hasdfa.finanCst;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -657,6 +677,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4C92LB6539;
 				INFOPLIST_FILE = "FinanC-st/Info.plist";
@@ -664,6 +685,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vadim.hasdfa.finanCst;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

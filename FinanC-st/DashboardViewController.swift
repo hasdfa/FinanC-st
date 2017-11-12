@@ -21,6 +21,12 @@ class DashboardViewController: UIViewController {
         }
     }
     
+    @IBAction func openDrawer(_ sender: UIButton) {
+        if !(self.drawerViewController?.isOpen ?? false) {
+            self.drawerViewController?.open()
+        }
+    }
+    
     var isExpensesClicker = true
     @IBAction func onExpendsClick(_ sender: UIButton) {
         if !isExpensesClicker {
@@ -79,6 +85,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setCornerRadius(to: expensesButton)
         setCornerRadius(to: incomeButton)
         
@@ -132,6 +139,7 @@ extension DashboardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wallet", for: indexPath) as! WalletViewCell
+        if indexPath.row < 0 || indexPath.row >= wallets.count { return cell }
         
         cell.initWith(wallet: wallets[indexPath.row])
         cell.isSelectedWallet = (indexPath == selectedWallet)
@@ -168,6 +176,10 @@ extension DashboardViewController: UICollectionViewDelegate {
             row: (Int(scrollView.contentOffset.x/cellWidth + factor)),
             section: 0
         )
+        if indexPath.row < 0 || indexPath.row >= collectionView(collectionView, numberOfItemsInSection: 0) {
+            return
+        }
+        
         if indexPath.row != selectedWallet.row {
             if indexPath.row > selectedWallet.row {
                 indexPath.row = selectedWallet.row + 1

@@ -24,7 +24,7 @@ class Wallet {
 }
 
 class WalletBlueScheme: WalletColorStyle {
-    static var backgroundColor: UIColor = #colorLiteral(red: 0.5389544368, green: 0.7436622381, blue: 0.9821848273, alpha: 1)
+    static var backgroundColor: UIColor = HCColors.colorPrimary
     static var textColor: UIColor = .white
 }
 class WalletGrayScheme: WalletColorStyle {
