@@ -65,7 +65,7 @@ class UIDrawerController: UIViewController {
     let controllers: [ViewControllerModel] = [
         ViewControllerModel(id: "dashboard", title: "Dashboard", image: #imageLiteral(resourceName: "Dashboard")),
         ViewControllerModel(id: "", title: "Notifications", image: #imageLiteral(resourceName: "notifications-button")),
-        ViewControllerModel(id: "", title: "Budget", image: #imageLiteral(resourceName: "pie-chart")),
+        ViewControllerModel(id: "budget", title: "Budget", image: #imageLiteral(resourceName: "pie-chart")),
         ViewControllerModel(id: "", title: "Schedudled payment", image: #imageLiteral(resourceName: "calendar")),
         ViewControllerModel(id: "", title: "Accounts", image: #imageLiteral(resourceName: "user")),
         ViewControllerModel(id: "", title: "Setting", image: #imageLiteral(resourceName: "settings")),
@@ -86,8 +86,7 @@ class UIDrawerController: UIViewController {
                 imageView!.isUserInteractionEnabled = true
                 imageView!.addGestureRecognizer(tap)
                 
-                let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeToClose(_:)))
-                swipe.direction = .left
+                let swipe = UIPanGestureRecognizer(target: self, action: #selector(swipeToClose(_:)))
                 imageView!.addGestureRecognizer(swipe)
             }
         }
@@ -119,12 +118,18 @@ class UIDrawerController: UIViewController {
         }
     }
     
-    @objc func swipeToClose(_ gesture: UISwipeGestureRecognizer) {
-        print("swipeToClose(_:\(gesture.direction)")
+    private let backToCoef: CGFloat = 0.25
+    @objc func swipeToClose(_ gesture: UIPanGestureRecognizer) {
+        if !isOpen { return }
         if imageView == nil { return }
-        let translation = gesture.location(in: imageView!).x / self.imageView!.bounds.width
+        let translation = -(gesture.translation(in: self.containerView).x / self.containerView.bounds.width)
+        
         if gesture.state == .recognized || gesture.state == .ended {
-            close(with: Double(0.5 * (1 - translation)))
+            if translation > backToCoef {
+                close(with: Double(0.5 * (1 - translation)))
+            } else {
+                open(with: Double(0.5 * (1 - translation)))
+            }
             return
         } else if gesture.state == .cancelled || gesture.state == .failed {
             open(with: Double(0.5 * (1 - translation)))
@@ -133,20 +138,23 @@ class UIDrawerController: UIViewController {
         
         let bounds = self.containerView.bounds
         let frame = CGRect(
-            x: bounds.width * 0.8 + bounds.width * 0.2 * translation,
+            x: bounds.width * 0.8 - bounds.width * 0.8 * translation,
             y: bounds.height * 0.1 - bounds.height * 0.1 * translation,
             width: bounds.width * 0.8 + (bounds.width * 0.2) * translation,
             height: bounds.height * 0.8 + (bounds.height * 0.2) * translation
         )
         self.imageView!.frame = frame
-        print(frame)
     }
     
     @objc func swipeFromEdge(_ gesture: UIScreenEdgePanGestureRecognizer) {
         if isOpen { return }
         let translation = gesture.translation(in: self.containerView).x / self.containerView.bounds.width
         if gesture.state == .recognized || gesture.state == .ended {
-            open(with: Double(0.5 * (1 - translation)))
+            if translation > backToCoef {
+                open(with: Double(0.5 * (1 - translation)))
+            } else {
+                close(with: Double(0.5 * (1 - translation)))
+            }
             return
         } else if gesture.state == .cancelled || gesture.state == .failed {
             close(with: Double(0.5 * (1 - translation)))
@@ -170,7 +178,7 @@ class UIDrawerController: UIViewController {
         self.imageView!.frame = frame
     }
     
-    public func close(with time: Double = 0.5) {
+    public func close(with time: Double = 0.5, after: (() -> Void)? = nil) {
         UIView.animate(withDuration: time, animations: {
             self.imageView?.frame = self.view.bounds
         }, completion: { _ in
@@ -180,6 +188,7 @@ class UIDrawerController: UIViewController {
             
             self.isOpen = false
             self.view.backgroundColor = UIColor.white
+            after?()
         })
     }
     
@@ -249,7 +258,7 @@ extension UIDrawerController: UITableViewDataSource {
             width: self.view.bounds.width,
             height: self.view.bounds.height * 0.3
         ))
-        view.backgroundColor = self.tableView.backgroundColor
+        view.backgroundColor = UIColor.clear
         return view
     }
     
@@ -266,10 +275,11 @@ extension UIDrawerController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = controllers[indexPath.row - 1]
-        if selectedControllerId != data.storyboardId {
-            selectedControllerId = data.storyboardId
-        }
-        self.close()
+        self.close(after: {
+            if self.selectedControllerId != data.storyboardId {
+                self.selectedControllerId = data.storyboardId
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

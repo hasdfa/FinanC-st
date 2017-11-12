@@ -319,6 +319,21 @@
             </objects>
             <point key="canvasLocation" x="-3689" y="-271"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="gnL-8s-6FK">
+            <objects>
+                <viewController storyboardIdentifier="budget" id="DGE-PV-BuT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KA1-Ed-PdJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.47058823529999999" green="0.68235294120000001" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="X8G-BU-XYn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2hQ-pB-vT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2989" y="-278"/>
+        </scene>
     </scenes>
     <resources>
         <image name="12295460" width="450" height="450"/>
