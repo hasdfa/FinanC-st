@@ -76,45 +76,11 @@ class UIDrawerController: UIViewController {
     }
     
     public var isOpen = false
-    private var imageView: UIImageView? = nil {
-        didSet {
-            if imageView != nil {
-                let tap = UITapGestureRecognizer(
-                    target: self,
-                    action: #selector(closeByTappingImage(_:))
-                )
-                imageView!.isUserInteractionEnabled = true
-                imageView!.addGestureRecognizer(tap)
-                
-                let swipe = UIPanGestureRecognizer(target: self, action: #selector(swipeToClose(_:)))
-                imageView!.addGestureRecognizer(swipe)
-                
-                // Add shadows
-                imageView!.layer.shadowOffset = CGSize(width: 0, height: 0)
-                imageView!.layer.shadowColor = UIColor.blue.cgColor
-                imageView!.layer.shadowRadius = 16
-                imageView!.layer.shadowOpacity = 0.33
-                imageView!.layer.masksToBounds = false
-                imageView!.clipsToBounds = false
-            
-//                if machineString.contains("X") {
-//                    imageView?.layer.cornerRadius = 16
-//                }
-            }
-        }
-    }
+
     public func open(with time: Double = 0.5) {
-        if imageView == nil {
-            imageView = UIImageView(image: generateImage())
-            
-            self.view.addSubview(imageView!)
-            self.view.backgroundColor = WalletBlueScheme.backgroundColor
-            self.containerView.alpha = 0
-        }
-        
         let bounds = self.containerView.bounds
         UIView.animate(withDuration: time, animations: {
-            self.imageView!.frame = CGRect(
+            self.containerView.frame = CGRect(
                 x: bounds.width * 0.8,
                 y: bounds.height * 0.1,
                 width: bounds.width * 0.8,
@@ -133,8 +99,7 @@ class UIDrawerController: UIViewController {
     private let backToCoef: CGFloat = 0.25
     @objc func swipeToClose(_ gesture: UIPanGestureRecognizer) {
         if !isOpen { return }
-        if imageView == nil { return }
-        let translation = -(gesture.translation(in: self.containerView).x / self.containerView.bounds.width)
+        let translation = -(gesture.translation(in: self.view).x / self.view.bounds.width)
         
         if gesture.state == .recognized || gesture.state == .ended {
             if translation > backToCoef {
@@ -148,19 +113,19 @@ class UIDrawerController: UIViewController {
             return
         }
         
-        let bounds = self.containerView.bounds
+        let bounds = self.view.bounds
         let frame = CGRect(
             x: bounds.width * 0.8 - bounds.width * 0.8 * translation,
             y: bounds.height * 0.1 - bounds.height * 0.1 * translation,
             width: bounds.width * 0.8 + (bounds.width * 0.2) * translation,
             height: bounds.height * 0.8 + (bounds.height * 0.2) * translation
         )
-        self.imageView!.frame = frame
+        self.containerView.frame = frame
     }
     
     @objc func swipeFromEdge(_ gesture: UIScreenEdgePanGestureRecognizer) {
         if isOpen { return }
-        let translation = gesture.translation(in: self.containerView).x / self.containerView.bounds.width
+        let translation = gesture.translation(in: self.view).x / self.view.bounds.width
         if gesture.state == .recognized || gesture.state == .ended {
             if translation > backToCoef {
                 open(with: Double(0.5 * (1 - translation)))
@@ -172,46 +137,24 @@ class UIDrawerController: UIViewController {
             close(with: Double(0.5 * (1 - translation)))
             return
         }
-        
-        if imageView == nil {
-            imageView = UIImageView(image: generateImage())
-            
-            self.view.addSubview(imageView!)
-            self.view.backgroundColor = WalletBlueScheme.backgroundColor
-            self.containerView.alpha = 0
-        }
-        let bounds = self.containerView.bounds
+        let bounds = self.view.bounds
         let frame = CGRect(
             x: 0 + bounds.width * 0.8 * translation,
             y: 0 + bounds.height * 0.1 * translation,
             width: bounds.width - (bounds.width * 0.2) * translation,
             height: bounds.height - (bounds.height * 0.2) * translation
         )
-        self.imageView!.frame = frame
+        self.containerView.frame = frame
     }
     
     public func close(with time: Double = 0.5, after: (() -> Void)? = nil) {
         UIView.animate(withDuration: time, animations: {
-            self.imageView?.frame = self.view.bounds
+            self.containerView.frame = self.view.bounds
         }, completion: { _ in
-            self.imageView?.removeFromSuperview()
-            self.imageView = nil
-            self.containerView.alpha = 1.0
-            
             self.isOpen = false
             self.view.backgroundColor = UIColor.white
             after?()
         })
-    }
-    
-    func generateImage() -> UIImage {
-        // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return image
     }
     
     //To add child VC
