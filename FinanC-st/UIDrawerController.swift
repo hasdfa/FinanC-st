@@ -88,6 +88,18 @@ class UIDrawerController: UIViewController {
                 
                 let swipe = UIPanGestureRecognizer(target: self, action: #selector(swipeToClose(_:)))
                 imageView!.addGestureRecognizer(swipe)
+                
+                // Add shadows
+                imageView!.layer.shadowOffset = CGSize(width: 0, height: 0)
+                imageView!.layer.shadowColor = UIColor.blue.cgColor
+                imageView!.layer.shadowRadius = 16
+                imageView!.layer.shadowOpacity = 0.33
+                imageView!.layer.masksToBounds = false
+                imageView!.clipsToBounds = false
+            
+//                if machineString.contains("X") {
+//                    imageView?.layer.cornerRadius = 16
+//                }
             }
         }
     }
