@@ -75,17 +75,23 @@ class UIDrawerController: UIViewController {
         return controllers.flatMap { $0.storyboardId }
     }
     
-    public var isOpen = false
+    public var isOpen = false {
+        didSet {
+            if isOpen {
+                self.view.backgroundColor = HCColors.colorPrimary
+            } else {
+                self.view.backgroundColor = UIColor.white
+            }
+        }
+    }
     
     public func open(with time: Double = 0.5) {
-        let bounds = self.containerView.bounds
         UIView.animate(withDuration: time, animations: {
-            self.containerView.frame = CGRect(
-                x: bounds.width * 0.8,
-                y: bounds.height * 0.1,
-                width: bounds.width * 0.8,
-                height: bounds.height * 0.8
-            )
+            let transformation = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                .translatedBy(x: self.containerView.bounds.height * 0.4, y: 0)
+            self.containerView.transform = transformation
+            self.containerView.layoutIfNeeded()
+            
         }, completion: { _ in
             self.isOpen = true
         })
@@ -99,6 +105,7 @@ class UIDrawerController: UIViewController {
     private let backToCoef: CGFloat = 0.25
     @objc func swipeToClose(_ gesture: UIPanGestureRecognizer) {
         if !isOpen { return }
+        self.view.backgroundColor = HCColors.colorPrimary
         let translation = -(gesture.translation(in: self.view).x / self.view.bounds.width)
         
         if gesture.state == .recognized || gesture.state == .ended {
@@ -107,9 +114,6 @@ class UIDrawerController: UIViewController {
             } else {
                 open(with: Double(0.5 * (1 - translation)))
             }
-            return
-        } else if gesture.state == .cancelled || gesture.state == .failed {
-            open(with: Double(0.5 * (1 - translation)))
             return
         }
         
@@ -125,6 +129,7 @@ class UIDrawerController: UIViewController {
     
     @objc func swipeFromEdge(_ gesture: UIScreenEdgePanGestureRecognizer) {
         if isOpen { return }
+        self.view.backgroundColor = HCColors.colorPrimary
         let translation = gesture.translation(in: self.view).x / self.view.bounds.width
         if gesture.state == .recognized || gesture.state == .ended {
             if translation > backToCoef {
@@ -138,21 +143,21 @@ class UIDrawerController: UIViewController {
             return
         }
         let bounds = self.view.bounds
-        let frame = CGRect(
-            x: 0 + bounds.width * 0.8 * translation,
-            y: 0 + bounds.height * 0.1 * translation,
-            width: bounds.width - (bounds.width * 0.2) * translation,
-            height: bounds.height - (bounds.height * 0.2) * translation
-        )
-        self.containerView.frame = frame
+        let transformation = CGAffineTransform(scaleX: 1 - 0.2 * translation, y: 1 - 0.2 * translation)
+            .translatedBy(x: bounds.height * 0.5 * (translation), y: 0)
+        self.containerView.transform = transformation
+        self.containerView.layoutIfNeeded()
     }
     
     public func close(with time: Double = 0.5, after: (() -> Void)? = nil) {
         UIView.animate(withDuration: time, animations: {
-            self.containerView.frame = self.view.bounds
+            let transformation = CGAffineTransform(scaleX: 1, y: 1)
+                .translatedBy(x: 0, y: 0)
+            self.containerView.transform = transformation
+            self.containerView.layoutIfNeeded()
+            
         }, completion: { _ in
             self.isOpen = false
-            self.view.backgroundColor = UIColor.white
             after?()
         })
     }

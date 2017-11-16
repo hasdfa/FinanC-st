@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRL-Zs-jx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRL-Zs-jx3">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -62,13 +62,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vadim Raksha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4r-wO-fN5">
-                                                    <rect key="frame" x="74" y="7.9999999999999982" width="293" height="23.333333333333329"/>
+                                                    <rect key="frame" x="74" y="10.999999999999998" width="286" height="23.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hasdfa@protonmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3c-W9-1uf">
-                                                    <rect key="frame" x="74" y="33.333333333333336" width="293" height="16.333333333333329"/>
+                                                    <rect key="frame" x="74" y="36.333333333333336" width="293" height="16.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -102,13 +102,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UD-3e-d2V">
-                                                    <rect key="frame" x="68" y="10" width="299" height="44"/>
+                                                    <rect key="frame" x="75" y="13" width="285" height="38"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bs7-9f-aX0">
-                                                    <rect key="frame" x="32" y="18" width="28" height="28"/>
+                                                    <rect key="frame" x="39" y="18" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Bs7-9f-aX0" secondAttribute="height" multiplier="1:1" id="Fdj-JR-rZe"/>
                                                         <constraint firstAttribute="width" constant="28" id="cx8-fm-aaB"/>
@@ -191,10 +191,10 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jVP-Qw-V2R">
-                                <rect key="frame" x="73.666666666666686" y="157.66666666666663" width="228" height="97.333333333333343"/>
+                                <rect key="frame" x="73.666666666666686" y="157.66666666666666" width="228" height="97.333333333333343"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwO-bf-5V2">
-                                        <rect key="frame" x="0.0" y="32.666666666666686" width="119.99999999999999" height="32"/>
+                                        <rect key="frame" x="0.0" y="32.666666666666686" width="120" height="32"/>
                                         <color key="backgroundColor" red="0.80784313725490198" green="0.83137254901960778" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="c91-El-4Z9"/>
@@ -209,7 +209,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-A1-DVB">
-                                        <rect key="frame" x="127.99999999999999" y="32.666666666666686" width="100.00000000000001" height="32"/>
+                                        <rect key="frame" x="128" y="32.666666666666686" width="100" height="32"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="ETl-KO-fKI"/>
@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKY-He-A8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3689" y="-271"/>
+            <point key="canvasLocation" x="-3690.4000000000001" y="-271.18226600985224"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="gnL-8s-6FK">
