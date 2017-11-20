@@ -11,6 +11,8 @@
 		3721CFE51FB7A5AF0088AC24 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFE41FB7A5AF0088AC24 /* ItemCell.swift */; };
 		3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFEC1FB7AFD90088AC24 /* UIDrawerController.swift */; };
 		3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */; };
+		372ADF0B1FBF4CB300495A5E /* MonthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372ADF0A1FBF4CB300495A5E /* MonthAdapter.swift */; };
+		372ADF0D1FBF4D3300495A5E /* MonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372ADF0C1FBF4D3300495A5E /* MonthCell.swift */; };
 		376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419B91FACEE0D004363A6 /* AppDelegate.swift */; };
 		376419BF1FACEE0D004363A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376419BD1FACEE0D004363A6 /* Main.storyboard */; };
 		376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 376419C01FACEE0D004363A6 /* FinanC_st.xcdatamodeld */; };
@@ -22,6 +24,7 @@
 		376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F71FACEFB8004363A6 /* HistogramChartView.swift */; };
 		376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */; };
 		376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */; };
+		378CC1901FBE582100E5A374 /* UIDevice+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CC18F1FBE582100E5A374 /* UIDevice+name.swift */; };
 		379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379744B01FB0B526001B2F40 /* HistogramChartType.swift */; };
 		379A47011FB65B70005F15BE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47001FB65B70005F15BE /* DashboardViewController.swift */; };
 		379A47031FB6678E005F15BE /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379A47021FB6678E005F15BE /* CardCell.xib */; };
@@ -30,6 +33,8 @@
 		37A312601FAD11DA00A91599 /* HSTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A3125F1FAD11DA00A91599 /* HSTools.swift */; };
 		37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */; };
 		37A312671FAD14D600A91599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 37A312661FAD14D600A91599 /* README.md */; };
+		37B2F5491FC0B96D00380F4C /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2F5481FC0B96D00380F4C /* TransactionCell.swift */; };
+		37C1E7C61FC018D8005B77BA /* WalletAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */; };
 		37D4BE211FB3935100C4ED6F /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D4BE201FB3935100C4ED6F /* UIFont+Custom.swift */; };
 		37D4BE221FB398E100C4ED6F /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE1D1FB3931800C4ED6F /* Montserrat-Black.ttf */; };
 		37D4BE231FB398E500C4ED6F /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE101FB3931700C4ED6F /* Montserrat-BlackItalic.ttf */; };
@@ -50,6 +55,7 @@
 		37D4BE321FB398E500C4ED6F /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE1A1FB3931800C4ED6F /* Montserrat-Thin.ttf */; };
 		37D4BE331FB398E500C4ED6F /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE181FB3931800C4ED6F /* Montserrat-ThinItalic.ttf */; };
 		37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D4BE351FB3996000C4ED6F /* MontesrratFontType.swift */; };
+		37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +80,8 @@
 		3721CFE41FB7A5AF0088AC24 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		3721CFEC1FB7AFD90088AC24 /* UIDrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDrawerController.swift; sourceTree = "<group>"; };
 		3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
+		372ADF0A1FBF4CB300495A5E /* MonthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAdapter.swift; sourceTree = "<group>"; };
+		372ADF0C1FBF4D3300495A5E /* MonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCell.swift; sourceTree = "<group>"; };
 		37598CA81FAE3C4B004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
 		37598CA91FAE3C4B004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
 		37598CAA1FAE3C4B004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
@@ -94,6 +102,7 @@
 		376419F71FACEFB8004363A6 /* HistogramChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartView.swift; sourceTree = "<group>"; };
 		376419F91FACEFCA004363A6 /* HistogramChartView+Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Positions.swift"; sourceTree = "<group>"; };
 		376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHistogramChartViewDelegate.swift; sourceTree = "<group>"; };
+		378CC18F1FBE582100E5A374 /* UIDevice+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+name.swift"; sourceTree = "<group>"; };
 		379744B01FB0B526001B2F40 /* HistogramChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartType.swift; sourceTree = "<group>"; };
 		379A47001FB65B70005F15BE /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		379A47021FB6678E005F15BE /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
@@ -102,6 +111,8 @@
 		37A3125F1FAD11DA00A91599 /* HSTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSTools.swift; sourceTree = "<group>"; };
 		37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Draw.swift"; sourceTree = "<group>"; };
 		37A312661FAD14D600A91599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		37B2F5481FC0B96D00380F4C /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAdapter.swift; sourceTree = "<group>"; };
 		37D4BE0E1FB3931700C4ED6F /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		37D4BE0F1FB3931700C4ED6F /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		37D4BE101FB3931700C4ED6F /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -122,6 +133,7 @@
 		37D4BE1F1FB3931800C4ED6F /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		37D4BE201FB3935100C4ED6F /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		37D4BE351FB3996000C4ED6F /* MontesrratFontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontesrratFontType.swift; sourceTree = "<group>"; };
+		37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +161,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		372ADF061FBF4C4000495A5E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				379A47001FB65B70005F15BE /* DashboardViewController.swift */,
+				37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		372ADF091FBF4C8C00495A5E /* MonthPicker */ = {
+			isa = PBXGroup;
+			children = (
+				372ADF0A1FBF4CB300495A5E /* MonthAdapter.swift */,
+				372ADF0C1FBF4D3300495A5E /* MonthCell.swift */,
+			);
+			path = MonthPicker;
+			sourceTree = "<group>";
+		};
+		3735578F1FC01EC4003B4132 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				379A47041FB6693D005F15BE /* WalletViewCell.swift */,
+				379A47021FB6678E005F15BE /* CardCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		376419AD1FACEE0D004363A6 = {
 			isa = PBXGroup;
 			children = (
@@ -181,9 +220,10 @@
 				376419C31FACEE0D004363A6 /* Assets.xcassets */,
 				376419C81FACEE0D004363A6 /* Info.plist */,
 				376419C01FACEE0D004363A6 /* FinanC_st.xcdatamodeld */,
-				379A47001FB65B70005F15BE /* DashboardViewController.swift */,
+				372ADF061FBF4C4000495A5E /* ViewController */,
 				376419F21FACEF77004363A6 /* Model */,
 				376419F11FACEF6E004363A6 /* View */,
+				378CC18E1FBE580A00E5A374 /* Utils */,
 			);
 			path = "FinanC-st";
 			sourceTree = "<group>";
@@ -209,6 +249,8 @@
 		376419F11FACEF6E004363A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				37D9FA621FB744F2006A7923 /* WalletPicker */,
+				372ADF091FBF4C8C00495A5E /* MonthPicker */,
 				37D9FA631FB74503006A7923 /* Cells */,
 				376419F41FACEF81004363A6 /* Histogram */,
 				37D4BE341FB3994B00C4ED6F /* Fonts */,
@@ -245,6 +287,14 @@
 				37A3125F1FAD11DA00A91599 /* HSTools.swift */,
 			);
 			path = Histogram;
+			sourceTree = "<group>";
+		};
+		378CC18E1FBE580A00E5A374 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				378CC18F1FBE582100E5A374 /* UIDevice+name.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		37A312631FAD14B000A91599 /* Images */ = {
@@ -292,13 +342,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		37D9FA621FB744F2006A7923 /* WalletCell */ = {
+		37D9FA621FB744F2006A7923 /* WalletPicker */ = {
 			isa = PBXGroup;
 			children = (
-				379A47041FB6693D005F15BE /* WalletViewCell.swift */,
-				379A47021FB6678E005F15BE /* CardCell.xib */,
+				37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */,
+				3735578F1FC01EC4003B4132 /* Cell */,
 			);
-			path = WalletCell;
+			path = WalletPicker;
 			sourceTree = "<group>";
 		};
 		37D9FA631FB74503006A7923 /* Cells */ = {
@@ -306,7 +356,7 @@
 			children = (
 				3721CFE41FB7A5AF0088AC24 /* ItemCell.swift */,
 				3721CFE21FB7A5A20088AC24 /* HeaderCell.swift */,
-				37D9FA621FB744F2006A7923 /* WalletCell */,
+				37B2F5481FC0B96D00380F4C /* TransactionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -471,18 +521,24 @@
 				3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */,
 				379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */,
 				3721CFE31FB7A5A20088AC24 /* HeaderCell.swift in Sources */,
+				372ADF0B1FBF4CB300495A5E /* MonthAdapter.swift in Sources */,
+				372ADF0D1FBF4D3300495A5E /* MonthCell.swift in Sources */,
 				3721CFE51FB7A5AF0088AC24 /* ItemCell.swift in Sources */,
 				379A47051FB6693D005F15BE /* WalletViewCell.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
 				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
 				37D4BE211FB3935100C4ED6F /* UIFont+Custom.swift in Sources */,
+				378CC1901FBE582100E5A374 /* UIDevice+name.swift in Sources */,
 				37A312601FAD11DA00A91599 /* HSTools.swift in Sources */,
+				37B2F5491FC0B96D00380F4C /* TransactionCell.swift in Sources */,
 				379A47071FB66AAB005F15BE /* Wallet.swift in Sources */,
 				3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */,
 				37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
+				37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */,
 				376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */,
+				37C1E7C61FC018D8005B77BA /* WalletAdapter.swift in Sources */,
 				37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

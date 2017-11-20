@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,35 +33,43 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgN-UG-AUL">
                         <rect key="frame" x="20" y="20" width="260" height="140"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLET 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRf-ZR-1ba">
-                                <rect key="frame" x="32" y="21" width="91.5" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLET 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="aRf-ZR-1ba">
+                                <rect key="frame" x="32" y="21" width="84.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE2-h2-vQr">
-                                <rect key="frame" x="32" y="51" width="149.5" height="39.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="NE2-h2-vQr">
+                                <rect key="frame" x="32" y="50" width="133.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="32"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="EnV-h7-vm4">
-                                <rect key="frame" x="32" y="98" width="129" height="20"/>
+                                <rect key="frame" x="32" y="95" width="117" height="19"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$500K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RwB-IH-kGd">
-                                        <rect key="frame" x="0.0" y="0.0" width="58.5" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$500K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="RwB-IH-kGd">
+                                        <rect key="frame" x="0.0" y="0.0" width="52.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$-300K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNC-AY-Q0r">
-                                        <rect key="frame" x="70.5" y="0.0" width="58.5" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$-300K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lNC-AY-Q0r">
+                                        <rect key="frame" x="64.5" y="0.0" width="52.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_open" translatesAutoresizingMaskIntoConstraints="NO" id="M2O-mN-IcT">
+                                <rect key="frame" x="220" y="8" width="32" height="32"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="j0x-7T-7Vs"/>
+                                    <constraint firstAttribute="height" constant="32" id="pMr-Uz-vFU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.47058823529411764" green="0.68235294117647061" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -70,7 +78,12 @@
                             <constraint firstItem="aRf-ZR-1ba" firstAttribute="leading" secondItem="rgN-UG-AUL" secondAttribute="leading" constant="32" id="7n8-Ar-FiG"/>
                             <constraint firstItem="EnV-h7-vm4" firstAttribute="leading" secondItem="rgN-UG-AUL" secondAttribute="leading" constant="32" id="CH7-K8-OsU"/>
                             <constraint firstItem="NE2-h2-vQr" firstAttribute="top" secondItem="aRf-ZR-1ba" secondAttribute="bottom" constant="8" id="SAT-7L-C6n"/>
+                            <constraint firstItem="M2O-mN-IcT" firstAttribute="top" secondItem="rgN-UG-AUL" secondAttribute="top" constant="8" id="Y84-Gc-hRr"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NE2-h2-vQr" secondAttribute="trailing" constant="8" id="eMv-xy-eMy"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EnV-h7-vm4" secondAttribute="trailing" constant="8" id="eqd-d1-kVH"/>
                             <constraint firstItem="aRf-ZR-1ba" firstAttribute="top" secondItem="rgN-UG-AUL" secondAttribute="top" constant="21" id="nLd-sb-kz5"/>
+                            <constraint firstItem="M2O-mN-IcT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aRf-ZR-1ba" secondAttribute="trailing" constant="8" id="wM4-Hm-flv"/>
+                            <constraint firstAttribute="trailing" secondItem="M2O-mN-IcT" secondAttribute="trailing" constant="8" id="zbH-vm-4Kz"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -87,10 +100,14 @@
                 <outlet property="averageSumm" destination="NE2-h2-vQr" id="Zgb-qo-YzK"/>
                 <outlet property="cardBackground" destination="rgN-UG-AUL" id="Ov9-07-xWx"/>
                 <outlet property="expenseLabel" destination="lNC-AY-Q0r" id="omp-zh-6AG"/>
+                <outlet property="imageViewOpen" destination="M2O-mN-IcT" id="v61-pi-YWY"/>
                 <outlet property="incomeLabel" destination="RwB-IH-kGd" id="LbM-Pi-NmY"/>
                 <outlet property="walletTitle" destination="aRf-ZR-1ba" id="gcB-BO-YMb"/>
             </connections>
-            <point key="canvasLocation" x="-2.5" y="108"/>
+            <point key="canvasLocation" x="-3" y="108"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_open" width="24" height="24"/>
+    </resources>
 </document>

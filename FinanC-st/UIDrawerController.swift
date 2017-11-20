@@ -89,38 +89,18 @@ class UIDrawerController: UIViewController {
                 let swipe = UIPanGestureRecognizer(target: self, action: #selector(swipeToClose(_:)))
                 imageView!.addGestureRecognizer(swipe)
                 
-                // Add shadows
-                imageView!.layer.shadowOffset = CGSize(width: 0, height: 0)
-                imageView!.layer.shadowColor = UIColor.blue.cgColor
-                imageView!.layer.shadowRadius = 16
-                imageView!.layer.shadowOpacity = 0.33
-                imageView!.layer.masksToBounds = false
-                imageView!.clipsToBounds = false
-                
-                #if (arch(i386) || arch(x86_64)) && os(iOS)
-                    let DEVICE_IS_SIMULATOR = true
-                #else
-                    let DEVICE_IS_SIMULATOR = false
-                #endif
-                
-                var machineString = ""
-                if DEVICE_IS_SIMULATOR == true {
-                    if let dir = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-                        machineString = dir
-                    }
-                } else {
-                    var systemInfo = utsname()
-                    uname(&systemInfo)
-                    let machineMirror = Mirror(reflecting: systemInfo.machine)
-                    machineString = machineMirror.children.reduce("") { identifier, element in
-                        guard let value = element.value as? Int8, value != 0 else { return identifier }
-                        return identifier + String(UnicodeScalar(UInt8(value)))
-                    }
-                }
-                
-                if machineString.contains("10") {
-                    self.imageView!.clipsToBounds = true
+                print(UIDevice.current.machineString)
+                if UIDevice.current.machineString.contains("10,3") {
                     self.imageView!.layer.cornerRadius = 24
+                    imageView!.clipsToBounds = true
+                } else {
+                    // Add shadows
+                    imageView!.layer.shadowOffset = CGSize(width: 0, height: 0)
+                    imageView!.layer.shadowColor = UIColor.blue.cgColor
+                    imageView!.layer.shadowRadius = 16
+                    imageView!.layer.shadowOpacity = 0.33
+                    imageView!.layer.masksToBounds = false
+                    imageView!.clipsToBounds = false
                 }
             }
         }

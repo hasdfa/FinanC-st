@@ -20,6 +20,8 @@ class WalletViewCell: UICollectionViewCell {
         }
     }
     
+    @IBOutlet weak var imageViewOpen: UIImageView!
+    
     @IBOutlet weak var cardBackground: UIView!
     @IBOutlet weak var walletTitle: UILabel!
     @IBOutlet weak var averageSumm: UILabel!
@@ -48,7 +50,20 @@ class WalletViewCell: UICollectionViewCell {
         cardBackground.layer.cornerRadius = 8
     }
     
+    public func setInvisible() {
+        cardBackground.alpha = 0
+    }
+    
+    public func setVisible() {
+        cardBackground.alpha = 0
+    }
+    
     private func onSelect() {
+        if self.imageViewOpen.alpha != 1 {
+            UIView.animate(withDuration: 0.5) {
+                self.imageViewOpen.alpha = 1
+            }
+        }
         
         cardBackground.backgroundColor = WalletBlueScheme.backgroundColor
         walletTitle.textColor = WalletBlueScheme.textColor
@@ -58,6 +73,11 @@ class WalletViewCell: UICollectionViewCell {
     }
     
     private func onDeselect() {
+        if self.imageViewOpen.alpha != 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.imageViewOpen.alpha = 0
+            }
+        }
         
         cardBackground.backgroundColor = WalletGrayScheme.backgroundColor
         walletTitle.textColor = WalletGrayScheme.textColor

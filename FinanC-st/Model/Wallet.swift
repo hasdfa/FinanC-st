@@ -17,10 +17,96 @@ class Wallet {
         self.expense = expense
     }
     
+    var updateHandler: (() -> Void)? = nil
+    
     var name: String
     var averageSumm: Double
     var income: Double
     var expense: Double
+    
+    var selectedMonth: Int? = nil {
+        didSet {
+            update()
+        }
+    }
+    
+    var transactions: [Transaction] = [] {
+        didSet {
+            update()
+        }
+    }
+    
+    var transactionGoupedByDate = [Int64: [Transaction]]()
+    var dates: [DateComponents] = []
+    
+    private func update() {
+        transactionGoupedByDate = [:]
+        dates = []
+        transactions.forEach { transaction in
+            if let selected = self.selectedMonth,
+                selected != transaction.date.month {
+                
+            } else {
+                let key = transaction.date.value
+                if dates.contains(where: { $0.value == transaction.date.value }) {
+                    transactionGoupedByDate[key]!.append(transaction)
+                } else {
+                    dates.append(transaction.date)
+                    transactionGoupedByDate[key] = [transaction]
+                }
+                
+            }
+        }
+        dates.sort(by: { $0.value > $1.value })
+        updateHandler?()
+    }
+    
+    func transactionsBy(year: Int, month: Int, day: Int) -> [Transaction] {
+        return transactionsBy(
+            component: DateComponents.initWith(
+                year: year,
+                month: month,
+                day: day
+            )
+        )
+    }
+    func transactionsBy(component: DateComponents) -> [Transaction] {
+        return transactionGoupedByDate[component.value] ?? []
+    }
+}
+
+class Transaction {
+    
+    init() {
+        self.description = ""
+        self.icon = .null
+        self.type = .unknown
+        date = DateComponents.now
+        self.value = 0
+    }
+    
+    init(description: String, icon: TypeIcon, type: TransactionType, value: Double, date: DateComponents = DateComponents.now) {
+        self.description = description
+        self.icon = icon
+        self.type = type
+        self.date = date
+        self.value = value
+    }
+    
+    var description: String
+    
+    var icon: TypeIcon
+    var type: TransactionType
+    
+    var date: DateComponents
+    
+    var value: Double
+}
+
+enum TransactionType: String {
+    case income = "Income"
+    case expenses = "Expenses"
+    case unknown = "Unknown"
 }
 
 class WalletBlueScheme: WalletColorStyle {
