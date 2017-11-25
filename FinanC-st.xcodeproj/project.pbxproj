@@ -34,6 +34,7 @@
 		37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */; };
 		37A312671FAD14D600A91599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 37A312661FAD14D600A91599 /* README.md */; };
 		37B2F5491FC0B96D00380F4C /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2F5481FC0B96D00380F4C /* TransactionCell.swift */; };
+		37B9F7891FC8652600BFF16F /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */; };
 		37C1E7C61FC018D8005B77BA /* WalletAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */; };
 		37D4BE211FB3935100C4ED6F /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D4BE201FB3935100C4ED6F /* UIFont+Custom.swift */; };
 		37D4BE221FB398E100C4ED6F /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE1D1FB3931800C4ED6F /* Montserrat-Black.ttf */; };
@@ -55,6 +56,8 @@
 		37D4BE321FB398E500C4ED6F /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE1A1FB3931800C4ED6F /* Montserrat-Thin.ttf */; };
 		37D4BE331FB398E500C4ED6F /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE181FB3931800C4ED6F /* Montserrat-ThinItalic.ttf */; };
 		37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D4BE351FB3996000C4ED6F /* MontesrratFontType.swift */; };
+		37D5E7E11FC8903C00D8AB72 /* AddTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */; };
+		37D5E7E31FC898D600D8AB72 /* UINumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D5E7E21FC898D600D8AB72 /* UINumberPad.swift */; };
 		37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +115,7 @@
 		37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Draw.swift"; sourceTree = "<group>"; };
 		37A312661FAD14D600A91599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		37B2F5481FC0B96D00380F4C /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAdapter.swift; sourceTree = "<group>"; };
 		37D4BE0E1FB3931700C4ED6F /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		37D4BE0F1FB3931700C4ED6F /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		37D4BE1F1FB3931800C4ED6F /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		37D4BE201FB3935100C4ED6F /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		37D4BE351FB3996000C4ED6F /* MontesrratFontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontesrratFontType.swift; sourceTree = "<group>"; };
+		37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionTableViewController.swift; sourceTree = "<group>"; };
+		37D5E7E21FC898D600D8AB72 /* UINumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINumberPad.swift; sourceTree = "<group>"; };
 		37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +172,8 @@
 			children = (
 				379A47001FB65B70005F15BE /* DashboardViewController.swift */,
 				37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */,
+				37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */,
+				37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -254,6 +262,7 @@
 				37D9FA631FB74503006A7923 /* Cells */,
 				376419F41FACEF81004363A6 /* Histogram */,
 				37D4BE341FB3994B00C4ED6F /* Fonts */,
+				37D5E7E21FC898D600D8AB72 /* UINumberPad.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -527,14 +536,17 @@
 				379A47051FB6693D005F15BE /* WalletViewCell.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
 				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
+				37D5E7E31FC898D600D8AB72 /* UINumberPad.swift in Sources */,
 				37D4BE211FB3935100C4ED6F /* UIFont+Custom.swift in Sources */,
 				378CC1901FBE582100E5A374 /* UIDevice+name.swift in Sources */,
 				37A312601FAD11DA00A91599 /* HSTools.swift in Sources */,
 				37B2F5491FC0B96D00380F4C /* TransactionCell.swift in Sources */,
 				379A47071FB66AAB005F15BE /* Wallet.swift in Sources */,
 				3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */,
+				37B9F7891FC8652600BFF16F /* AddTransactionViewController.swift in Sources */,
 				37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
+				37D5E7E11FC8903C00D8AB72 /* AddTransactionTableViewController.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
 				37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */,
 				376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */,

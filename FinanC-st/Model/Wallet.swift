@@ -85,7 +85,7 @@ class Transaction {
         self.value = 0
     }
     
-    init(description: String, icon: TypeIcon, type: TransactionType, value: Double, date: DateComponents = DateComponents.now) {
+    init(description: String, icon: CategoryType, type: TransactionType, value: Double, date: DateComponents = DateComponents.now) {
         self.description = description
         self.icon = icon
         self.type = type
@@ -95,7 +95,7 @@ class Transaction {
     
     var description: String
     
-    var icon: TypeIcon
+    var icon: CategoryType
     var type: TransactionType
     
     var date: DateComponents

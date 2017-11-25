@@ -99,8 +99,8 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setCornerRadius(to: expensesButton)
-        setCornerRadius(to: incomeButton)
+        expensesButton.setCornerRadius()
+        incomeButton.setCornerRadius()
         
         walletAdapter.delegate = self
         walletAdapter.wallets = self.wallets
@@ -136,10 +136,12 @@ class DashboardViewController: UIViewController {
         collectionView.allowsMultipleSelection = false
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
     }
-    
-    func setCornerRadius(to view: UIView) {
-        view.clipsToBounds = false
-        view.layer.cornerRadius = view.bounds.height / 2
+}
+
+extension UIView {
+    func setCornerRadius() {
+        self.clipsToBounds = false
+        self.layer.cornerRadius = self.bounds.height / 2
     }
 }
 

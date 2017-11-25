@@ -9,7 +9,7 @@
 import UIKit
 
 class WalletInfoViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var cardBackground: UIView!
@@ -163,7 +163,7 @@ extension WalletInfoViewController: UITableViewDelegate {
     
 }
 
-enum TypeIcon: String {
+enum CategoryType: String {
     case rent = "Rent"
     case bill = "Bill"
     case insurance = "Insurance"
