@@ -992,15 +992,6 @@
                                                         <constraint firstAttribute="width" constant="40" id="3G7-B3-HVi"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly pay for Apple Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gO-Gi-Oj1">
-                                                    <rect key="frame" x="64" y="0.0" width="328" height="58"/>
-                                                    <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
-                                                    </variation>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Op5-MO-Aw8">
                                                     <rect key="frame" x="14" y="58" width="372" height="2"/>
                                                     <color key="backgroundColor" red="0.74117647060000003" green="0.76470588240000004" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1008,17 +999,24 @@
                                                         <constraint firstAttribute="height" constant="2" id="6f5-YN-kZe"/>
                                                     </constraints>
                                                 </view>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Monthly pay for Apple Music" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xig-zh-fXt">
+                                                    <rect key="frame" x="64" y="19.333333333333332" width="324" height="20.999999999999996"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="18"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Op5-MO-Aw8" firstAttribute="leading" secondItem="gpd-eZ-m3n" secondAttribute="leading" constant="14" id="1O2-ar-mAn"/>
-                                                <constraint firstAttribute="trailing" secondItem="4gO-Gi-Oj1" secondAttribute="trailing" constant="8" id="7MM-Be-nVy"/>
+                                                <constraint firstAttribute="centerY" secondItem="Xig-zh-fXt" secondAttribute="centerY" constant="3" id="CCE-2E-kvL"/>
+                                                <constraint firstItem="Op5-MO-Aw8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Xig-zh-fXt" secondAttribute="bottom" id="DJs-Gv-Kra"/>
+                                                <constraint firstItem="Xig-zh-fXt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gpd-eZ-m3n" secondAttribute="top" id="Hho-CN-cTc"/>
                                                 <constraint firstItem="6fK-4j-u2d" firstAttribute="leading" secondItem="gpd-eZ-m3n" secondAttribute="leading" constant="16" id="JIY-w7-ND3"/>
-                                                <constraint firstItem="4gO-Gi-Oj1" firstAttribute="leading" secondItem="6fK-4j-u2d" secondAttribute="trailing" constant="8" id="dMR-Sw-vZt"/>
+                                                <constraint firstItem="Xig-zh-fXt" firstAttribute="leading" secondItem="6fK-4j-u2d" secondAttribute="trailing" constant="8" id="MI7-VA-8E1"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xig-zh-fXt" secondAttribute="trailing" constant="12" id="VG3-VZ-hur"/>
                                                 <constraint firstAttribute="trailing" secondItem="Op5-MO-Aw8" secondAttribute="trailing" constant="14" id="dWL-HS-gm3"/>
                                                 <constraint firstAttribute="bottom" secondItem="Op5-MO-Aw8" secondAttribute="bottom" constant="4" id="kWc-mA-hKd"/>
                                                 <constraint firstItem="6fK-4j-u2d" firstAttribute="centerY" secondItem="gpd-eZ-m3n" secondAttribute="centerY" constant="-3" id="lWP-Cc-Kwk"/>
-                                                <constraint firstItem="Op5-MO-Aw8" firstAttribute="top" secondItem="4gO-Gi-Oj1" secondAttribute="bottom" id="sxu-cg-aUi"/>
-                                                <constraint firstItem="4gO-Gi-Oj1" firstAttribute="top" secondItem="gpd-eZ-m3n" secondAttribute="top" id="vor-KU-s7M"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1033,11 +1031,72 @@
                     <size key="freeformSize" width="400" height="350"/>
                     <connections>
                         <outlet property="summLabel" destination="DoO-Vl-Gua" id="2Jd-JG-opd"/>
+                        <outlet property="titleIconLeading" destination="JIY-w7-ND3" id="Ao1-rf-l1L"/>
+                        <outlet property="titleLabel" destination="Xig-zh-fXt" id="7at-Q1-DaL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="358-kZ-kOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1299.2" y="-364.28571428571428"/>
+        </scene>
+        <!--Add Transaction View Controller-->
+        <scene sceneID="FIY-z2-8J3">
+            <objects>
+                <viewController storyboardIdentifier="categories" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a67-4c-Dvh" customClass="AddTransactionViewController" customModule="FinanC_st" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ux6-iN-Fx3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNb-ag-TAZ">
+                                <rect key="frame" x="135" y="48" width="105.33333333333331" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="UlR-WA-Ixh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaI-d7-54X">
+                                <rect key="frame" x="16" y="48" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="WCx-9B-8jM"/>
+                                    <constraint firstAttribute="height" constant="32" id="XE6-9C-2EK"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="close:" destination="a67-4c-Dvh" eventType="touchUpInside" id="mxm-xo-KAh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="037-LM-dVB">
+                                <rect key="frame" x="328" y="48" width="31" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="hL7-rw-W70"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
+                                <color key="tintColor" red="0.47843137250000001" green="0.4941176471" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="ADD">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iNb-ag-TAZ" firstAttribute="top" secondItem="4lN-aD-hmM" secondAttribute="top" constant="4" id="1oU-Gg-Yp5"/>
+                            <constraint firstItem="iNb-ag-TAZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TaI-d7-54X" secondAttribute="trailing" constant="8" id="Hrj-m0-xVy"/>
+                            <constraint firstItem="TaI-d7-54X" firstAttribute="leading" secondItem="4lN-aD-hmM" secondAttribute="leading" constant="16" id="Hyx-Zn-ccX"/>
+                            <constraint firstItem="TaI-d7-54X" firstAttribute="top" secondItem="4lN-aD-hmM" secondAttribute="top" constant="4" id="VXq-yw-haN"/>
+                            <constraint firstItem="4lN-aD-hmM" firstAttribute="trailing" secondItem="037-LM-dVB" secondAttribute="trailing" constant="16" id="nGu-59-csG"/>
+                            <constraint firstItem="037-LM-dVB" firstAttribute="top" secondItem="4lN-aD-hmM" secondAttribute="top" constant="4" id="o8i-cj-ro8"/>
+                            <constraint firstItem="037-LM-dVB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iNb-ag-TAZ" secondAttribute="trailing" id="pDA-XV-BnL"/>
+                            <constraint firstItem="iNb-ag-TAZ" firstAttribute="centerX" secondItem="Ux6-iN-Fx3" secondAttribute="centerX" id="xkX-qj-upL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4lN-aD-hmM"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQn-Zc-czE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-390" y="-271"/>
         </scene>
     </scenes>
     <resources>

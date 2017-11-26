@@ -19,13 +19,20 @@ class AddTransactionTableViewController: UITableViewController {
         case number
     }
     
+    
+    @IBOutlet weak var titleIconLeading: NSLayoutConstraint!
+    
+    @IBOutlet weak var titleLabel: UITextField! {
+        didSet { titleLabel?.delegate = self }
+    }
+    
     @IBOutlet weak var summLabel: UILabel!
     @IBAction func clearNums(_ sender: Any) {
         if var text = summLabel.text {
             if text.count >= 1 {
                 text.removeLast()
             }
-            if text.count == 0 {
+            if text.count == 0 || text == "0" {
                 text = "0"
                 state = .empty
             }
@@ -59,6 +66,43 @@ class AddTransactionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(keyboardWillShow(_:)),
+                         name: Notification.Name.UIKeyboardWillShow,
+                         object: nil
+        )
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(keyboardWillHide(_:)),
+                         name: Notification.Name.UIKeyboardWillHide,
+                         object: nil
+        )
+    }
+    
+    var isKeyboardShowed = false
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if isKeyboardShowed { return }
+        isKeyboardShowed = true
+        self.titleIconLeading.constant = -40
+        UIView.animate(withDuration: 1, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        if !isKeyboardShowed { return }
+        isKeyboardShowed = false
+        self.titleIconLeading.constant = 16
+        UIView.animate(withDuration: 1, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -80,6 +124,19 @@ extension AddTransactionTableViewController: AddTransactionDelegate {
     }
 }
 
+extension AddTransactionTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text,
+            !text.isEmpty, text.count > 3 {
+            textField.resignFirstResponder()
+            return true
+        }
+        return false
+    }
+    
+}
+
 extension AddTransactionTableViewController: UINumberPadDelegate {
     func onNumberSelect(_ numberPad: UINumberPad, number: Int) {
         if state == .empty {
@@ -99,13 +156,24 @@ extension AddTransactionTableViewController: UINumberPadDelegate {
         case "=":
             isOpenNumberPanel = false
             
-            if summ.contains(".") || summ.all { $0 == "0" } {
+            if summ.contains(".") || summ.starts(with: "0") || summ.all { $0 == "0" } {
                 var temp = summ
                 for ch in temp.reversed() {
                     if ch == "0" {
                         temp.removeLast()
                     } else if ch == "." {
                         temp.removeLast()
+                        break
+                    } else {
+                        break
+                    }
+                }
+                for ch in temp {
+                    
+                    if ch == "0" {
+                        temp.removeFirst()
+                    } else if ch == "." {
+                        temp = "0\(temp)"
                         break
                     } else {
                         break

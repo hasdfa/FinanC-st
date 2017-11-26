@@ -70,12 +70,12 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var chart: HistogramChartView!
     
     let wallets: [Wallet] = [
-        Wallet("WALLET 1", summ: 300_000, income: 500_000, expense: 200_000),
-        Wallet("WALLET 2", summ: -45_000, income: 55_000, expense: -100_000),
-        Wallet("WALLET 3", summ: 300_000, income: 500_000, expense: 200_000),
-        Wallet("WALLET 4", summ: -45_000, income: 55_000, expense: -100_000),
-        Wallet("WALLET 5", summ: 300_000, income: 500_000, expense: 200_000),
-        Wallet("WALLET 6", summ: -45_000, income: 55_000, expense: -100_000)
+//        Wallet("WALLET 1", summ: 300_000, income: 500_000, expense: 200_000),
+//        Wallet("WALLET 2", summ: -45_000, income: 55_000, expense: -100_000),
+//        Wallet("WALLET 3", summ: 300_000, income: 500_000, expense: 200_000),
+//        Wallet("WALLET 4", summ: -45_000, income: 55_000, expense: -100_000),
+//        Wallet("WALLET 5", summ: 300_000, income: 500_000, expense: 200_000),
+//        Wallet("WALLET 6", summ: -45_000, income: 55_000, expense: -100_000)
     ]
     let expense: [HistogramColumn] = [
         HistogramColumn(point: 500_000, lable: "MAY"),
@@ -172,20 +172,20 @@ extension DashboardViewController: WalletAdapterDelegate {
     
     func walletWillOpen(at postion: Int, with wallet: Wallet) {
         wallet.transactions = [
-            Transaction(description: "Some1", icon: .rent, type: .expenses, value: 100.05),
-            Transaction(description: "Some2", icon: .clothing, type: .expenses,
-                        value: 5000.50,
-                        date: DateComponents.initWith(year: 2017, month: 5, day: 6)),
-            Transaction(description: "Some3", icon: .bill, type: .expenses, value: 45.00),
-            Transaction(description: "Some4", icon: .gadgets, type: .expenses,
-                        value: 60_000.00,
-                        date: DateComponents.initWith(year: 2017, month: 7, day: 6)),
-            Transaction(description: "Some5", icon: .electronics, type: .expenses,
-                        value: 100.00,
-                        date: DateComponents.initWith(year: 2017, month: 5, day: 6)),
-            Transaction(description: "Some6", icon: .insurance, type: .expenses,
-                        value: 2_500.00,
-                        date: DateComponents.initWith(year: 2017, month: 7, day: 6))
+//            Transaction(description: "Some1", icon: .rent, type: .expenses, value: 100.05),
+//            Transaction(description: "Some2", icon: .clothing, type: .expenses,
+//                        value: 5000.50,
+//                        date: DateComponents.initWith(year: 2017, month: 5, day: 6)),
+//            Transaction(description: "Some3", icon: .bill, type: .expenses, value: 45.00),
+//            Transaction(description: "Some4", icon: .gadgets, type: .expenses,
+//                        value: 60_000.00,
+//                        date: DateComponents.initWith(year: 2017, month: 7, day: 6)),
+//            Transaction(description: "Some5", icon: .electronics, type: .expenses,
+//                        value: 100.00,
+//                        date: DateComponents.initWith(year: 2017, month: 5, day: 6)),
+//            Transaction(description: "Some6", icon: .insurance, type: .expenses,
+//                        value: 2_500.00,
+//                        date: DateComponents.initWith(year: 2017, month: 7, day: 6))
         ]
         if let vc = storyboard?.instantiateViewController(withIdentifier: "wallet") as? WalletInfoViewController {
             vc.wallet = wallet

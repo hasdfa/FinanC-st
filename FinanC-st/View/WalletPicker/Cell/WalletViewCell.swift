@@ -29,8 +29,8 @@ class WalletViewCell: UICollectionViewCell {
     @IBOutlet weak var expenseLabel: UILabel!
     
     public func initWith(wallet: Wallet) {
-        walletTitle.text = wallet.name
-        averageSumm.text = "$\(Int(wallet.averageSumm))"
+        walletTitle.text = wallet.title
+//        averageSumm.text = "$\(Int(wallet.averageSumm))"
         
         let get: (Double) -> String = { double in
             if double >= 1_000_000_000 || double <= -1_000_000_000 {
@@ -43,8 +43,8 @@ class WalletViewCell: UICollectionViewCell {
             return "$\(Int(double))"
         }
         
-        expenseLabel.text = get(wallet.expense)
-        incomeLabel.text = get(wallet.income)
+//        expenseLabel.text = get(wallet.expense)
+//        incomeLabel.text = get(wallet.income)
         
         cardBackground.clipsToBounds = false
         cardBackground.layer.cornerRadius = 8

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class WalletInfoViewController: UIViewController {
     
@@ -38,9 +39,9 @@ class WalletInfoViewController: UIViewController {
     
     var wallet: Wallet! {
         didSet {
-            wallet.updateHandler = { [weak self] in
-                self?.tableView.reloadData()
-            }
+//            wallet.updateHandler = { [weak self] in
+//                self?.tableView.reloadData()
+//            }
         }
     }
     var monthAdapter: MonthAdapter = MonthAdapter()
@@ -84,11 +85,11 @@ class WalletInfoViewController: UIViewController {
     }
     
     public func initWith(wallet: Wallet) {
-        walletTitle.text = wallet.name
-        averageSumm.text = "$\(Int(wallet.averageSumm))"
+        walletTitle.text = wallet.title
+//        averageSumm.text = "$\(Int(wallet.averageSumm))"
         
-        expenseLabel.text = "$\(Int(wallet.expense))"
-        incomeLabel.text = "$\(Int(wallet.income))"
+//        expenseLabel.text = "$\(Int(wallet.expense))"
+//        incomeLabel.text = "$\(Int(wallet.income))"
         
         cardBackground.backgroundColor = WalletBlueScheme.backgroundColor
         cardBackground.clipsToBounds = false
@@ -174,6 +175,15 @@ enum CategoryType: String {
     case savings = "Savings"
     case custom = "nil"
     case null = "Nothing"
+    
+    public static func initDatabase(with context: NSManagedObjectContext) {
+        let arr: [CategoryType] = [.rent, .bill, .insurance, .utilites, .electronics, .clothing, .gadgets, .savings]
+        for c in arr {
+            let category = Category(context: context)
+            category.title = c.title
+            category.icon = UIImagePNGRepresentation(c.image!)
+        }
+    }
     
     var title: String {
         return self.rawValue

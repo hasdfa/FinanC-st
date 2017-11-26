@@ -16,9 +16,9 @@ class TransactionCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     
     public func initWith(transaction: Transaction) {
-        iconImageView.image = transaction.icon.image
-        titleLabel.text = transaction.icon.title
-        subtitleLabel.text = transaction.description
+        iconImageView.image = UIImage(data: transaction.category!.icon!)
+        titleLabel.text = transaction.category!.title
+        subtitleLabel.text = transaction.descriptionTitle
         
 //        var priceSeparretedByCommas = Int(transaction.value)
 //        var priceStr = ""
