@@ -16,8 +16,8 @@ class TransactionCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     
     public func initWith(transaction: Transaction) {
-        iconImageView.image = UIImage(data: transaction.category!.icon!)
-        titleLabel.text = transaction.category!.title
+        iconImageView.image = transaction.categoryType.image
+        titleLabel.text = transaction.categoryType.title
         subtitleLabel.text = transaction.descriptionTitle
         
 //        var priceSeparretedByCommas = Int(transaction.value)
@@ -54,12 +54,4 @@ class TransactionCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-}
-
-
-extension String {
-    func indexDistance(of character: Character) -> Int? {
-        guard let index = index(of: character) else { return nil }
-        return distance(from: startIndex, to: index)
-    }
 }

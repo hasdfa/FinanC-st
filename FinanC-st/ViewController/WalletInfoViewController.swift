@@ -58,22 +58,13 @@ class WalletInfoViewController: UIViewController {
         
         initWith(wallet: wallet)
         
-        monthAdapter.dateFrom = DateComponents.initWith(year: 2017, month: 4)
-        
-        let get: (Calendar.Component) -> Int = { component in
-            return Calendar.current.component(component, from: Date())
-        }
-        monthAdapter.dateTo = DateComponents.initWith(
-            year: get(.year),
-            month: get(.month)
-        )
+        monthAdapter.dates = wallet.dates
         
         self.flowLayout.itemSize = CGSize(width: 175, height: 21)
         self.monthCollectionView.dataSource = monthAdapter
         self.monthCollectionView.delegate = monthAdapter
         
         monthAdapter.delegate = self
-        self.monthAdapter.updateObjects()
         self.monthDidDeselect()
         
         tableView.delegate = self
@@ -103,8 +94,10 @@ extension WalletInfoViewController: MonthAdapterDelegate {
         self.monthCollectionView.reloadData()
     }
     
-    func monthDidSelect(at row: Int, with model: Model) {
+    func monthDidSelect(at row: Int, with model: MonthModel) {
         self.wallet.selectedMonth = Calendar.current.component(.month, from: model.date)
+        self.tableView.reloadData()
+        
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 1
         }
@@ -112,6 +105,8 @@ extension WalletInfoViewController: MonthAdapterDelegate {
     
     func monthDidDeselect() {
         self.wallet.selectedMonth = nil
+        self.tableView.reloadData()
+        
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 0
         }
@@ -173,23 +168,12 @@ enum CategoryType: String {
     case clothing = "Clothings"
     case gadgets = "Gadgets"
     case savings = "Savings"
-    case custom = "nil"
-    case null = "Nothing"
-    
-    public static func initDatabase(with context: NSManagedObjectContext) {
-        let arr: [CategoryType] = [.rent, .bill, .insurance, .utilites, .electronics, .clothing, .gadgets, .savings]
-        for c in arr {
-            let category = Category(context: context)
-            category.title = c.title
-            category.icon = UIImagePNGRepresentation(c.image!)
-        }
-    }
     
     var title: String {
         return self.rawValue
     }
     
-    var image: UIImage? {
+    var image: UIImage {
         switch self {
             case .rent: return #imageLiteral(resourceName: "rent")
             case .bill: return #imageLiteral(resourceName: "bill")
@@ -199,8 +183,6 @@ enum CategoryType: String {
             case .clothing: return #imageLiteral(resourceName: "clothing")
             case .gadgets: return #imageLiteral(resourceName: "gadget")
             case .savings: return #imageLiteral(resourceName: "savings")
-            case .custom: return nil
-            case .null: return nil
         }
     }
 }

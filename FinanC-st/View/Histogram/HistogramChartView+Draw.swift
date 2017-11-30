@@ -11,11 +11,11 @@ import UIKit
 extension HistogramChartView {
     
     func drawColumn(on context: CGContext, with column: HistogramColumn, at position: Int, from startColumnOrNil: HistogramColumn? = nil) {
-        let columnBaseRect = columnRect(at: position, of: column.point)
+        let columnBaseRect = columnRect(at: position, of: column.point, in: columns)
         
         let start: CGRect
         if let startColumn = startColumnOrNil {
-            start = columnRect(at: position, of: startColumn.point)
+            start = columnRect(at: position, of: startColumn.point, in: oldColumns)
         } else {
             start = CGRect(
                 x: columnBaseRect.minX,
@@ -144,11 +144,11 @@ extension HistogramChartView {
         //// OVAL Drawing
         let startOvalRect: CGRect
         if let old = oldValue {
-            startOvalRect = pointRect(at: position, of: old)
+            startOvalRect = pointRect(at: position, of: old, in: columns)
         } else {
-            startOvalRect = pointRect(at: position, of: 0)
+            startOvalRect = pointRect(at: position, of: 0, in: columns)
         }
-        let endOvalRect = pointRect(at: position, of: value)
+        let endOvalRect = pointRect(at: position, of: value, in: columns)
         
         let startPointPath = UIBezierPath(ovalIn: startOvalRect).cgPath
         let endPointPath = UIBezierPath(ovalIn: endOvalRect).cgPath
@@ -180,10 +180,10 @@ extension HistogramChartView {
     
     func drawLine(on line: UIBezierPath, startedAt position: Int, with value: CGFloat) {
         if position < columns.count - 1 {
-            let center = pointCenter(at: position, of: value)
+            let center = pointCenter(at: position, of: value, in: columns)
             
             let i2 = position + 1
-            let secondCenter = pointCenter(at: i2, of: columns[i2].point)
+            let secondCenter = pointCenter(at: i2, of: columns[i2].point, in: columns)
             
             drawLine(on: line, from: center, to: secondCenter)
         }
@@ -202,12 +202,12 @@ extension HistogramChartView {
     
     func drawLinesPlace(columns: [HistogramColumn?]) -> CGPath {
         let line = UIBezierPath()
-        line.move(to: pointCenter(at: 0, of: columns.first??.point ?? 0.0))
+        line.move(to: pointCenter(at: 0, of: columns.first??.point ?? 0.0, in: columns))
         
         (1..<self.columns.count).forEach { j -> Void in
             //let center = pointCenter(at: i, of: columns[i].point)
             let point = columns.count > j ? columns[j]?.point : 0.0
-            let secondCenter = pointCenter(at: j, of: point ?? 0.0)
+            let secondCenter = pointCenter(at: j, of: point ?? 0.0, in: columns)
             line.addLine(to: secondCenter)
         }
         drawLinesUnderPoints(on: line)
@@ -230,19 +230,19 @@ extension HistogramChartView {
             let startPath: CGPath
             if let old = oldValue {
                 startPath = makeLine(
-                    pointCenter(at: position, of: old),
-                    pointCenter(at: i2, of: oldColumns[i2]?.point ?? 0.0)
+                    pointCenter(at: position, of: old, in: columns),
+                    pointCenter(at: i2, of: oldColumns[i2]?.point ?? 0.0, in: columns)
                 )
             } else {
                 startPath = makeLine(
-                    pointCenter(at: position, of: 0),
-                    pointCenter(at: i2, of: 0)
+                    pointCenter(at: position, of: 0, in: columns),
+                    pointCenter(at: i2, of: 0, in: columns)
                 )
             }
             
             let endPath = makeLine(
-                pointCenter(at: position, of: value),
-                pointCenter(at: i2, of: columns[i2].point)
+                pointCenter(at: position, of: value, in: columns),
+                pointCenter(at: i2, of: columns[i2].point, in: columns)
             )
             
             let shape = CAShapeLayer()
@@ -279,14 +279,16 @@ extension HistogramChartView {
         if columns.count == 0 { return }
         let firstPointCenter = pointCenter(
             at: 0,
-            of: columns.first!.point
+            of: columns.first!.point,
+            in: columns
         )
         let lastPointCenter = pointCenter(
             at: columns.count - 1,
-            of: columns.last!.point
+            of: columns.last!.point,
+            in: columns
         )
-        let lastBottomPoint = pointCenter(at: columns.count - 1, of: 0)
-        let firstBottomPoint = pointCenter(at: 0, of: 0)
+        let lastBottomPoint = pointCenter(at: columns.count - 1, of: 0, in: columns)
+        let firstBottomPoint = pointCenter(at: 0, of: 0, in: columns)
         
         
         line.addQuadCurve(to: lastBottomPoint, controlPoint: lastPointCenter)

@@ -25,6 +25,13 @@ class HistogramChartView: UIView {
         self.columns = columns
     }
     
+    public func updateColumns(from oldColumns: [HistogramColumn], to columns: [HistogramColumn]) {
+        if columns.count != oldColumns.count { fatalError("updateColumns(with:) Columns count must be the same!") }
+        needsAnimating = true
+        self.oldColumns = oldColumns
+        self.columns = columns
+    }
+    
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
         

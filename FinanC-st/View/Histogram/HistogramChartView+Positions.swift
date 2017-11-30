@@ -9,12 +9,14 @@
 import UIKit
 
 extension HistogramChartView {
+    func maxPoint(in columns: [HistogramColumn?]) -> CGFloat {
+        return CGFloat(columns.max(by: { $0?.point ?? 0.0 < $1?.point ?? 0.0 })??.point ?? 0.0)
+    }
     var maxPoint: CGFloat {
-        get {
-            return CGFloat(columns.max(by: {
-                $0.point < $1.point
-            })?.point ?? 0.0)
-        }
+        return max(
+            CGFloat(columns.max(by: { $0.point < $1.point })?.point ?? 0.0),
+            CGFloat(oldColumns.max(by: { $0?.point ?? 0.0 < $1?.point ?? 0.0 })??.point ?? 0.0)
+        )
     }
     
     // MARK: Histogram Chart size
@@ -48,16 +50,16 @@ extension HistogramChartView {
     
     
     // MARK: Column position
-    func columnHeight(of part: CGFloat) -> CGFloat {
-        return getPercent(75, of: height) * (part / maxPoint)
+    func columnHeight(of part: CGFloat, in columns: [HistogramColumn?]) -> CGFloat {
+        return getPercent(75, of: height) * (part / maxPoint(in: columns))
     }
     var columnWidth: CGFloat {
         get { return getPercent(HCConst.columnWidthPercent, of: columnSpaceWidth) }
     }
-    func columnY(of part: CGFloat) -> CGFloat {
+    func columnY(of part: CGFloat, in columns: [HistogramColumn?]) -> CGFloat {
         return getPercent(5, of: height)
             + marginTopDown
-            + columnHeight(of: maxPoint - part)
+            + columnHeight(of: maxPoint(in: columns) - part, in: columns)
     }
     func columnX(at position: Int) -> CGFloat {
         return getPercent(5, of: width) +
@@ -66,20 +68,19 @@ extension HistogramChartView {
     }
     
     // MARK: Column rect
-    func columnRect(at position: Int, of part: CGFloat) -> CGRect {
+    func columnRect(at position: Int, of part: CGFloat, in columns: [HistogramColumn?]) -> CGRect {
         return CGRect(
             x: columnX(at: position),
-            y: columnY(of: part),
+            y: columnY(of: part, in: columns),
             width: columnWidth,
-            height: columnHeight(of: part)
+            height: columnHeight(of: part, in: columns)
         )
     }
     // MARK: Column Background rect
     func columnBackgroundRect(at position: Int) -> CGRect {
         return CGRect(
             x: lableX(at: position),
-            y: columnY(of: maxPoint) - getPercent(5, of: height)
-            ,
+            y: columnY(of: maxPoint, in: columns) - getPercent(5, of: height),
             width: columnSpaceWidth,
             height: columnSpaceHeight - getPercent(2.5, of: height)
         )
@@ -121,26 +122,26 @@ extension HistogramChartView {
     func pointX(at position: Int) -> CGFloat {
         return columnX(at: position) + pointRadius
     }
-    func pointY(of part: CGFloat) -> CGFloat {
-        return columnY(of: part) - pointRadius
+    func pointY(of part: CGFloat, in columns: [HistogramColumn?]) -> CGFloat {
+        return columnY(of: part, in: columns) - pointRadius
     }
     
-    func pointCenter(at position: Int, of part: CGFloat) -> CGPoint{
+    func pointCenter(at position: Int, of part: CGFloat, in columns: [HistogramColumn?]) -> CGPoint{
         return CGPoint(
             x: pointX(at: position) + pointRadius,
-            y: columnY(of: part)
+            y: columnY(of: part, in: columns)
         )
     }
-    func pointCGPoint(at position: Int, of part: CGFloat) -> CGPoint {
+    func pointCGPoint(at position: Int, of part: CGFloat, in columns: [HistogramColumn?]) -> CGPoint {
         return CGPoint(
             x: pointX(at: position),
-            y: pointY(of: part)
+            y: pointY(of: part, in: columns)
         )
     }
-    func pointRect(at position: Int, of part: CGFloat) -> CGRect {
+    func pointRect(at position: Int, of part: CGFloat, in columns: [HistogramColumn?]) -> CGRect {
         return CGRect(
             x: pointX(at: position),
-            y: pointY(of: part),
+            y: pointY(of: part, in: columns),
             width: pointRadius * 2,
             height: pointRadius * 2
         )

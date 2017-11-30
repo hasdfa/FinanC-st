@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class Wallet {
+public class Wallet: NSManagedObject {
     
     public var selectedMonth: Int? = nil {
         didSet {
@@ -16,28 +17,68 @@ class Wallet {
         }
     }
     
+    func expense(on date: DateComponents) -> HistogramColumn {
+        var expensesIn: Double = 0
+        typedTransactions.forEach { transaction in
+            if date.value == transaction.dateComponent.value,
+                transaction.transactionType == .expenses {
+                expensesIn += transaction.value
+            }
+        }
+        return HistogramColumn(point: CGFloat(expensesIn), lable: date.shortMonthName!)
+    }
+    var expenses: [HistogramColumn] {
+        return dates.map { expense(on: $0) }
+    }
+    
+    func income(on date: DateComponents) -> HistogramColumn {
+        var incomeIn: Double = 0.1
+        typedTransactions.forEach { transaction in
+            if date.value == transaction.dateComponent.value,
+                transaction.transactionType == .income {
+                incomeIn += transaction.value
+            }
+        }
+        return HistogramColumn(point: CGFloat(incomeIn), lable: date.shortMonthName!)
+    }
+    var incomes: [HistogramColumn] {
+        return dates.map { income(on: $0) }
+    }
+    
+    
     public var typedTransactions: [Transaction] {
         return transactions?.allObjects as! [Transaction]
     }
+    public var max: Double? {
+        return typedTransactions.map { $0.value }.max()
+    }
     
     public var transactionGoupedByDate = [Int64: [Transaction]]()
-    public var dates: [DateComponents] = []
+    private var _dates: [DateComponents] = []
+    public var dates: [DateComponents] {
+        get {
+            if !isInit { update() }
+            return _dates
+        }
+    }
 
+    private var isInit: Bool = false
     public func update() {
+        isInit = true
         transactionGoupedByDate = [:]
-        dates = []
+        _dates = []
         typedTransactions.forEach { transaction in
             if selectedMonth == nil || selectedMonth == transaction.dateComponent.month {
                 let key = transaction.dateComponent.value
-                if dates.contains(where: { $0.value == transaction.dateComponent.value }) {
+                if _dates.contains(where: { $0.value == transaction.dateComponent.value }) {
                     transactionGoupedByDate[key]!.append(transaction)
                 } else {
-                    dates.append(transaction.dateComponent)
+                    _dates.append(transaction.dateComponent)
                     transactionGoupedByDate[key] = [transaction]
                 }
             }
         }
-        dates.sort(by: { $0.value > $1.value })
+        _dates.sort(by: { $0.value > $1.value })
     }
 
     public func transactionsBy(year: Int, month: Int, day: Int) -> [Transaction] {

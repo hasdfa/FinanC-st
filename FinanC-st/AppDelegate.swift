@@ -19,8 +19,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let context = persistentContainer.viewContext
+        try! context.fetch(Wallet.fetchRequest()).forEach {
+            context.delete($0)
+        }
+        AppDelegate.initDatabase(with: context)
         
         return true
+    }
+    
+    public static func initDatabase(with context: NSManagedObjectContext) {
+        let wallet1 = Wallet(context: context)
+        wallet1.title = "Wallet 1"
+        [Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 5), description: "Some1", value: 5000, type: .expenses, category: .rent),
+        Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 7), description: "Some2", value: 60_000, type: .expenses, category: .bill),
+        Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some3", value: 100, type: .expenses, category: .rent),
+        Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some4", value: 2_500, type: .expenses, category: .rent)].forEach {
+            transaction in
+            wallet1.addToTransactions(transaction)
+        }
+        [Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 5), description: "Some1", value: 3_000, type: .income, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 7), description: "Some2", value: 150_000, type: .income, category: .bill),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some3", value: 2000, type: .income, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some4", value: 200, type: .income, category: .rent)].forEach {
+            transaction in
+            wallet1.addToTransactions(transaction)
+        }
+        
+        
+        let wallet2 = Wallet(context: context)
+        wallet2.title = "Wallet 2"
+        [Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 7), description: "Some21", value: 40_000, type: .expenses, category: .bill),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some31", value: 200, type: .expenses, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 5), description: "Some11", value: 6000, type: .expenses, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 4), description: "Some41", value: 10_500, type: .expenses, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 3), description: "Some41", value: 200, type: .expenses, category: .rent)].forEach {
+            transaction in
+            wallet2.addToTransactions(transaction)
+        }
+        [Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 7), description: "Some21", value: 1_956, type: .income, category: .bill),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some31", value: 5_100, type: .income, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 5), description: "Some11", value: 4000, type: .income, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 4), description: "Some41", value: 0, type: .income, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 3), description: "Some41", value: 100, type: .income, category: .rent)].forEach {
+            transaction in
+            wallet2.addToTransactions(transaction)
+        }
+        
+        try! context.save()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -93,4 +139,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
+extension UIViewController {
+    
+    public var persistentContainer: NSPersistentContainer {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }
+    
+    public var viewContext: NSManagedObjectContext {
+        return self.persistentContainer.viewContext
+    }
+}
+
 

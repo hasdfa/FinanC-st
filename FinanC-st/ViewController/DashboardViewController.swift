@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!{
@@ -50,7 +51,8 @@ class DashboardViewController: UIViewController {
             expensesButton.backgroundColor = gray
             expensesButton.setTitleColor(UIColor.white, for: .normal)
             
-            chart.updateColumns(with: expense)
+            let wallet = walletAdapter.selectedWallet
+            chart.updateColumns(from: wallet.incomes, to: wallet.expenses)
         }
     }
     @IBAction func onIncomeClick(_ sender: UIButton) {
@@ -63,41 +65,20 @@ class DashboardViewController: UIViewController {
             incomeButton.setTitleColor(UIColor.white, for: .normal)
             incomeButton.backgroundColor = gray
             
-            chart.updateColumns(with: income)
+            let wallet = walletAdapter.selectedWallet
+            chart.updateColumns(from: wallet.expenses, to: wallet.incomes)
         }
     }
     
     @IBOutlet weak var chart: HistogramChartView!
     
-    let wallets: [Wallet] = [
-//        Wallet("WALLET 1", summ: 300_000, income: 500_000, expense: 200_000),
-//        Wallet("WALLET 2", summ: -45_000, income: 55_000, expense: -100_000),
-//        Wallet("WALLET 3", summ: 300_000, income: 500_000, expense: 200_000),
-//        Wallet("WALLET 4", summ: -45_000, income: 55_000, expense: -100_000),
-//        Wallet("WALLET 5", summ: 300_000, income: 500_000, expense: 200_000),
-//        Wallet("WALLET 6", summ: -45_000, income: 55_000, expense: -100_000)
-    ]
-    let expense: [HistogramColumn] = [
-        HistogramColumn(point: 500_000, lable: "MAY"),
-        HistogramColumn(point: 200_000, lable: "JUN"),
-        HistogramColumn(point: 275_000, lable: "JUL"),
-        HistogramColumn(point: 150_000, lable: "AUG"),
-        HistogramColumn(point: 500_000, lable: "SEP"),
-        HistogramColumn(point: 160_000, lable: "OKT"),
-        HistogramColumn(point: 380_000, lable: "NOV"),
-    ]
-    let income: [HistogramColumn] = [
-        HistogramColumn(point: 250_000, lable: "MAY"),
-        HistogramColumn(point: 500_000, lable: "JUN"),
-        HistogramColumn(point: 150_000, lable: "JUL"),
-        HistogramColumn(point: 200_000, lable: "AUG"),
-        HistogramColumn(point: 250_000, lable: "SEP"),
-        HistogramColumn(point: 125_000, lable: "OKT"),
-        HistogramColumn(point: 225_000, lable: "NOV"),
-    ]
+    var wallets: [Wallet] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
+        wallets = (try! viewContext.fetch(fetchRequest)).reversed()
         
         expensesButton.setCornerRadius()
         incomeButton.setCornerRadius()
@@ -108,27 +89,18 @@ class DashboardViewController: UIViewController {
         collectionView.delegate = walletAdapter
         
         chart.chartType = .withColumns
-        chart.columns = expense
+    
+        chart.columns = walletAdapter.selectedWallet.expenses
         chart.delegate = self
 //        chart.isDeselectable = false
         
-        monthAdapter.dateFrom = DateComponents.initWith(year: 2017, month: 4)
-        
-        let get: (Calendar.Component) -> Int = { component in
-            return Calendar.current.component(component, from: Date())
-        }
-        monthAdapter.dateTo = DateComponents.initWith(
-            year: get(.year),
-            month: get(.month),
-            day: get(.day)
-        )
-        
         self.flowLayout.itemSize = CGSize(width: 175, height: 21)
+        
+        monthAdapter.delegate = self
+        self.monthAdapter.dates = wallets[0].dates
         
         self.monthCollectionView.dataSource = monthAdapter
         self.monthCollectionView.delegate = monthAdapter
-        monthAdapter.delegate = self
-        self.monthAdapter.updateObjects()
         self.monthDidDeselect()
         
         let indexPath = IndexPath(row: 0, section: 0)
@@ -159,34 +131,16 @@ extension DashboardViewController: UIHistogramChartViewDelegate {
             self.indicatorView.alpha = 0
         }
     }
-    
-    
-    
 }
 
 extension DashboardViewController: WalletAdapterDelegate {
     
     func walletDidSelect(at postion: Int, with wallet: Wallet) {
-        
+        self.chart.columns = isExpensesClicker ? wallet.expenses : wallet.incomes
+        self.monthAdapter.dates = wallet.dates
     }
     
     func walletWillOpen(at postion: Int, with wallet: Wallet) {
-        wallet.transactions = [
-//            Transaction(description: "Some1", icon: .rent, type: .expenses, value: 100.05),
-//            Transaction(description: "Some2", icon: .clothing, type: .expenses,
-//                        value: 5000.50,
-//                        date: DateComponents.initWith(year: 2017, month: 5, day: 6)),
-//            Transaction(description: "Some3", icon: .bill, type: .expenses, value: 45.00),
-//            Transaction(description: "Some4", icon: .gadgets, type: .expenses,
-//                        value: 60_000.00,
-//                        date: DateComponents.initWith(year: 2017, month: 7, day: 6)),
-//            Transaction(description: "Some5", icon: .electronics, type: .expenses,
-//                        value: 100.00,
-//                        date: DateComponents.initWith(year: 2017, month: 5, day: 6)),
-//            Transaction(description: "Some6", icon: .insurance, type: .expenses,
-//                        value: 2_500.00,
-//                        date: DateComponents.initWith(year: 2017, month: 7, day: 6))
-        ]
         if let vc = storyboard?.instantiateViewController(withIdentifier: "wallet") as? WalletInfoViewController {
             vc.wallet = wallet
             self.present(vc, animated: true, completion: nil)
@@ -204,7 +158,7 @@ extension DashboardViewController: MonthAdapterDelegate {
         self.monthCollectionView.reloadData()
     }
     
-    func monthDidSelect(at row: Int, with model: Model) {
+    func monthDidSelect(at row: Int, with model: MonthModel) {
         self.chart.selectedColumn = row
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 1

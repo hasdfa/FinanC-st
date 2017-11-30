@@ -31,10 +31,13 @@ class WalletAdapter: NSObject {
         }
     }
     
-    var selectedWallet: IndexPath = IndexPath(row: 0, section: 0) {
+    var selectedWalletIndexPath: IndexPath = IndexPath(row: 0, section: 0) {
         didSet {
-            self.collectionView?.scrollToItem(at: selectedWallet, at: .left, animated: true)
+            self.collectionView?.scrollToItem(at: selectedWalletIndexPath, at: .left, animated: true)
         }
+    }
+    var selectedWallet: Wallet {
+        return wallets[selectedWalletIndexPath.row]
     }
     
     var cellWidth: CGFloat {
@@ -64,13 +67,13 @@ extension WalletAdapter: UICollectionViewDataSource {
         if indexPath.row < 0 || indexPath.row >= wallets.count { return cell }
         
         cell.initWith(wallet: wallets[indexPath.row])
-        cell.isSelectedWallet = (indexPath == selectedWallet)
+        cell.isSelectedWallet = (indexPath == selectedWalletIndexPath)
         
         return cell
     }
     
     func selectedCell() -> WalletViewCell {
-        return collectionView?.cellForItem(at: selectedWallet) as! WalletViewCell
+        return collectionView?.cellForItem(at: selectedWalletIndexPath) as! WalletViewCell
     }
 }
 
@@ -81,12 +84,12 @@ extension WalletAdapter: UICollectionViewDelegate {
         cell?.isSelectedWallet = true
         
         let wallet = wallets[indexPath.row]
-        if indexPath == selectedWallet && !isScrolling {
+        if indexPath == selectedWalletIndexPath && !isScrolling {
             delegate?.walletWillOpen(at: indexPath.row, with: wallet)
         } else {
             delegate?.walletDidSelect(at: indexPath.row, with: wallet)
         }
-        selectedWallet = indexPath
+        selectedWalletIndexPath = indexPath
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? WalletViewCell
@@ -111,16 +114,16 @@ extension WalletAdapter: UICollectionViewDelegate {
                 return
             }
             
-            if indexPath.row != selectedWallet.row {
-                if indexPath.row > selectedWallet.row {
-                    indexPath.row = selectedWallet.row + 1
+            if indexPath.row != selectedWalletIndexPath.row {
+                if indexPath.row > selectedWalletIndexPath.row {
+                    indexPath.row = selectedWalletIndexPath.row + 1
                 } else {
-                    indexPath.row = selectedWallet.row - 1
+                    indexPath.row = selectedWalletIndexPath.row - 1
                 }
             }
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
             
-            self.collectionView(collectionView, didDeselectItemAt: selectedWallet)
+            self.collectionView(collectionView, didDeselectItemAt: selectedWalletIndexPath)
             self.collectionView(collectionView, didSelectItemAt: indexPath)
         }
     }

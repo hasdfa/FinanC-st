@@ -26,11 +26,15 @@
 		376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */; };
 		378CC1901FBE582100E5A374 /* UIDevice+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CC18F1FBE582100E5A374 /* UIDevice+name.swift */; };
 		379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379744B01FB0B526001B2F40 /* HistogramChartType.swift */; };
+		379880131FCE126D002BC67B /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379880121FCE126D002BC67B /* SelectCategoryViewController.swift */; };
 		379A47011FB65B70005F15BE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47001FB65B70005F15BE /* DashboardViewController.swift */; };
 		379A47031FB6678E005F15BE /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379A47021FB6678E005F15BE /* CardCell.xib */; };
 		379A47051FB6693D005F15BE /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47041FB6693D005F15BE /* WalletViewCell.swift */; };
 		379A47071FB66AAB005F15BE /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47061FB66AAB005F15BE /* Wallet.swift */; };
 		379EF1DD1FCB7250002C061B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EF1DC1FCB7250002C061B /* Transaction.swift */; };
+		379EF1E11FCC5976002C061B /* DateComponents+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EF1E01FCC5976002C061B /* DateComponents+Date.swift */; };
+		379EF1E41FCC59D7002C061B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EF1E31FCC59D7002C061B /* String+.swift */; };
+		379EF1E61FCC5AFD002C061B /* MonthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EF1E51FCC5AFD002C061B /* MonthModel.swift */; };
 		37A312601FAD11DA00A91599 /* HSTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A3125F1FAD11DA00A91599 /* HSTools.swift */; };
 		37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */; };
 		37A312671FAD14D600A91599 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 37A312661FAD14D600A91599 /* README.md */; };
@@ -108,11 +112,15 @@
 		376419FB1FACF268004363A6 /* UIHistogramChartViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHistogramChartViewDelegate.swift; sourceTree = "<group>"; };
 		378CC18F1FBE582100E5A374 /* UIDevice+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+name.swift"; sourceTree = "<group>"; };
 		379744B01FB0B526001B2F40 /* HistogramChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartType.swift; sourceTree = "<group>"; };
+		379880121FCE126D002BC67B /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		379A47001FB65B70005F15BE /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		379A47021FB6678E005F15BE /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		379A47041FB6693D005F15BE /* WalletViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
 		379A47061FB66AAB005F15BE /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		379EF1DC1FCB7250002C061B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		379EF1E01FCC5976002C061B /* DateComponents+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Date.swift"; sourceTree = "<group>"; };
+		379EF1E31FCC59D7002C061B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		379EF1E51FCC5AFD002C061B /* MonthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthModel.swift; sourceTree = "<group>"; };
 		37A3125F1FAD11DA00A91599 /* HSTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSTools.swift; sourceTree = "<group>"; };
 		37A312611FAD120500A91599 /* HistogramChartView+Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistogramChartView+Draw.swift"; sourceTree = "<group>"; };
 		37A312661FAD14D600A91599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 				37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */,
 				37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */,
 				37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */,
+				379880121FCE126D002BC67B /* SelectCategoryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -272,10 +281,10 @@
 		376419F21FACEF77004363A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				379EF1DF1FCC593E002C061B /* CoreData */,
 				376419F31FACEF7B004363A6 /* Histogram */,
-				379A47061FB66AAB005F15BE /* Wallet.swift */,
 				3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */,
-				379EF1DC1FCB7250002C061B /* Transaction.swift */,
+				379EF1E51FCC5AFD002C061B /* MonthModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,8 +314,19 @@
 			isa = PBXGroup;
 			children = (
 				378CC18F1FBE582100E5A374 /* UIDevice+name.swift */,
+				379EF1E01FCC5976002C061B /* DateComponents+Date.swift */,
+				379EF1E31FCC59D7002C061B /* String+.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		379EF1DF1FCC593E002C061B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				379A47061FB66AAB005F15BE /* Wallet.swift */,
+				379EF1DC1FCB7250002C061B /* Transaction.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		37A312631FAD14B000A91599 /* Images */ = {
@@ -530,6 +550,7 @@
 			files = (
 				376419F61FACEF9A004363A6 /* HistogramColumn.swift in Sources */,
 				379A47011FB65B70005F15BE /* DashboardViewController.swift in Sources */,
+				379880131FCE126D002BC67B /* SelectCategoryViewController.swift in Sources */,
 				3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */,
 				379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */,
 				3721CFE31FB7A5A20088AC24 /* HeaderCell.swift in Sources */,
@@ -537,6 +558,7 @@
 				372ADF0D1FBF4D3300495A5E /* MonthCell.swift in Sources */,
 				3721CFE51FB7A5AF0088AC24 /* ItemCell.swift in Sources */,
 				379A47051FB6693D005F15BE /* WalletViewCell.swift in Sources */,
+				379EF1E11FCC5976002C061B /* DateComponents+Date.swift in Sources */,
 				376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */,
 				376419FA1FACEFCA004363A6 /* HistogramChartView+Positions.swift in Sources */,
 				37D5E7E31FC898D600D8AB72 /* UINumberPad.swift in Sources */,
@@ -549,6 +571,8 @@
 				3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */,
 				37B9F7891FC8652600BFF16F /* AddTransactionViewController.swift in Sources */,
 				37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */,
+				379EF1E41FCC59D7002C061B /* String+.swift in Sources */,
+				379EF1E61FCC5AFD002C061B /* MonthModel.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
 				37D5E7E11FC8903C00D8AB72 /* AddTransactionTableViewController.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,

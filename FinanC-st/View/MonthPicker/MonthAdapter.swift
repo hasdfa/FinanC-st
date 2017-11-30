@@ -15,7 +15,7 @@ class MonthAdapter: NSObject {
     weak var delegate: MonthAdapterDelegate? = nil
     weak var collectionView: UICollectionView? = nil
     
-    var objects: [Model] = []
+    var objects: [MonthModel] = []
     
     var selectedIndex: Int {
         return selectedMonth == nil ? -1 : selectedMonth!
@@ -25,6 +25,9 @@ class MonthAdapter: NSObject {
             if let selected = selectedMonth {
                 let indexPath = IndexPath(row: selected, section: 0)
                 
+                if indexPath.row < 0 || indexPath.row >= objects.count {
+                    return
+                }
                 self.delegate?.monthDidSelect(at: indexPath.row, with: objects[indexPath.row])
                 self.collectionView?.scrollToItem(at: indexPath, at: .left, animated: true)
             } else {
@@ -32,46 +35,50 @@ class MonthAdapter: NSObject {
             }
         }
     }
+    var selectedDate: DateComponents? {
+        return selectedIndex == -1 ? nil : dates[selectedIndex]
+    }
     
-    var dateFrom: DateComponents = DateComponents.initWithNil()
-    var dateTo: DateComponents = DateComponents.initWithNil()
+    var dates: [DateComponents] = [] {
+        didSet {
+            objects = dates.map {
+                MonthModel(
+                    date: $0.date!,
+                    title: "\( $0.monthName!), \($0.year!)"
+                )
+            }
+            delegate?.updateMonthAdapter()
+        }
+    }
     
-    func updateObjects() {
+//    func updateObjects() {
 //        guard dateFrom.date! >= dateTo.date! else {
 //            fatalError("dateFrom must be lower than dateTo")
 //        }
-        let monthFrom = dateFrom.month!
-        let yearFrom = dateFrom.year!
-        let valueFrom = monthFrom + yearFrom * 12
-        
-        let monthTo = dateTo.month!
-        let yearTo = dateTo.year!
-        let valueTo = monthTo + yearTo * 12
-        
-        objects = []
-        for i in 2..<(valueTo - valueFrom) + 2 {
-            let date = dateFrom.calendar!.date(byAdding: .month, value: i, to: dateFrom.date!)!
-            
-            let month = Calendar.current.component(.month, from: date)
-            let year = Calendar.current.component(.year, from: date)
-            
-            let model = Model(
-                date: date,
-                title: "\(months[month-1]), \(year)"
-            )
-            objects.append(model)
-        }
-        delegate?.updateMonthAdapter()
-    }
+//        let monthFrom = dateFrom.month!
+//        let yearFrom = dateFrom.year!
+//        let valueFrom = monthFrom + yearFrom * 12
+//
+//        let monthTo = dateTo.month!
+//        let yearTo = dateTo.year!
+//        let valueTo = monthTo + yearTo * 12
+//
+//        objects = []
+//        for i in 2..<(valueTo - valueFrom) + 2 {
+//            let date = dateFrom.calendar!.date(byAdding: .month, value: i, to: dateFrom.date!)!
+//
+//            let month = Calendar.current.component(.month, from: date)
+//            let year = Calendar.current.component(.year, from: date)
+//
+//            let model = MonthModel(
+//                date: date,
+//                title: "\(DateComponents.monthName(for: month -  1)), \(year)"
+//            )
+//            objects.append(model)
+//        }
+//        delegate?.updateMonthAdapter()
+//    }
 }
-
-fileprivate let months: [String] = [
-    "January", "February",
-    "March", "April", "May",
-    "June", "July", "August",
-    "September", "October", "November",
-    "December"
-]
 
 extension MonthAdapter: UICollectionViewDataSource {
     
@@ -91,6 +98,7 @@ extension MonthAdapter: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MonthCell
         if indexPath.row < self.objects.count {
             cell.monthLabel.text = objects[indexPath.row].title
@@ -98,7 +106,7 @@ extension MonthAdapter: UICollectionViewDataSource {
             cell.monthLabel.text = ""
         }
         
-//      // MARK: debug cells
+        // MARK: debug cells
 //        cell.monthLabel.text = "\(indexPath.row)"
 //        if indexPath.row % 2 == 0 {
 //            cell.backgroundColor = UIColor.gray
@@ -147,94 +155,8 @@ extension MonthAdapter: UICollectionViewDelegate {
     
 }
 
-class Model {
-    init() {
-        self.date = Date()
-        self.title = ""
-    }
-    init(date: Date, title: String) {
-        self.date = date
-        self.title = title
-    }
-    var date: Date
-    var title: String
-    
-    func toString() -> String {
-        return "\(title): \(date)"
-    }
-}
-
 protocol MonthAdapterDelegate: NSObjectProtocol {
-    func monthDidSelect(at row: Int, with model: Model)
+    func monthDidSelect(at row: Int, with model: MonthModel)
     func monthDidDeselect()
     func updateMonthAdapter()
 }
-
-fileprivate let days_1: [Int64] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-fileprivate let days_2: [Int64] = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-public extension DateComponents {
-    
-    public static func initWith(year: Int, month: Int, day: Int = 0) -> DateComponents {
-        return DateComponents(
-            calendar: Calendar.current,
-            timeZone: TimeZone.current,
-            era: nil,
-            year: year,
-            month: month,
-            day: day,
-            hour: nil,
-            minute: nil,
-            second: nil,
-            nanosecond: nil,
-            weekday: nil,
-            weekdayOrdinal: nil,
-            quarter: nil,
-            weekOfMonth: nil,
-            weekOfYear: nil,
-            yearForWeekOfYear: nil
-        )
-    }
-    
-    public var monthName: String? {
-        if let m = self.month {
-            return months[m - 1]
-        }
-        return nil
-    }
-    
-    public var value: Int64 {
-        let year = self.year ?? 0
-        let month = self.month ?? 0
-        let day = self.day ?? -1
-        
-        if year == 0 || month == 0 || day == -1 {
-            return 0
-        }
-        let isV = year % 100 != 0 && year % 4 == 0
-        let years = isV ? Int64((year - 2016) * 366) : Int64((year - 2016) * 355)
-        
-        let monthsArray = isV ? days_2 : days_1
-        var months: Int64 = 0
-        (0..<month).forEach { i in
-            months += monthsArray[i]
-        }
-        
-        return years + months
-    }
-    
-    public static func initWithDate(date: Date) -> DateComponents {
-        return Calendar.current.dateComponents(in: TimeZone.current, from: date)
-    }
-    
-    public static var now: DateComponents {
-        return Calendar.current.dateComponents(in: TimeZone.current, from: Date())
-    }
-    
-    public static func initWithNil() -> DateComponents {
-        return DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, era: nil, year: nil, month: nil, day: nil, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil
-        )
-    }
-    
-}
-
