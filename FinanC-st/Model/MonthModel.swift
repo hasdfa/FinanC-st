@@ -10,14 +10,14 @@ import Foundation
 
 class MonthModel {
     init() {
-        self.date = Date()
+        self.date = DateComponents.now
         self.title = ""
     }
-    init(date: Date, title: String) {
+    init(date: DateComponents, title: String) {
         self.date = date
         self.title = title
     }
-    var date: Date
+    var date: DateComponents
     var title: String
     
     func toString() -> String {

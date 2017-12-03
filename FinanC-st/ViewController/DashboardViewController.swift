@@ -78,7 +78,7 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         
         let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
-        wallets = (try! viewContext.fetch(fetchRequest)).reversed()
+        wallets = try! viewContext.fetch(fetchRequest)
         
         expensesButton.setCornerRadius()
         incomeButton.setCornerRadius()
@@ -136,6 +136,14 @@ extension DashboardViewController: UIHistogramChartViewDelegate {
 extension DashboardViewController: WalletAdapterDelegate {
     
     func walletDidSelect(at postion: Int, with wallet: Wallet) {
+        if self.chart.selectedColumn != nil
+            && !wallet.dates.contains(
+                monthAdapter.objects[self.chart.selectedColumn!].date
+            ) {
+            self.monthAdapter.selectedMonth = nil
+            wallet.selectedMonth = nil
+        }
+        
         self.chart.columns = isExpensesClicker ? wallet.expenses : wallet.incomes
         self.monthAdapter.dates = wallet.dates
     }

@@ -43,7 +43,7 @@ class MonthAdapter: NSObject {
         didSet {
             objects = dates.map {
                 MonthModel(
-                    date: $0.date!,
+                    date: $0,
                     title: "\( $0.monthName!), \($0.year!)"
                 )
             }

@@ -10,6 +10,8 @@ import UIKit
 
 class AddTransactionTableViewController: UITableViewController {
     
+    private var _category: CategoryType = .rent
+    
     weak var delegate: AddTransactionDelegateCallback!
     
     private var state: SummStates = .empty
@@ -19,6 +21,38 @@ class AddTransactionTableViewController: UITableViewController {
         case number
     }
     
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    private var dateComponent: DateComponents = .now {
+        didSet {
+            dateLabel.text = "\(dateComponent.shortMonthName!.uppercased()), \(dateComponent.day!) \(dateComponent.year!)"
+        }
+    }
+    
+    @IBAction func openDateSelector(_ sender: UIButton) {
+        let dateDialog = DatePickerDialog(
+            textColor: .black,
+            buttonColor: .black,
+            font: UIFont.withMontesrrat(ofSize: 14, ofType: .semiBold),
+            locale: Locale.current,
+            showCancelButton: false
+        )
+        
+        let now = DateComponents.now
+        let minimumDate = DateComponents.initWith(
+            year: now.year!,
+            month: now.month! - 3,
+            day: now.day!
+        )
+        
+        dateDialog.show("Select transaction date",
+                        defaultDate: dateComponent.date!, minimumDate: minimumDate.date,
+                        callback: { date in
+            if let date = date {
+                self.dateComponent = DateComponents.initWithDate(date: date)
+            }
+        })
+    }
     
     @IBOutlet weak var titleIconLeading: NSLayoutConstraint!
     
@@ -64,8 +98,14 @@ class AddTransactionTableViewController: UITableViewController {
         isOpenNumberPanel = !isOpenNumberPanel
     }
     
+    
+    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateComponent = .now
         
         NotificationCenter.default
             .addObserver(self,
@@ -104,6 +144,18 @@ class AddTransactionTableViewController: UITableViewController {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "select-category",
+            let selectCategory = segue.destination as? SelectCategoryViewController {
+            selectCategory.onSelect = { [weak self] category in
+                self?._category = category
+                self?.categoryLabel?.text = category.title
+                self?.categoryImage?.image = category.image
+            }
+        }
+    }
 }
 
 extension AddTransactionTableViewController: AddTransactionDelegate {
@@ -111,13 +163,13 @@ extension AddTransactionTableViewController: AddTransactionDelegate {
         return Double(self.summLabel.text ?? "0.0") ?? 0.0
     }
     var category: CategoryType {
-        fatalError("Not implemented")
+        return _category
     }
     var date: DateComponents {
-        fatalError("Not implemented")
+        return dateComponent
     }
     var name: String {
-        fatalError("Not implemented")
+        return titleLabel.text ?? ""
     }
     var moneyFieldMaxY: CGFloat {
         return summLabel.frame.maxY
@@ -155,32 +207,7 @@ extension AddTransactionTableViewController: UINumberPadDelegate {
             state = .empty
         case "=":
             isOpenNumberPanel = false
-            
-            if summ.contains(".") || summ.starts(with: "0") || summ.all { $0 == "0" } {
-                var temp = summ
-                for ch in temp.reversed() {
-                    if ch == "0" {
-                        temp.removeLast()
-                    } else if ch == "." {
-                        temp.removeLast()
-                        break
-                    } else {
-                        break
-                    }
-                }
-                for ch in temp {
-                    
-                    if ch == "0" {
-                        temp.removeFirst()
-                    } else if ch == "." {
-                        temp = "0\(temp)"
-                        break
-                    } else {
-                        break
-                    }
-                }
-                summ = temp.count == 0 ? "0" : temp
-            }
+            summ = Double(summ)!.toString()
         case ".":
             if !summ.contains(".") {
                 if state != .empty {
@@ -196,6 +223,59 @@ extension AddTransactionTableViewController: UINumberPadDelegate {
             break
         }
     }
+}
+
+extension Double {
+    
+    public func toString() -> String {
+        var str = "\(self)"
+        
+        if str.contains(".") || str.starts(with: "0") || str.all { $0 == "0" } {
+            var temp = str
+            for ch in temp.reversed() {
+                if ch == "0" {
+                    temp.removeLast()
+                } else if ch == "." {
+                    temp.removeLast()
+                    break
+                } else {
+                    break
+                }
+            }
+            for ch in temp {
+                
+                if ch == "0" {
+                    temp.removeFirst()
+                } else if ch == "." {
+                    temp = "0\(temp)"
+                    break
+                } else {
+                    break
+                }
+            }
+            str = temp.count == 0 ? "0" : temp
+        }
+        
+        let dotPos = str.indexDistance(of: ".") ?? -1
+        var i = str.count - 1
+        var j = 0
+        var temp = ""
+        for char in str.reversed() {
+            defer {
+                temp += String(char)
+                i -= 1
+            }
+            if i > dotPos {
+                if j % 3 == 0 && j != 0 {
+                    temp += ","
+                }
+                j += 1
+            }
+        }
+        
+        return String(temp.reversed())
+    }
+    
 }
 
 extension Sequence {

@@ -17,6 +17,33 @@ public class Wallet: NSManagedObject {
         }
     }
     
+    public var allMoney: Double {
+        var money: Double = 0
+        typedTransactions.forEach {
+            money += $0.transactionType == .income ? ($0.value) : (-$0.value)
+        }
+        return money
+    }
+    
+    public var expensesAtAllTime: Double {
+        var money: Double = 0
+        typedTransactions.forEach {
+            money += $0.transactionType == .expenses
+                ? $0.value
+                : 0
+        }
+        return money
+    }
+    public var incomesAtAllTime: Double {
+        var money: Double = 0
+        typedTransactions.forEach {
+            money += $0.transactionType == .expenses
+                ? $0.value
+                : 0
+        }
+        return money
+    }
+    
     func expense(on date: DateComponents) -> HistogramColumn {
         var expensesIn: Double = 0
         typedTransactions.forEach { transaction in
@@ -32,7 +59,7 @@ public class Wallet: NSManagedObject {
     }
     
     func income(on date: DateComponents) -> HistogramColumn {
-        var incomeIn: Double = 0.1
+        var incomeIn: Double = 0
         typedTransactions.forEach { transaction in
             if date.value == transaction.dateComponent.value,
                 transaction.transactionType == .income {
@@ -98,7 +125,6 @@ public class Wallet: NSManagedObject {
 public enum TransactionType: String {
     case income = "Income"
     case expenses = "Expenses"
-    case unknown = "Unknown"
 }
 
 class WalletBlueScheme: WalletColorStyle {

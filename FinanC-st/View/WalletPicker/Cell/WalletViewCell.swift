@@ -30,21 +30,22 @@ class WalletViewCell: UICollectionViewCell {
     
     public func initWith(wallet: Wallet) {
         walletTitle.text = wallet.title
-//        averageSumm.text = "$\(Int(wallet.averageSumm))"
+//        let get: (Double) -> String = { double in
+//            if double >= 1_000_000_000 || double <= -1_000_000_000 {
+//                return "$\(Int(double/1000))KKK"
+//            } else if double >= 1_000_000 || double <= -1_000_000 {
+//                return "$\(Int(double/1000))M" // KK
+//            } else if double >= 1_000 || double <= -1_000 {
+//                return "$\(Int(double/1000))K"
+//            }
+//            return "$\(Int(double))"
+//        }
         
-        let get: (Double) -> String = { double in
-            if double >= 1_000_000_000 || double <= -1_000_000_000 {
-                return "$\(Int(double/1000))KKK"
-            } else if double >= 1_000_000 || double <= -1_000_000 {
-                return "$\(Int(double/1000))M" // KK
-            } else if double >= 1_000 || double <= -1_000 {
-                return "$\(Int(double/1000))K"
-            }
-            return "$\(Int(double))"
-        }
+        averageSumm.text = wallet.allMoney.toString()
         
-//        expenseLabel.text = get(wallet.expense)
-//        incomeLabel.text = get(wallet.income)
+        let date = DateComponents.now
+        expenseLabel.text = "- " + Double(wallet.expense(on: date).point).toString()
+        incomeLabel.text = "+ " + Double(wallet.income(on: date).point).toString()
         
         cardBackground.clipsToBounds = false
         cardBackground.layer.cornerRadius = 8

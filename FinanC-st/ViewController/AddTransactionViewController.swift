@@ -10,6 +10,8 @@ import UIKit
 
 class AddTransactionViewController: UIViewController {
 
+    var wallet: Wallet!
+    
     weak var delegate: AddTransactionDelegate!
     weak var numberPadDelegate: UINumberPadDelegate!
     
@@ -54,6 +56,23 @@ class AddTransactionViewController: UIViewController {
             incomeButton.setTitleColor(UIColor.white, for: .normal)
             incomeButton.backgroundColor = selectedColor
         }
+    }
+    
+    @IBAction func onAddTransaction(_ sender: UIButton) {
+        let transaction = Transaction(context: viewContext)
+        transaction.value = delegate.money
+        transaction.category = delegate.category.title
+        transaction.descriptionTitle = delegate.name
+        transaction.date = delegate.date.date
+        transaction.type = (isExpensesClicker
+            ? TransactionType.expenses
+            : TransactionType.income).rawValue
+        
+        // MARK: TODO
+        transaction.wallet = wallet
+        
+        try! viewContext.save()
+        close(self)
     }
     
     override func viewDidLoad() {

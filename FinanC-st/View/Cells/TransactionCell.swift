@@ -14,36 +14,18 @@ class TransactionCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var typeIcon: UIImageView!
+    
     
     public func initWith(transaction: Transaction) {
         iconImageView.image = transaction.categoryType.image
         titleLabel.text = transaction.categoryType.title
         subtitleLabel.text = transaction.descriptionTitle
         
-//        var priceSeparretedByCommas = Int(transaction.value)
-//        var priceStr = ""
-//        while priceSeparretedByCommas > 0 {
-//            let some = priceSeparretedByCommas % 1000
-//            priceSeparretedByCommas /= 1000
-//            priceStr = priceSeparretedByCommas % 10 > 0
-//                ? ",\(some)"
-//                : "\(some)"
-//
-//        }
+        self.price.text = "$ \(transaction.value.toString())"
         
-        let tempPrice = "\(transaction.value )"
-        //priceStr + "\(transaction.value - Double(Int(transaction.value)))"
-        
-        let priceNum: String
-        if tempPrice.hasSuffix(".0") || tempPrice.hasSuffix(".00") {
-            priceNum = "\(Int(transaction.value))"
-        } else if tempPrice.indexDistance(of: ".")! == tempPrice.count - 2 {
-            priceNum = tempPrice + "0"
-        } else {
-            priceNum = tempPrice
-        }
-        
-        self.price.text = "$ \(priceNum)"
+        typeIcon.image = transaction.transactionType == .expenses
+            ? #imageLiteral(resourceName: "expenses_minus") : #imageLiteral(resourceName: "income_plus")
     }
     
     override func awakeFromNib() {

@@ -32,6 +32,7 @@ class WalletInfoViewController: UIViewController {
     }
     
     @IBAction func closeAction(_ sender: Any) {
+        wallet.selectedMonth = nil
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -70,21 +71,26 @@ class WalletInfoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     public func initWith(wallet: Wallet) {
         walletTitle.text = wallet.title
-//        averageSumm.text = "$\(Int(wallet.averageSumm))"
+        averageSumm.text = "$\(wallet.allMoney.toString())"
         
-//        expenseLabel.text = "$\(Int(wallet.expense))"
-//        incomeLabel.text = "$\(Int(wallet.income))"
+        let date = DateComponents.now
+        expenseLabel.text = "$" + Double(wallet.expense(on: date).point).toString()
+        incomeLabel.text = "$" + Double(wallet.income(on: date).point).toString()
         
         cardBackground.backgroundColor = WalletBlueScheme.backgroundColor
         cardBackground.clipsToBounds = false
         cardBackground.layer.cornerRadius = 8
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "add-transaction",
+            let addTransaction = segue.destination as? AddTransactionViewController {
+            addTransaction.wallet = self.wallet
+        }
     }
 }
 
@@ -95,8 +101,12 @@ extension WalletInfoViewController: MonthAdapterDelegate {
     }
     
     func monthDidSelect(at row: Int, with model: MonthModel) {
-        self.wallet.selectedMonth = Calendar.current.component(.month, from: model.date)
+        self.wallet.selectedMonth = model.date.month ?? -1
         self.tableView.reloadData()
+        
+        let date = model.date
+        expenseLabel.text = "$" + Double(wallet.expense(on: date).point).toString()
+        incomeLabel.text = "$" + Double(wallet.income(on: date).point).toString()
         
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 1
@@ -106,6 +116,10 @@ extension WalletInfoViewController: MonthAdapterDelegate {
     func monthDidDeselect() {
         self.wallet.selectedMonth = nil
         self.tableView.reloadData()
+        
+        let date = DateComponents.now
+        expenseLabel.text = "$" + Double(wallet.expense(on: date).point).toString()
+        incomeLabel.text = "$" + Double(wallet.income(on: date).point).toString()
         
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 0

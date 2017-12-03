@@ -41,6 +41,7 @@
 		37B2F5491FC0B96D00380F4C /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2F5481FC0B96D00380F4C /* TransactionCell.swift */; };
 		37B9F7891FC8652600BFF16F /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */; };
 		37C1E7C61FC018D8005B77BA /* WalletAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */; };
+		37C76ADB1FD4A5940072CFC8 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76ADA1FD4A5940072CFC8 /* DatePickerDialog.swift */; };
 		37D4BE211FB3935100C4ED6F /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D4BE201FB3935100C4ED6F /* UIFont+Custom.swift */; };
 		37D4BE221FB398E100C4ED6F /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE1D1FB3931800C4ED6F /* Montserrat-Black.ttf */; };
 		37D4BE231FB398E500C4ED6F /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D4BE101FB3931700C4ED6F /* Montserrat-BlackItalic.ttf */; };
@@ -127,6 +128,7 @@
 		37B2F5481FC0B96D00380F4C /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAdapter.swift; sourceTree = "<group>"; };
+		37C76ADA1FD4A5940072CFC8 /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		37D4BE0E1FB3931700C4ED6F /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		37D4BE0F1FB3931700C4ED6F /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		37D4BE101FB3931700C4ED6F /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				37D9FA631FB74503006A7923 /* Cells */,
 				376419F41FACEF81004363A6 /* Histogram */,
 				37D4BE341FB3994B00C4ED6F /* Fonts */,
+				37C76ADA1FD4A5940072CFC8 /* DatePickerDialog.swift */,
 				37D5E7E21FC898D600D8AB72 /* UINumberPad.swift */,
 			);
 			path = View;
@@ -574,6 +577,7 @@
 				379EF1E41FCC59D7002C061B /* String+.swift in Sources */,
 				379EF1E61FCC5AFD002C061B /* MonthModel.swift in Sources */,
 				376419FC1FACF268004363A6 /* UIHistogramChartViewDelegate.swift in Sources */,
+				37C76ADB1FD4A5940072CFC8 /* DatePickerDialog.swift in Sources */,
 				37D5E7E11FC8903C00D8AB72 /* AddTransactionTableViewController.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
 				37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */,

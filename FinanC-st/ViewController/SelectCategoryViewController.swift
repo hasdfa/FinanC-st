@@ -10,6 +10,8 @@ import UIKit
 
 class SelectCategoryViewController: UIViewController {
 
+    public var onSelect: ((CategoryType) -> Void)? = nil
+    
     let categories: [CategoryType] = [
         .rent,
         .bill,
@@ -27,6 +29,10 @@ class SelectCategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBAction func close(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,22 +44,29 @@ class SelectCategoryViewController: UIViewController {
 
 extension SelectCategoryViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        if let text = searchBar.text {
-            let tempSelectedCategories = [CategoryType]()
-            categories.forEach { c in
-                if c.title.starts(with: text) {
-                    self.selectedCategories.append(c)
-                }
-            }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var tempSelectedCategories = [CategoryType]()
+        defer {
             self.selectedCategories = tempSelectedCategories
             self.tableView.reloadData()
+        }
+        if searchText.isEmpty {
+            tempSelectedCategories = categories
+            return
+        }
+        categories.forEach { c in
+            if c.title.lowercased().starts(with: searchText.lowercased()) {
+                tempSelectedCategories.append(c)
+            }
         }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         selectedCategories = categories
+        self.tableView.reloadData()
+        
+        searchBar.text = nil
     }
 }
 
@@ -68,8 +81,12 @@ extension SelectCategoryViewController: UITableViewDataSource {
         
         let category = selectedCategories[indexPath.row]
         
+        cell.textLabel?.font = UIFont.withMontesrrat(ofSize: 15, ofType: .semiBold)
+        
         cell.textLabel?.text = category.title
         cell.imageView?.image = category.image
+        cell.imageView?.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        cell.imageView?.layoutMarginsDidChange()
         
         return cell
     }
@@ -79,7 +96,8 @@ extension SelectCategoryViewController: UITableViewDataSource {
 extension SelectCategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        onSelect?(categories[indexPath.row])
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
