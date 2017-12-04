@@ -37,7 +37,6 @@ class WalletInfoViewController: UIViewController {
     }
     
     
-    
     var wallet: Wallet! {
         didSet {
 //            wallet.updateHandler = { [weak self] in
@@ -49,6 +48,7 @@ class WalletInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if wallet == nil {
             self.dismiss(animated: true, completion: {
                 // MARK: TODO Alert
@@ -72,6 +72,13 @@ class WalletInfoViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        wallet.isInit = false
+        viewDidLoad()
+    }
+    
     public func initWith(wallet: Wallet) {
         walletTitle.text = wallet.title
         averageSumm.text = "$\(wallet.allMoney.toString())"
@@ -87,9 +94,10 @@ class WalletInfoViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "add-transaction",
-            let addTransaction = segue.destination as? AddTransactionViewController {
-            addTransaction.wallet = self.wallet
+        if let navigationController = segue.destination as? UINavigationController {
+            if let addTransaction = navigationController.childViewControllers[0] as? AddTransactionViewController {
+                addTransaction.wallet = self.wallet
+            }
         }
     }
 }

@@ -68,10 +68,10 @@ class AddTransactionViewController: UIViewController {
             ? TransactionType.expenses
             : TransactionType.income).rawValue
         
-        // MARK: TODO
-        transaction.wallet = wallet
+        wallet.addToTransactions(transaction)
         
         try! viewContext.save()
+        try! wallet.managedObjectContext?.save()
         close(self)
     }
     

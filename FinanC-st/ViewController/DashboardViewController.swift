@@ -108,6 +108,13 @@ class DashboardViewController: UIViewController {
         collectionView.allowsMultipleSelection = false
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        wallets.forEach { $0.isInit = false }
+        viewDidLoad()
+    }
 }
 
 extension UIView {

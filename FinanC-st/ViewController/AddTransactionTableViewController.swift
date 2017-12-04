@@ -121,6 +121,8 @@ class AddTransactionTableViewController: UITableViewController {
         )
     }
     
+    
+    
     var isKeyboardShowed = false
     @objc func keyboardWillShow(_ notification: Notification) {
         if isKeyboardShowed { return }
@@ -160,7 +162,8 @@ class AddTransactionTableViewController: UITableViewController {
 
 extension AddTransactionTableViewController: AddTransactionDelegate {
     var money: Double {
-        return Double(self.summLabel.text ?? "0.0") ?? 0.0
+        return Double(self.summLabel.text!
+            .replacingOccurrences(of: ",", with: ""))!
     }
     var category: CategoryType {
         return _category

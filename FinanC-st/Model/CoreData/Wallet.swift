@@ -89,7 +89,7 @@ public class Wallet: NSManagedObject {
         }
     }
 
-    private var isInit: Bool = false
+    public var isInit: Bool = false
     public func update() {
         isInit = true
         transactionGoupedByDate = [:]
