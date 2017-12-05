@@ -466,6 +466,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					376419CC1FACEE0D004363A6 = {
 						CreatedOnToolsVersion = 9.0;

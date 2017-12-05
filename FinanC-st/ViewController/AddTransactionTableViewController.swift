@@ -106,47 +106,9 @@ class AddTransactionTableViewController: UITableViewController {
         super.viewDidLoad()
         
         dateComponent = .now
-        
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(keyboardWillShow(_:)),
-                         name: Notification.Name.UIKeyboardWillShow,
-                         object: nil
-        )
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(keyboardWillHide(_:)),
-                         name: Notification.Name.UIKeyboardWillHide,
-                         object: nil
-        )
     }
     
-    
-    
-    var isKeyboardShowed = false
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if isKeyboardShowed { return }
-        isKeyboardShowed = true
-        self.titleIconLeading.constant = -40
-        UIView.animate(withDuration: 1, animations: {
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        if !isKeyboardShowed { return }
-        isKeyboardShowed = false
-        self.titleIconLeading.constant = 16
-        UIView.animate(withDuration: 1, animations: {
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+    var isTitleEditing = false
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "select-category",
@@ -180,6 +142,25 @@ extension AddTransactionTableViewController: AddTransactionDelegate {
 }
 
 extension AddTransactionTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if isTitleEditing { return false }
+        isTitleEditing = true
+        self.titleIconLeading.constant = -40
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+        return true
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if !isTitleEditing { return false }
+        isTitleEditing = false
+        self.titleIconLeading.constant = 16
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+        return true
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text,

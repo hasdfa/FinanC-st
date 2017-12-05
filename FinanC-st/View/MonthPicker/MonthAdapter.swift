@@ -41,7 +41,7 @@ class MonthAdapter: NSObject {
     
     var dates: [DateComponents] = [] {
         didSet {
-            objects = dates.map {
+            objects = dates.sorted(by: { $0.value > $1.value }).map {
                 MonthModel(
                     date: $0,
                     title: "\( $0.monthName!), \($0.year!)"

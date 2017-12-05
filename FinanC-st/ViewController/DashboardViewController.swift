@@ -97,7 +97,7 @@ class DashboardViewController: UIViewController {
         self.flowLayout.itemSize = CGSize(width: 175, height: 21)
         
         monthAdapter.delegate = self
-        self.monthAdapter.dates = wallets[0].dates
+        self.monthAdapter.dates = wallets.first!.dates
         
         self.monthCollectionView.dataSource = monthAdapter
         self.monthCollectionView.delegate = monthAdapter
@@ -112,7 +112,7 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        wallets.forEach { $0.isInit = false }
+        wallets.forEach { $0.update() }
         viewDidLoad()
     }
 }

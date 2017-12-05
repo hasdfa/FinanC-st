@@ -76,6 +76,7 @@ class WalletInfoViewController: UIViewController {
         super.viewDidAppear(animated)
         
         wallet.isInit = false
+        wallet.update()
         viewDidLoad()
     }
     
@@ -140,6 +141,43 @@ extension WalletInfoViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return wallet.dates.count
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            
+            let date = wallet.dates[indexPath.section]
+            let transactions = {
+                return self.wallet.transactionGoupedByDate[date.value]
+            }
+            let transaction = transactions()?[indexPath.row]
+            
+            if let transaction = transaction {
+                viewContext.delete(transaction)
+            }
+            try! viewContext.save()
+            
+            wallet.isInit = false
+            wallet.update()
+            
+            if transactions()?.count != 0 {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+            }
+
+            tableView.endUpdates()
+            
+//            tableView.reloadData()
+            if !wallet.dates.contains(where: { $0.value == date.value }) {
+                self.monthAdapter.dates = wallet.dates
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
