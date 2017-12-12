@@ -39,8 +39,6 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    
-    
     var isExpensesClicker = true
     @IBAction func onExpendsClick(_ sender: UIButton) {
         if !isExpensesClicker {
@@ -76,27 +74,36 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
-        wallets = try! viewContext.fetch(fetchRequest)
-        
         expensesButton.setCornerRadius()
         incomeButton.setCornerRadius()
         
         walletAdapter.delegate = self
+        
+        chart.chartType = .withColumns
+        chart.delegate = self
+        
+        monthAdapter.delegate = self
+        
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = false
+        
+        self.indicatorView.alpha = 0
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
+        wallets = try! viewContext.fetch(fetchRequest)
+        
         walletAdapter.wallets = self.wallets
         collectionView.dataSource = walletAdapter
         collectionView.delegate = walletAdapter
         
-        chart.chartType = .withColumns
-    
         chart.columns = walletAdapter.selectedWallet.expenses
-        chart.delegate = self
-//        chart.isDeselectable = false
         
         self.flowLayout.itemSize = CGSize(width: 175, height: 21)
         
-        monthAdapter.delegate = self
         self.monthAdapter.dates = wallets.first!.dates
         
         self.monthCollectionView.dataSource = monthAdapter
@@ -104,16 +111,9 @@ class DashboardViewController: UIViewController {
         self.monthDidDeselect()
         
         let indexPath = IndexPath(row: 0, section: 0)
-        collectionView.allowsSelection = true
-        collectionView.allowsMultipleSelection = false
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        wallets.forEach { $0.update() }
-        viewDidLoad()
+        chart.setNeedsAnimating()
     }
 }
 

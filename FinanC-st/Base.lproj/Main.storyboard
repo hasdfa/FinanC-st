@@ -260,7 +260,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="Ex3-Qp-x0r"/>
-                                            <constraint firstAttribute="height" constant="200" id="JNT-Tl-Ksd"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jAS-pR-E84">
                                             <size key="itemSize" width="260" height="180"/>
@@ -269,20 +268,9 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Ex3-Qp-x0r"/>
-                                            </mask>
-                                        </variation>
                                         <variation key="heightClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="Ex3-Qp-x0r"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular">
-                                            <mask key="constraints">
-                                                <include reference="Ex3-Qp-x0r"/>
-                                                <exclude reference="JNT-Tl-Ksd"/>
                                             </mask>
                                         </variation>
                                     </collectionView>
@@ -342,7 +330,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="i9a-kD-bho" firstAttribute="leading" secondItem="nza-tf-fSk" secondAttribute="leadingMargin" id="3EW-YE-NqZ"/>
+                            <constraint firstItem="i9a-kD-bho" firstAttribute="left" secondItem="aMe-kW-Yum" secondAttribute="left" id="3EW-YE-NqZ"/>
                             <constraint firstItem="5bm-A9-ymY" firstAttribute="bottom" secondItem="vGH-mg-fds" secondAttribute="bottom" constant="8" id="9AR-aX-OQd"/>
                             <constraint firstItem="zP0-IC-coT" firstAttribute="top" secondItem="5bm-A9-ymY" secondAttribute="top" constant="8" id="DUK-ci-zl1"/>
                             <constraint firstItem="Dio-wM-Mkd" firstAttribute="top" secondItem="5bm-A9-ymY" secondAttribute="top" constant="4" id="Dc9-1r-LZL"/>
@@ -550,6 +538,11 @@
                                     <constraint firstAttribute="trailing" secondItem="bNM-TE-VpB" secondAttribute="trailing" constant="47" id="tEK-3j-4lZ"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="5YY-7H-anD"/>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="RKY-vt-Ycq"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="glY-68-SNQ">
                                 <rect key="frame" x="0.0" y="316" width="375" height="496"/>
@@ -664,7 +657,6 @@
                             <constraint firstItem="WNI-m6-AgG" firstAttribute="trailing" secondItem="fWd-Ps-hn6" secondAttribute="trailing" constant="16" id="9fQ-Dc-iPN"/>
                             <constraint firstItem="WNI-m6-AgG" firstAttribute="trailing" secondItem="3mO-sa-FwB" secondAttribute="trailing" constant="16" id="Mb1-e9-mOd"/>
                             <constraint firstItem="UOq-OS-CP4" firstAttribute="centerX" secondItem="sP2-hQ-YRw" secondAttribute="centerX" id="S6S-vp-zuT"/>
-                            <constraint firstItem="ei6-61-qRQ" firstAttribute="leading" secondItem="2y4-MD-Wct" secondAttribute="leadingMargin" id="T2k-m3-l4K"/>
                             <constraint firstItem="sP2-hQ-YRw" firstAttribute="leading" secondItem="Vzv-2m-FgB" secondAttribute="trailing" constant="8" id="Txi-Wg-PdH"/>
                             <constraint firstItem="T5E-cG-6ex" firstAttribute="leading" secondItem="WNI-m6-AgG" secondAttribute="leading" constant="16" id="Ubm-O8-xyF"/>
                             <constraint firstItem="sP2-hQ-YRw" firstAttribute="top" secondItem="WNI-m6-AgG" secondAttribute="top" constant="4" id="X9z-hf-SWa"/>
@@ -674,6 +666,7 @@
                             <constraint firstItem="CqC-4N-u05" firstAttribute="top" secondItem="ei6-61-qRQ" secondAttribute="bottom" constant="94" id="gDO-HS-QAm"/>
                             <constraint firstItem="WNI-m6-AgG" firstAttribute="bottom" secondItem="3mO-sa-FwB" secondAttribute="bottom" constant="16" id="hIv-sn-SBr"/>
                             <constraint firstItem="CqC-4N-u05" firstAttribute="leading" secondItem="2y4-MD-Wct" secondAttribute="leading" id="hp6-eJ-9Yx"/>
+                            <constraint firstItem="ei6-61-qRQ" firstAttribute="leading" secondItem="T5E-cG-6ex" secondAttribute="leading" id="kgp-kc-ZjC"/>
                             <constraint firstAttribute="bottom" secondItem="glY-68-SNQ" secondAttribute="bottom" id="lNf-x6-RKD"/>
                             <constraint firstItem="Vzv-2m-FgB" firstAttribute="leading" secondItem="WNI-m6-AgG" secondAttribute="leading" constant="16" id="lSD-Bm-pMY"/>
                             <constraint firstItem="glY-68-SNQ" firstAttribute="trailing" secondItem="WNI-m6-AgG" secondAttribute="trailing" id="p2L-0U-uMF"/>

@@ -51,7 +51,7 @@ class UIDrawerController: UIViewController {
         tableView.delegate = self
         
         self.tableView.backgroundColor = WalletBlueScheme.backgroundColor
-        self.view.backgroundColor = WalletBlueScheme.backgroundColor
+        self.view.backgroundColor = .white
         
         let indexPath = IndexPath(row: 1, section: 0)
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)

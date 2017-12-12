@@ -13,7 +13,7 @@ class HistogramChartView: UIView {
     public var chartType: HistogramChartType = .withColumns
     public var columns: [HistogramColumn] = [] {
         didSet {
-            self.setNeedsDisplay()
+            setNeedsAnimating()
         }
     }
     public var oldColumns: [HistogramColumn?] = []
@@ -110,6 +110,11 @@ class HistogramChartView: UIView {
         
         needsAnimating = false
         oldColumns = []
+    }
+    
+    public func setNeedsAnimating() {
+        needsAnimating = true
+        setNeedsDisplay()
     }
     
     public weak var delegate: UIHistogramChartViewDelegate? = nil

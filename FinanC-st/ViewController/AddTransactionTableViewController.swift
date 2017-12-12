@@ -40,8 +40,8 @@ class AddTransactionTableViewController: UITableViewController {
         
         let now = DateComponents.now
         let minimumDate = DateComponents.initWith(
-            year: now.year!,
-            month: now.month! - 3,
+            year: now.year! - 1,
+            month: now.month!,
             day: now.day!
         )
         
@@ -85,9 +85,10 @@ class AddTransactionTableViewController: UITableViewController {
         }
     }
     
+    var isTitleEditing = false
     var isOpenNumberPanel = false {
         didSet {
-            if isOpenNumberPanel {
+            if isOpenNumberPanel && !isTitleEditing {
                 delegate.openNumericPad()
             } else {
                 delegate.closeNumericPad()
@@ -107,8 +108,6 @@ class AddTransactionTableViewController: UITableViewController {
         
         dateComponent = .now
     }
-    
-    var isTitleEditing = false
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "select-category",
@@ -144,8 +143,9 @@ extension AddTransactionTableViewController: AddTransactionDelegate {
 extension AddTransactionTableViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if isTitleEditing { return false }
+        if isTitleEditing || isOpenNumberPanel { return false }
         isTitleEditing = true
+        
         self.titleIconLeading.constant = -40
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
@@ -155,6 +155,7 @@ extension AddTransactionTableViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if !isTitleEditing { return false }
         isTitleEditing = false
+        
         self.titleIconLeading.constant = 16
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
