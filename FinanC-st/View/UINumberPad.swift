@@ -84,7 +84,7 @@ class UINumberPad: UIView {
                     button.backgroundColor = color
                 }
                 button.setTitle(title, for: .normal)
-                button.titleLabel?.font = UIFont.withMontesrrat(ofSize: 32)
+                button.titleLabel?.font = UIFont.montesrrat(ofSize: 32)
                 button.titleLabel?.textColor = UIColor.white
                 
                 let constraint = NSLayoutConstraint(

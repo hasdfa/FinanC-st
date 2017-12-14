@@ -10,8 +10,9 @@ import UIKit
 
 extension UIFont {
     
-    public static func withMontesrrat(ofSize size: CGFloat,
-                                      ofType type: MontesrratFontType = .regular) -> UIFont {
+    public static func montesrrat(ofSize size: CGFloat,
+            ofType type: MontesrratFontType = .regular
+        ) -> UIFont {
         return UIFont(name: type.rawValue, size: size)!
     }
     

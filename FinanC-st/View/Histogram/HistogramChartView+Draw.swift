@@ -90,7 +90,7 @@ extension HistogramChartView {
         let lableStyle = NSMutableParagraphStyle()
         lableStyle.alignment = .center
         let lableFontAttributes = [
-            .font: UIFont.withMontesrrat(ofSize: fontSize, ofType: .bold),
+            .font: UIFont.montesrrat(ofSize: fontSize, ofType: .bold),
             .foregroundColor: color,
             .paragraphStyle: lableStyle,
             ] as [NSAttributedStringKey: Any]

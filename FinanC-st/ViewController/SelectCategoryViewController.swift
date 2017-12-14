@@ -11,19 +11,9 @@ import UIKit
 class SelectCategoryViewController: UIViewController {
 
     public var onSelect: ((CategoryType) -> Void)? = nil
-    
-    let categories: [CategoryType] = [
-        .rent,
-        .bill,
-        .insurance,
-        .utilites,
-        .electronics,
-        .clothing,
-        .gadgets,
-        .savings
-    ]
-    lazy var selectedCategories = {
-        return categories
+
+    lazy var selectedCategories: [CategoryType] = {
+        return CategoryType.all
     }()
     
     @IBOutlet weak var tableView: UITableView!
@@ -51,10 +41,10 @@ extension SelectCategoryViewController: UISearchBarDelegate {
             self.tableView.reloadData()
         }
         if searchText.isEmpty {
-            tempSelectedCategories = categories
+            tempSelectedCategories = CategoryType.all
             return
         }
-        categories.forEach { c in
+        CategoryType.all.forEach { c in
             if c.title.lowercased().starts(with: searchText.lowercased()) {
                 tempSelectedCategories.append(c)
             }
@@ -63,7 +53,7 @@ extension SelectCategoryViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        selectedCategories = categories
+        selectedCategories = CategoryType.all
         self.tableView.reloadData()
         
         searchBar.text = nil
@@ -81,7 +71,7 @@ extension SelectCategoryViewController: UITableViewDataSource {
         
         let category = selectedCategories[indexPath.row]
         
-        cell.textLabel?.font = UIFont.withMontesrrat(ofSize: 15, ofType: .semiBold)
+        cell.textLabel?.font = .montesrrat(ofSize: 15, ofType: .semiBold)
         
         cell.textLabel?.text = category.title
         cell.imageView?.image = category.image
@@ -96,7 +86,7 @@ extension SelectCategoryViewController: UITableViewDataSource {
 extension SelectCategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onSelect?(categories[indexPath.row])
+        onSelect?(CategoryType.all[indexPath.row])
         self.navigationController?.popViewController(animated: true)
     }
     

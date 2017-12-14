@@ -143,6 +143,12 @@ extension WalletInfoViewController: UITableViewDataSource {
         return wallet.dates.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let date = wallet.dates[section]
+        let count = wallet.transactionGoupedByDate[date.value]?.count ?? 0
+        return count
+    }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
     }
@@ -152,20 +158,19 @@ extension WalletInfoViewController: UITableViewDataSource {
             tableView.beginUpdates()
             
             let date = wallet.dates[indexPath.section]
-            let transactions = {
-                return self.wallet.transactionGoupedByDate[date.value]
+            var transactions: [Transaction?] {
+                return self.wallet.transactionGoupedByDate[date.value] ?? []
             }
-            let transaction = transactions()?[indexPath.row]
+            let transaction = transactions[indexPath.row]
             
             if let transaction = transaction {
                 viewContext.delete(transaction)
+                try! viewContext.save()
             }
-            try! viewContext.save()
             
-            wallet.isInit = false
             wallet.update()
             
-            if transactions()?.count != 0 {
+            if transactions.count > 0 {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             } else {
                 tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
@@ -178,12 +183,6 @@ extension WalletInfoViewController: UITableViewDataSource {
                 self.monthAdapter.dates = wallet.dates
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let date = wallet.dates[section]
-        let count = wallet.transactionGoupedByDate[date.value]?.count ?? 0
-        return count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -205,7 +204,7 @@ extension WalletInfoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = UIFont.withMontesrrat(ofSize: 12, ofType: .bold)
+        header.textLabel?.font = UIFont.montesrrat(ofSize: 12, ofType: .bold)
 //        header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .left
     }
@@ -232,6 +231,17 @@ enum CategoryType: String {
     var title: String {
         return self.rawValue
     }
+    
+    static let all: [CategoryType] = [
+        .rent,
+        .bill,
+        .insurance,
+        .utilites,
+        .electronics,
+        .clothing,
+        .gadgets,
+        .savings
+    ]
     
     var image: UIImage {
         switch self {

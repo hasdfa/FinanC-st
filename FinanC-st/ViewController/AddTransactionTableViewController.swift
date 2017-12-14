@@ -33,7 +33,7 @@ class AddTransactionTableViewController: UITableViewController {
         let dateDialog = DatePickerDialog(
             textColor: .black,
             buttonColor: .black,
-            font: UIFont.withMontesrrat(ofSize: 14, ofType: .semiBold),
+            font: .montesrrat(ofSize: 14, ofType: .semiBold),
             locale: Locale.current,
             showCancelButton: false
         )
