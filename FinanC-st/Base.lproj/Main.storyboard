@@ -1068,7 +1068,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Monthly pay for Apple Music" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xig-zh-fXt">
-                                                    <rect key="frame" x="64" y="19.333333333333332" width="324" height="20.999999999999996"/>
+                                                    <rect key="frame" x="64" y="18.666666666666668" width="324" height="21.000000000000004"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -1119,7 +1119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNb-ag-TAZ">
-                                <rect key="frame" x="119.66666666666669" y="48" width="105.33333333333331" height="32"/>
+                                <rect key="frame" x="119" y="48" width="105.33333333333331" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="UlR-WA-Ixh"/>
                                 </constraints>
