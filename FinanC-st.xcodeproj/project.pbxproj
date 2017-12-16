@@ -13,6 +13,10 @@
 		3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */; };
 		372ADF0B1FBF4CB300495A5E /* MonthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372ADF0A1FBF4CB300495A5E /* MonthAdapter.swift */; };
 		372ADF0D1FBF4D3300495A5E /* MonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372ADF0C1FBF4D3300495A5E /* MonthCell.swift */; };
+		374467F61FE443FB00A6F0A0 /* WalletAdapterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374467F51FE443FB00A6F0A0 /* WalletAdapterDelegate.swift */; };
+		374467F81FE4448700A6F0A0 /* WalletAdapter+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374467F71FE4448700A6F0A0 /* WalletAdapter+UICollectionViewDelegate.swift */; };
+		374467FA1FE444B100A6F0A0 /* WalletAdapter+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374467F91FE444B100A6F0A0 /* WalletAdapter+UICollectionViewDataSource.swift */; };
+		374467FC1FE4534700A6F0A0 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374467FB1FE4534700A6F0A0 /* UIViewController+.swift */; };
 		376419BA1FACEE0D004363A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376419B91FACEE0D004363A6 /* AppDelegate.swift */; };
 		376419BF1FACEE0D004363A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376419BD1FACEE0D004363A6 /* Main.storyboard */; };
 		376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 376419C01FACEE0D004363A6 /* FinanC_st.xcdatamodeld */; };
@@ -28,7 +32,7 @@
 		379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379744B01FB0B526001B2F40 /* HistogramChartType.swift */; };
 		379880131FCE126D002BC67B /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379880121FCE126D002BC67B /* SelectCategoryViewController.swift */; };
 		379A47011FB65B70005F15BE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47001FB65B70005F15BE /* DashboardViewController.swift */; };
-		379A47031FB6678E005F15BE /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379A47021FB6678E005F15BE /* CardCell.xib */; };
+		379A47031FB6678E005F15BE /* WalletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379A47021FB6678E005F15BE /* WalletCell.xib */; };
 		379A47051FB6693D005F15BE /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47041FB6693D005F15BE /* WalletViewCell.swift */; };
 		379A47071FB66AAB005F15BE /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A47061FB66AAB005F15BE /* Wallet.swift */; };
 		379EF1DD1FCB7250002C061B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EF1DC1FCB7250002C061B /* Transaction.swift */; };
@@ -91,6 +95,10 @@
 		3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
 		372ADF0A1FBF4CB300495A5E /* MonthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAdapter.swift; sourceTree = "<group>"; };
 		372ADF0C1FBF4D3300495A5E /* MonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCell.swift; sourceTree = "<group>"; };
+		374467F51FE443FB00A6F0A0 /* WalletAdapterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAdapterDelegate.swift; sourceTree = "<group>"; };
+		374467F71FE4448700A6F0A0 /* WalletAdapter+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletAdapter+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		374467F91FE444B100A6F0A0 /* WalletAdapter+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletAdapter+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		374467FB1FE4534700A6F0A0 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		37598CA81FAE3C4B004681BC /* s3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s3.png; sourceTree = "<group>"; };
 		37598CA91FAE3C4B004681BC /* s1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1.png; sourceTree = "<group>"; };
 		37598CAA1FAE3C4B004681BC /* s2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s2.png; sourceTree = "<group>"; };
@@ -115,7 +123,7 @@
 		379744B01FB0B526001B2F40 /* HistogramChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramChartType.swift; sourceTree = "<group>"; };
 		379880121FCE126D002BC67B /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		379A47001FB65B70005F15BE /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		379A47021FB6678E005F15BE /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
+		379A47021FB6678E005F15BE /* WalletCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletCell.xib; sourceTree = "<group>"; };
 		379A47041FB6693D005F15BE /* WalletViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
 		379A47061FB66AAB005F15BE /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		379EF1DC1FCB7250002C061B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -204,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				379A47041FB6693D005F15BE /* WalletViewCell.swift */,
-				379A47021FB6678E005F15BE /* CardCell.xib */,
+				379A47021FB6678E005F15BE /* WalletCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -245,6 +253,7 @@
 				376419F21FACEF77004363A6 /* Model */,
 				376419F11FACEF6E004363A6 /* View */,
 				378CC18E1FBE580A00E5A374 /* Utils */,
+				374467FB1FE4534700A6F0A0 /* UIViewController+.swift */,
 			);
 			path = "FinanC-st";
 			sourceTree = "<group>";
@@ -381,6 +390,9 @@
 			isa = PBXGroup;
 			children = (
 				37C1E7C51FC018D8005B77BA /* WalletAdapter.swift */,
+				374467F71FE4448700A6F0A0 /* WalletAdapter+UICollectionViewDelegate.swift */,
+				374467F91FE444B100A6F0A0 /* WalletAdapter+UICollectionViewDataSource.swift */,
+				374467F51FE443FB00A6F0A0 /* WalletAdapterDelegate.swift */,
 				3735578F1FC01EC4003B4132 /* Cell */,
 			);
 			path = WalletPicker;
@@ -509,7 +521,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				379A47031FB6678E005F15BE /* CardCell.xib in Resources */,
+				379A47031FB6678E005F15BE /* WalletCell.xib in Resources */,
 				37D4BE2F1FB398E500C4ED6F /* Montserrat-Regular.ttf in Resources */,
 				37D4BE2B1FB398E500C4ED6F /* Montserrat-Light.ttf in Resources */,
 				37D4BE251FB398E500C4ED6F /* Montserrat-BoldItalic.ttf in Resources */,
@@ -560,6 +572,7 @@
 				379A47011FB65B70005F15BE /* DashboardViewController.swift in Sources */,
 				379880131FCE126D002BC67B /* SelectCategoryViewController.swift in Sources */,
 				3721CFEF1FB7B0640088AC24 /* ViewControllerModel.swift in Sources */,
+				374467F81FE4448700A6F0A0 /* WalletAdapter+UICollectionViewDelegate.swift in Sources */,
 				379744B11FB0B526001B2F40 /* HistogramChartType.swift in Sources */,
 				3721CFE31FB7A5A20088AC24 /* HeaderCell.swift in Sources */,
 				372ADF0B1FBF4CB300495A5E /* MonthAdapter.swift in Sources */,
@@ -578,6 +591,7 @@
 				379A47071FB66AAB005F15BE /* Wallet.swift in Sources */,
 				3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */,
 				37B9F7891FC8652600BFF16F /* AddTransactionViewController.swift in Sources */,
+				374467FC1FE4534700A6F0A0 /* UIViewController+.swift in Sources */,
 				37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */,
 				379EF1E41FCC59D7002C061B /* String+.swift in Sources */,
 				379EF1E61FCC5AFD002C061B /* MonthModel.swift in Sources */,
@@ -585,10 +599,12 @@
 				37C76ADB1FD4A5940072CFC8 /* DatePickerDialog.swift in Sources */,
 				37D5E7E11FC8903C00D8AB72 /* AddTransactionTableViewController.swift in Sources */,
 				376419C21FACEE0D004363A6 /* FinanC_st.xcdatamodeld in Sources */,
+				374467FA1FE444B100A6F0A0 /* WalletAdapter+UICollectionViewDataSource.swift in Sources */,
 				37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */,
 				376419F81FACEFB8004363A6 /* HistogramChartView.swift in Sources */,
 				37C1E7C61FC018D8005B77BA /* WalletAdapter.swift in Sources */,
 				37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */,
+				374467F61FE443FB00A6F0A0 /* WalletAdapterDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

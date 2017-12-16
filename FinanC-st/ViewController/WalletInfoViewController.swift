@@ -37,13 +37,7 @@ class WalletInfoViewController: UIViewController {
     }
     
     
-    var wallet: Wallet! {
-        didSet {
-//            wallet.updateHandler = { [weak self] in
-//                self?.tableView.reloadData()
-//            }
-        }
-    }
+    var wallet: Wallet!
     var monthAdapter: MonthAdapter = MonthAdapter()
     
     override func viewDidLoad() {
@@ -57,36 +51,37 @@ class WalletInfoViewController: UIViewController {
             return
         }
         
-        initWith(wallet: wallet)
-        
-        monthAdapter.dates = wallet.dates
-        
         self.flowLayout.itemSize = CGSize(width: 175, height: 21)
         self.monthCollectionView.dataSource = monthAdapter
         self.monthCollectionView.delegate = monthAdapter
         
         monthAdapter.delegate = self
-        self.monthDidDeselect()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        update()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        wallet.isInit = false
+        update()
+    }
+    
+    private func update() {
         wallet.update()
-        viewDidLoad()
+        
+        initWith(wallet: wallet)
+        monthAdapter.dates = wallet.dates
+        self.monthDidDeselect()
     }
     
     public func initWith(wallet: Wallet) {
         walletTitle.text = wallet.title
         averageSumm.text = "$\(wallet.allMoney.toString())"
         
-        let date = DateComponents.now
-        expenseLabel.text = "$" + Double(wallet.expense(on: date).point).toString()
-        incomeLabel.text = "$" + Double(wallet.income(on: date).point).toString()
+        expenseLabel.text = "$" + Double(wallet.expensesAtAllTime).toString()
+        incomeLabel.text = "$" + Double(wallet.incomesAtAllTime).toString()
         
         cardBackground.backgroundColor = WalletBlueScheme.backgroundColor
         cardBackground.clipsToBounds = false
@@ -126,9 +121,8 @@ extension WalletInfoViewController: MonthAdapterDelegate {
         self.wallet.selectedMonth = nil
         self.tableView.reloadData()
         
-        let date = DateComponents.now
-        expenseLabel.text = "$" + Double(wallet.expense(on: date).point).toString()
-        incomeLabel.text = "$" + Double(wallet.income(on: date).point).toString()
+        expenseLabel.text = "$" + Double(wallet.expensesAtAllTime).toString()
+        incomeLabel.text = "$" + Double(wallet.incomesAtAllTime).toString()
         
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 0
@@ -178,7 +172,6 @@ extension WalletInfoViewController: UITableViewDataSource {
 
             tableView.endUpdates()
             
-//            tableView.reloadData()
             if !wallet.dates.contains(where: { $0.value == date.value }) {
                 self.monthAdapter.dates = wallet.dates
             }

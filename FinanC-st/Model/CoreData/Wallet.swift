@@ -26,22 +26,16 @@ public class Wallet: NSManagedObject {
     }
     
     public var expensesAtAllTime: Double {
-        var money: Double = 0
-        typedTransactions.forEach {
-            money += $0.transactionType == .expenses
-                ? $0.value
-                : 0
+        return typedTransactions.reduce(0.0) { (previos, transaction) -> Double in
+            let value = transaction.transactionType == .expenses ? transaction.value : 0
+            return previos + value
         }
-        return money
     }
     public var incomesAtAllTime: Double {
-        var money: Double = 0
-        typedTransactions.forEach {
-            money += $0.transactionType == .expenses
-                ? $0.value
-                : 0
+        return typedTransactions.reduce(0.0) { (previos, transaction) -> Double in
+            let value = transaction.transactionType == .income ? transaction.value : 0
+            return previos + value
         }
-        return money
     }
     
     func expense(on date: DateComponents) -> HistogramColumn {

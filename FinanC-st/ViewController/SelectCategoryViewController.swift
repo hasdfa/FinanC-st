@@ -45,7 +45,8 @@ extension SelectCategoryViewController: UISearchBarDelegate {
             return
         }
         CategoryType.all.forEach { c in
-            if c.title.lowercased().starts(with: searchText.lowercased()) {
+            let title = c.title.lowercased()
+            if title.localizedStandardContains(searchText.lowercased()) {
                 tempSelectedCategories.append(c)
             }
         }

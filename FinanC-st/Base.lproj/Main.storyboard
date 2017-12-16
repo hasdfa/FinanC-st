@@ -365,6 +365,21 @@
             </objects>
             <point key="canvasLocation" x="-3690.4000000000001" y="-271.18226600985224"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="NvT-Bp-vRH">
+            <objects>
+                <viewController id="FK8-CY-qUt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UVN-RG-J0X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Yrc-2g-yeU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3oX-lQ-VzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2902" y="-937"/>
+        </scene>
         <!--Wallet Info View Controller-->
         <scene sceneID="KMn-9T-ytO">
             <objects>
