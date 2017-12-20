@@ -69,6 +69,8 @@
 		37D5E7E11FC8903C00D8AB72 /* AddTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */; };
 		37D5E7E31FC898D600D8AB72 /* UINumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D5E7E21FC898D600D8AB72 /* UINumberPad.swift */; };
 		37F8BC7D1FC03F7300981D3D /* WalletInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */; };
+		9ECF5A991FEAE71600FB0996 /* AddWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF5A981FEAE71600FB0996 /* AddWalletViewController.swift */; };
+		9ECF5A9B1FEB103200FB0996 /* CurencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF5A9A1FEB103200FB0996 /* CurencyType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,8 @@
 		37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionTableViewController.swift; sourceTree = "<group>"; };
 		37D5E7E21FC898D600D8AB72 /* UINumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINumberPad.swift; sourceTree = "<group>"; };
 		37F8BC7C1FC03F7300981D3D /* WalletInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoViewController.swift; sourceTree = "<group>"; };
+		9ECF5A981FEAE71600FB0996 /* AddWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWalletViewController.swift; sourceTree = "<group>"; };
+		9ECF5A9A1FEB103200FB0996 /* CurencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurencyType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 				37B9F7881FC8652600BFF16F /* AddTransactionViewController.swift */,
 				37D5E7E01FC8903C00D8AB72 /* AddTransactionTableViewController.swift */,
 				379880121FCE126D002BC67B /* SelectCategoryViewController.swift */,
+				9ECF5A981FEAE71600FB0996 /* AddWalletViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 				376419F31FACEF7B004363A6 /* Histogram */,
 				3721CFEE1FB7B0640088AC24 /* ViewControllerModel.swift */,
 				379EF1E51FCC5AFD002C061B /* MonthModel.swift */,
+				9ECF5A9A1FEB103200FB0996 /* CurencyType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -591,6 +597,7 @@
 				379A47071FB66AAB005F15BE /* Wallet.swift in Sources */,
 				3721CFED1FB7AFD90088AC24 /* UIDrawerController.swift in Sources */,
 				37B9F7891FC8652600BFF16F /* AddTransactionViewController.swift in Sources */,
+				9ECF5A9B1FEB103200FB0996 /* CurencyType.swift in Sources */,
 				374467FC1FE4534700A6F0A0 /* UIViewController+.swift in Sources */,
 				37D4BE361FB3996000C4ED6F /* MontesrratFontType.swift in Sources */,
 				379EF1E41FCC59D7002C061B /* String+.swift in Sources */,
@@ -605,6 +612,7 @@
 				37C1E7C61FC018D8005B77BA /* WalletAdapter.swift in Sources */,
 				37A312621FAD120500A91599 /* HistogramChartView+Draw.swift in Sources */,
 				374467F61FE443FB00A6F0A0 /* WalletAdapterDelegate.swift in Sources */,
+				9ECF5A991FEAE71600FB0996 /* AddWalletViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,12 +17,12 @@ class TransactionCell: UITableViewCell {
     @IBOutlet weak var typeIcon: UIImageView!
     
     
-    public func initWith(transaction: Transaction) {
+    public func initWith(transaction: Transaction, currency: CurrencyType) {
         iconImageView.image = transaction.categoryType.image
         titleLabel.text = transaction.categoryType.title
         subtitleLabel.text = transaction.descriptionTitle
         
-        self.price.text = "$ \(transaction.value.toString())"
+        self.price.text = "\(currency.rawValue) \(transaction.value.toString())"
         
         typeIcon.image = transaction.transactionType == .expenses
             ? #imageLiteral(resourceName: "expenses_minus") : #imageLiteral(resourceName: "income_plus")

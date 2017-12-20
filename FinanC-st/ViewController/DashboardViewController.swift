@@ -96,6 +96,13 @@ class DashboardViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
         wallets = try! viewContext.fetch(fetchRequest)
         
+        if wallets.count < 1 {
+            if let addWalletVC = storyboard?.instantiateViewController(withIdentifier: "add-wallet") as? AddWalletViewController {
+                self.present(addWalletVC, animated: true, completion: nil)
+            }
+            return
+        }
+        
         walletAdapter.wallets = self.wallets
         collectionView.dataSource = walletAdapter
         collectionView.delegate = walletAdapter

@@ -11,15 +11,11 @@ import UIKit
 extension WalletAdapter: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return wallets.count + 1
+        return wallets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == wallets.count {
-            
-        }
-        
-        let cell = collectionView   .dequeueReusableCell(withReuseIdentifier: "wallet", for: indexPath) as! WalletViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wallet", for: indexPath) as! WalletViewCell
         if indexPath.row < 0 || indexPath.row >= wallets.count { return cell }
         
         cell.initWith(wallet: wallets[indexPath.row])

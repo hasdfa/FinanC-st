@@ -78,10 +78,10 @@ class WalletInfoViewController: UIViewController {
     
     public func initWith(wallet: Wallet) {
         walletTitle.text = wallet.title
-        averageSumm.text = "$\(wallet.allMoney.toString())"
+        averageSumm.text = "\(wallet.currencyType.rawValue)\(wallet.allMoney.toString())"
         
-        expenseLabel.text = "$" + Double(wallet.expensesAtAllTime).toString()
-        incomeLabel.text = "$" + Double(wallet.incomesAtAllTime).toString()
+        expenseLabel.text = "\(wallet.currencyType.rawValue)" + Double(wallet.expensesAtAllTime).toString()
+        incomeLabel.text = "\(wallet.currencyType.rawValue)" + Double(wallet.incomesAtAllTime).toString()
         
         cardBackground.backgroundColor = WalletBlueScheme.backgroundColor
         cardBackground.clipsToBounds = false
@@ -109,8 +109,8 @@ extension WalletInfoViewController: MonthAdapterDelegate {
         self.tableView.reloadData()
         
         let date = model.date
-        expenseLabel.text = "$" + Double(wallet.expense(on: date).point).toString()
-        incomeLabel.text = "$" + Double(wallet.income(on: date).point).toString()
+        expenseLabel.text = "\(wallet.currencyType.rawValue)" + Double(wallet.expense(on: date).point).toString()
+        incomeLabel.text = "\(wallet.currencyType.rawValue)" + Double(wallet.income(on: date).point).toString()
         
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 1
@@ -121,8 +121,8 @@ extension WalletInfoViewController: MonthAdapterDelegate {
         self.wallet.selectedMonth = nil
         self.tableView.reloadData()
         
-        expenseLabel.text = "$" + Double(wallet.expensesAtAllTime).toString()
-        incomeLabel.text = "$" + Double(wallet.incomesAtAllTime).toString()
+        expenseLabel.text = "\(wallet.currencyType.rawValue)" + Double(wallet.expensesAtAllTime).toString()
+        incomeLabel.text = "\(wallet.currencyType.rawValue)" + Double(wallet.incomesAtAllTime).toString()
         
         UIView.animate(withDuration: 0.5) {
             self.indicatorView.alpha = 0
@@ -189,7 +189,7 @@ extension WalletInfoViewController: UITableViewDataSource {
             .transactionGoupedByDate[wallet.dates[indexPath.section].value] {
             let transaction = trancs[indexPath.row]
             
-            cell.initWith(transaction: transaction)
+            cell.initWith(transaction: transaction, currency: wallet.currencyType)
         }
         
         return cell

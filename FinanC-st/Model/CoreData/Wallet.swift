@@ -25,6 +25,12 @@ public class Wallet: NSManagedObject {
         return money
     }
     
+    public var currencyType: CurrencyType {
+        return CurrencyType(
+            rawValue: currency ?? CurrencyType.dollar.rawValue
+            ) ?? CurrencyType.dollar
+    }
+    
     public var expensesAtAllTime: Double {
         return typedTransactions.reduce(0.0) { (previos, transaction) -> Double in
             let value = transaction.transactionType == .expenses ? transaction.value : 0

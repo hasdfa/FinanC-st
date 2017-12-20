@@ -44,8 +44,8 @@ class WalletViewCell: UICollectionViewCell {
         averageSumm.text = wallet.allMoney.toString()
         
         let date = DateComponents.now
-        expenseLabel.text = "- " + Double(wallet.expense(on: date).point).toString()
-        incomeLabel.text = "+ " + Double(wallet.income(on: date).point).toString()
+        expenseLabel.text = "- \(wallet.currencyType.rawValue)" + Double(wallet.expense(on: date).point).toString()
+        incomeLabel.text = "+ \(wallet.currencyType.rawValue)" + Double(wallet.income(on: date).point).toString()
         
         cardBackground.clipsToBounds = false
         cardBackground.layer.cornerRadius = 8
