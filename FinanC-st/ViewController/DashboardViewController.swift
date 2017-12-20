@@ -39,6 +39,13 @@ class DashboardViewController: UIViewController {
         }
     }
     
+    @IBAction func addWalletAction(_ sender: Any) {
+        if let addWalletVC = storyboard?.instantiateViewController(withIdentifier: "add-wallet") {
+            self.present(addWalletVC, animated: true, completion: nil)
+        }
+    }
+    
+    
     var isExpensesClicker = true
     @IBAction func onExpendsClick(_ sender: UIButton) {
         if !isExpensesClicker {
@@ -96,31 +103,33 @@ class DashboardViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
         wallets = try! viewContext.fetch(fetchRequest)
         
-        if wallets.count < 1 {
-            if let addWalletVC = storyboard?.instantiateViewController(withIdentifier: "add-wallet") as? AddWalletViewController {
-                self.present(addWalletVC, animated: true, completion: nil)
-            }
-            return
+        if wallets.count > 0 {
+            walletAdapter.wallets = self.wallets
+            collectionView.dataSource = walletAdapter
+            collectionView.delegate = walletAdapter
+            
+            chart.columns = walletAdapter.selectedWallet.expenses
+            
+            self.flowLayout.itemSize = CGSize(width: 175, height: 21)
+            
+            self.monthAdapter.dates = wallets.first!.dates
+            
+            self.monthCollectionView.dataSource = monthAdapter
+            self.monthCollectionView.delegate = monthAdapter
+            self.monthDidDeselect()
+            
+            let indexPath = IndexPath(row: 0, section: 0)
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            
+            chart.setNeedsAnimating()
         }
-        
-        walletAdapter.wallets = self.wallets
-        collectionView.dataSource = walletAdapter
-        collectionView.delegate = walletAdapter
-        
-        chart.columns = walletAdapter.selectedWallet.expenses
-        
-        self.flowLayout.itemSize = CGSize(width: 175, height: 21)
-        
-        self.monthAdapter.dates = wallets.first!.dates
-        
-        self.monthCollectionView.dataSource = monthAdapter
-        self.monthCollectionView.delegate = monthAdapter
-        self.monthDidDeselect()
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-        
-        chart.setNeedsAnimating()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if wallets.count < 1 {
+            addWalletAction(self)
+        }
     }
 }
 

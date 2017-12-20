@@ -65,7 +65,7 @@ class UIDrawerController: UIViewController {
     let controllers: [ViewControllerModel] = [
         ViewControllerModel(id: "dashboard", title: "Dashboard", image: #imageLiteral(resourceName: "Dashboard")),
         ViewControllerModel(id: "", title: "Notifications", image: #imageLiteral(resourceName: "notifications-button")),
-        ViewControllerModel(id: "budget", title: "Budget", image: #imageLiteral(resourceName: "pie-chart")),
+        ViewControllerModel(id: "", title: "Budget", image: #imageLiteral(resourceName: "pie-chart")),
         ViewControllerModel(id: "", title: "Schedudled payment", image: #imageLiteral(resourceName: "calendar")),
         ViewControllerModel(id: "", title: "Accounts", image: #imageLiteral(resourceName: "user")),
         ViewControllerModel(id: "", title: "Setting", image: #imageLiteral(resourceName: "settings")),
@@ -249,6 +249,7 @@ extension UIDrawerController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderCell
             cell.backgroundColor = HCColors.colorPrimary
+            cell.selectionStyle = .none
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "item") as! ItemCell
