@@ -96,6 +96,9 @@ class AddTransactionTableViewController: UITableViewController {
         }
     }
     @IBAction func interactWithNumberPanel(_ sender: UIView) {
+        summLabel.text = summLabel.text?.filter {
+            $0 <= "9" && $0 >= "0"
+        }
         isOpenNumberPanel = !isOpenNumberPanel
     }
     

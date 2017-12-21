@@ -36,6 +36,48 @@ class WalletInfoViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func editWallet(_ sender: UIButton) {
+        let showDeleteAlert = {
+            let alert = UIAlertController(title: "Are you shure to delete this wallet?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                if let context = self.wallet.managedObjectContext {
+                    context.delete(self.wallet)
+                    try! context.save()
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        let showEditTitleAction = {
+            let alert = UIAlertController(title: "Are you shure to delete this wallet?", message: nil, preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { textField in
+                textField.text = self.wallet.title
+            })
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                if let title = alert.textFields?.first?.text {
+                    self.wallet.title = title
+                    try! self.wallet.managedObjectContext?.save()
+                    self.update()
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        let alertSheet = UIAlertController(title: "Edit wallet", message: nil, preferredStyle: .actionSheet)
+        alertSheet.addAction(UIAlertAction(title: "Edit name", style: .default, handler: { _ in
+            showEditTitleAction()
+        }))
+        alertSheet.addAction(UIAlertAction(title: "Delete wallet", style: .default, handler: { _ in
+            showDeleteAlert()
+        }))
+        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertSheet, animated: true, completion: nil)
+    }
+    
+    
     
     var wallet: Wallet!
     var monthAdapter: MonthAdapter = MonthAdapter()
@@ -60,11 +102,12 @@ class WalletInfoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        update()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        wallet.selectedMonth = nil
         update()
     }
     

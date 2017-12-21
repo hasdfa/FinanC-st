@@ -45,6 +45,13 @@ class DashboardViewController: UIViewController {
         }
     }
     
+    @IBAction func selectToday(_ sender: Any) {
+        if let index = monthAdapter.dates.index(
+            where: { $0.value == DateComponents.now.value }) {
+            monthAdapter.selectedMonth = index.distance(to: 0)
+        }
+    }
+    
     
     var isExpensesClicker = true
     @IBAction func onExpendsClick(_ sender: UIButton) {

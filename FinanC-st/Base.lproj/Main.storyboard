@@ -286,6 +286,9 @@
                                 </constraints>
                                 <color key="tintColor" red="0.47843137254901957" green="0.49411764705882355" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="calendar"/>
+                                <connections>
+                                    <action selector="selectToday:" destination="UJs-DK-FYY" eventType="touchUpInside" id="OKp-4Q-Pnz"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aMe-kW-Yum">
                                 <rect key="frame" x="16" y="107.66666666666667" width="359" height="24.000000000000014"/>
@@ -547,7 +550,10 @@
                                     <constraint firstAttribute="height" constant="32" id="QgH-fZ-6nh"/>
                                 </constraints>
                                 <color key="tintColor" red="0.47843137250000001" green="0.4941176471" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="menu"/>
+                                <state key="normal" image="ic_edit"/>
+                                <connections>
+                                    <action selector="editWallet:" destination="Nuf-os-7GJ" eventType="touchUpInside" id="hyC-BF-yFK"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T5E-cG-6ex">
                                 <rect key="frame" x="16" y="107" width="359" height="24"/>
@@ -840,7 +846,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD TRANSACTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ab-Wi-lav">
-                                <rect key="frame" x="56" y="48" width="271" height="32"/>
+                                <rect key="frame" x="56" y="48" width="279" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="f3m-Mz-cqB"/>
                                 </constraints>
@@ -859,15 +865,6 @@
                                 <connections>
                                     <action selector="close:" destination="5gO-G8-mfc" eventType="touchUpInside" id="dxU-1B-enh"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPC-TY-kSx">
-                                <rect key="frame" x="327" y="48" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="Fcu-mU-H0U"/>
-                                    <constraint firstAttribute="width" constant="32" id="W8G-r8-8O8"/>
-                                </constraints>
-                                <color key="tintColor" red="0.47843137250000001" green="0.4941176471" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="menu"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vPL-tk-nv4">
                                 <rect key="frame" x="73.666666666666686" y="104" width="228" height="32"/>
@@ -942,14 +939,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vPL-tk-nv4" firstAttribute="top" secondItem="8ab-Wi-lav" secondAttribute="bottom" constant="24" id="05M-Yf-d7i"/>
-                            <constraint firstItem="tPC-TY-kSx" firstAttribute="top" secondItem="JEK-dt-DuO" secondAttribute="top" constant="4" id="0ae-52-9rR"/>
                             <constraint firstItem="vPL-tk-nv4" firstAttribute="centerX" secondItem="HPP-qB-iqc" secondAttribute="centerX" id="18F-dD-ffR"/>
-                            <constraint firstItem="JEK-dt-DuO" firstAttribute="trailing" secondItem="tPC-TY-kSx" secondAttribute="trailing" constant="16" id="5Yf-Ak-dTn"/>
                             <constraint firstItem="xhO-0e-da8" firstAttribute="leading" secondItem="JEK-dt-DuO" secondAttribute="leading" constant="32" id="6IE-PF-YGk"/>
                             <constraint firstItem="bsL-Yn-Ei0" firstAttribute="leading" secondItem="JEK-dt-DuO" secondAttribute="leading" constant="16" id="6Ov-1k-DNs"/>
                             <constraint firstItem="bsL-Yn-Ei0" firstAttribute="top" secondItem="JEK-dt-DuO" secondAttribute="top" constant="4" id="Aaw-Em-9Vy"/>
                             <constraint firstItem="JEK-dt-DuO" firstAttribute="bottom" secondItem="xhO-0e-da8" secondAttribute="bottom" constant="16" id="D0f-Rp-MJ0"/>
-                            <constraint firstItem="tPC-TY-kSx" firstAttribute="leading" secondItem="8ab-Wi-lav" secondAttribute="trailing" id="I8F-VA-dHC"/>
+                            <constraint firstItem="JEK-dt-DuO" firstAttribute="trailing" secondItem="8ab-Wi-lav" secondAttribute="trailing" constant="40" id="HPC-Cb-WvG"/>
                             <constraint firstItem="xhO-0e-da8" firstAttribute="centerX" secondItem="HPP-qB-iqc" secondAttribute="centerX" id="IrI-6b-s7F"/>
                             <constraint firstItem="8ab-Wi-lav" firstAttribute="leading" secondItem="bsL-Yn-Ei0" secondAttribute="trailing" constant="8" id="OLB-Iz-NaL"/>
                             <constraint firstItem="JEK-dt-DuO" firstAttribute="trailing" secondItem="R7F-vC-aCU" secondAttribute="trailing" constant="16" id="QtO-IL-fwQ"/>
@@ -1205,7 +1200,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="8" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xig-zh-fXt">
-                                                    <rect key="frame" x="64" y="19.333333333333332" width="324" height="20.999999999999996"/>
+                                                    <rect key="frame" x="64" y="18.666666666666668" width="324" height="21.000000000000004"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -1256,7 +1251,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNb-ag-TAZ">
-                                <rect key="frame" x="119.33333333333334" y="48" width="105.33333333333334" height="32"/>
+                                <rect key="frame" x="119.66666666666669" y="48" width="105.33333333333331" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="UlR-WA-Ixh"/>
                                 </constraints>

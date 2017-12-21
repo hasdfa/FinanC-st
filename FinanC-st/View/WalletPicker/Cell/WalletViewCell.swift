@@ -41,7 +41,7 @@ class WalletViewCell: UICollectionViewCell {
 //            return "$\(Int(double))"
 //        }
         
-        averageSumm.text = wallet.allMoney.toString()
+        averageSumm.text = "\(wallet.currencyType.rawValue)\(wallet.allMoney.toString())"
         
         let date = DateComponents.now
         expenseLabel.text = "- \(wallet.currencyType.rawValue)" + Double(wallet.expense(on: date).point).toString()
