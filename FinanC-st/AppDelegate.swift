@@ -19,11 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        let context = persistentContainer.viewContext
-//        try! context.fetch(Wallet.fetchRequest()).forEach {
-//            context.delete($0)
-//        }
-//        AppDelegate.initDatabase(with: context)
+        if UserDefaults.standard.object(forKey: "first") == nil {
+            AppDelegate.initDatabase(with: persistentContainer.viewContext)
+            UserDefaults.standard.set(false, forKey: "first")
+        }
         
         return true
     }
@@ -49,10 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let wallet2 = Wallet(context: context)
         wallet2.title = "Wallet 2"
-        [Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 7), description: "Some21", value: 40_000, type: .expenses, category: .bill),
+        [Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 7), description: "Some21", value: 4_000, type: .expenses, category: .bill),
          Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 6), description: "Some31", value: 200, type: .expenses, category: .rent),
          Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 5), description: "Some11", value: 6000, type: .expenses, category: .rent),
-         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 4), description: "Some41", value: 10_500, type: .expenses, category: .rent),
+         Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 4), description: "Some41", value: 500, type: .expenses, category: .rent),
          Transaction.createOn(context, date: DateComponents.initWith(year: 2017, month: 3), description: "Some41", value: 200, type: .expenses, category: .rent)].forEach {
             transaction in
             wallet2.addToTransactions(transaction)

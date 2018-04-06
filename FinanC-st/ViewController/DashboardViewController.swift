@@ -110,6 +110,13 @@ class DashboardViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Wallet> = Wallet.fetchRequest()
         wallets = try! viewContext.fetch(fetchRequest)
         
+        if wallets.count == 0 {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "add-wallet") {
+                self.present(vc, animated: true, completion: nil)
+                return
+            }
+        }
+        
         if wallets.count > 0 {
             walletAdapter.wallets = self.wallets
             collectionView.dataSource = walletAdapter

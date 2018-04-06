@@ -34,6 +34,7 @@ class HistogramChartView: UIView {
     
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
+        if self.columns.count == 0 { return }
         
         var i = 0
         switch chartType {

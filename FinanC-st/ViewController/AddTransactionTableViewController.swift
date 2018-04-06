@@ -88,6 +88,10 @@ class AddTransactionTableViewController: UITableViewController {
     var isTitleEditing = false
     var isOpenNumberPanel = false {
         didSet {
+            if isTitleEditing {
+                titleLabel.resignFirstResponder()
+                summLabel.becomeFirstResponder()
+            }
             if isOpenNumberPanel && !isTitleEditing {
                 delegate.openNumericPad()
             } else {
