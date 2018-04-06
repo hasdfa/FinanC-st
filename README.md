@@ -11,4 +11,3 @@
         <td><img src="Images/image3.png"></td>
     </tr>
 </table>
-
