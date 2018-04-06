@@ -93,7 +93,7 @@ class DashboardViewController: UIViewController {
         
         walletAdapter.delegate = self
         
-        chart.chartType = .withColumns
+        chart.chartType = .withPoint
         chart.delegate = self
         
         monthAdapter.delegate = self
